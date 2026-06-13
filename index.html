@@ -300,6 +300,54 @@ footer a{color:var(--bl);text-decoration:none}
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+
+/* HERO STRIP */
+.hero-strip{position:relative;z-index:2;width:100%;padding:2rem 0 0;margin-top:2rem}
+.hero-strip-label{font-size:.72rem;color:var(--tm);letter-spacing:.1em;font-weight:700;text-align:center;margin-bottom:.9rem;text-transform:uppercase}
+.hero-strip-track{display:flex;gap:.75rem;overflow-x:auto;padding:.4rem 1.5rem 1rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hero-strip-track::-webkit-scrollbar{display:none}
+.hs-card{flex-shrink:0;width:90px;border-radius:12px;overflow:hidden;aspect-ratio:9/16;background:var(--bll);position:relative;cursor:pointer;box-shadow:0 4px 16px rgba(160,85,112,.15);transition:transform .25s,box-shadow .25s;border:2px solid transparent}
+.hs-card:hover{transform:scale(1.06) translateY(-3px);box-shadow:0 10px 28px rgba(160,85,112,.28);border-color:var(--rose)}
+.hs-card-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem}
+.hs-card-bg{position:absolute;inset:0;background:linear-gradient(160deg,var(--bll),var(--lav))}
+.hs-card-icon{position:relative;font-size:1.8rem;filter:drop-shadow(0 2px 6px rgba(160,85,112,.3))}
+.hs-card-label{position:relative;font-size:.58rem;color:var(--tm);font-weight:700;text-align:center;padding:0 .3rem;line-height:1.3}
+.hs-card-bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(74,44,53,.85),transparent);padding:.4rem .3rem .3rem;font-size:.58rem;color:#fff;text-align:center;font-weight:700;line-height:1.2}
+.hs-card video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.hs-card.playing video{opacity:1}
+.hs-card.playing .hs-card-inner{display:none}
+.hero-strip-cta{display:block;text-align:center;color:var(--rose);font-size:.82rem;font-weight:700;text-decoration:none;margin-top:.3rem;letter-spacing:.04em;transition:color .2s}
+.hero-strip-cta:hover{color:var(--rd)}
+
+/* REVIEWS */
+#resenas{background:linear-gradient(160deg,#fdf0f5,var(--cream))}
+.resenas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.3rem;max-width:1000px;margin:0 auto 2.5rem}
+.resena-card{background:var(--w);border:1.5px solid var(--bl);border-radius:18px;padding:1.4rem;position:relative;transition:transform .3s,box-shadow .3s}
+.resena-card:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.resena-quote{font-size:2.5rem;color:var(--bl);line-height:1;margin-bottom:.3rem;font-family:'Playfair Display',serif}
+.resena-text{font-size:.9rem;color:var(--tm);line-height:1.65;font-style:italic;margin-bottom:.9rem}
+.resena-author{display:flex;align-items:center;gap:.6rem}
+.resena-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--bl),var(--lav));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.resena-name{font-weight:700;color:var(--td);font-size:.85rem}
+.resena-event{font-size:.75rem;color:var(--tl)}
+.resena-stars{color:var(--gold);font-size:.85rem;margin-bottom:.5rem}
+/* submit review */
+.resena-form-wrap{max-width:600px;margin:0 auto;background:var(--w);border:1.5px solid var(--bl);border-radius:20px;padding:1.8rem}
+.resena-form-wrap h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--td);margin-bottom:.3rem}
+.resena-form-wrap p{font-size:.85rem;color:var(--tm);margin-bottom:1.2rem}
+.resena-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
+.resena-grid .full{grid-column:1/-1}
+.resena-grid input,.resena-grid textarea,.resena-grid select{width:100%;padding:.7rem .95rem;border:1.5px solid var(--bl);border-radius:10px;background:var(--cream);color:var(--td);font-family:'Lato',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s}
+.resena-grid input:focus,.resena-grid textarea:focus,.resena-grid select:focus{border-color:var(--rose)}
+.resena-grid textarea{resize:vertical;min-height:85px}
+.stars-pick{display:flex;gap:.3rem;margin-bottom:.8rem}
+.stars-pick button{background:none;border:none;font-size:1.6rem;cursor:pointer;transition:transform .15s;color:var(--bl)}
+.stars-pick button.active{color:var(--gold)}
+.stars-pick button:hover{transform:scale(1.2)}
+.resena-submit{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;padding:.75rem 2rem;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;transition:opacity .2s}
+.resena-submit:hover{opacity:.88}
+#resena-success{display:none;text-align:center;padding:1.5rem;color:var(--rd)}
+@media(max-width:480px){.resena-grid{grid-template-columns:1fr}.resena-grid .full{grid-column:1}}
 </style>
 </head>
 <body>
@@ -311,6 +359,7 @@ footer a{color:var(--bl);text-decoration:none}
     <li><a href="#tipos">Tipos</a></li>
     <li><a href="#paquetes">Paquetes</a></li>
     <li><a href="#galeria">Galería</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a class="nav-cta" href="#contacto">Cotizar ahora</a>
@@ -333,6 +382,15 @@ footer a{color:var(--bl);text-decoration:none}
       <div class="hero-stat"><div class="hero-stat-n">6+</div><div class="hero-stat-l">TIPOS DE EVENTO</div></div>
       <div class="hero-stat"><div class="hero-stat-n">24/7</div><div class="hero-stat-l">DISPONIBLES</div></div>
     </div>
+  </div>
+</section>
+
+<!-- HERO PREVIEW STRIP -->
+<section id="hero-strip-sec" style="padding:2.5rem 0 1.5rem;background:linear-gradient(180deg,#fce8ed 0%,var(--cream) 100%)">
+  <p class="hero-strip-label" style="margin-bottom:1rem">✦ Una muestra de nuestros diseños ✦</p>
+  <div class="hero-strip-track" id="hero-strip-track"></div>
+  <div style="text-align:center;margin-top:.8rem">
+    <a class="hero-strip-cta" href="#galeria">Ver todos los diseños →</a>
   </div>
 </section>
 
@@ -399,6 +457,37 @@ footer a{color:var(--bl);text-decoration:none}
       </a>
     </div>
     <div id="cform-success"><div style="font-size:2.5rem;margin-bottom:.8rem">🌸</div><h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--rd);margin-bottom:.5rem">¡Mensaje recibido!</h3><p style="color:var(--tm)">Te contactaremos pronto ✨</p></div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section id="resenas">
+  <div class="section-header reveal">
+    <span class="section-label">Lo que dicen</span>
+    <h2 class="section-title">Reseñas de clientes</h2>
+    <div class="section-div"></div>
+  </div>
+  <div class="resenas-grid" id="resenas-grid"></div>
+  <div class="resena-form-wrap reveal">
+    <h3>💌 Deja tu reseña</h3>
+    <p>¿Hiciste una invitación con nosotros? ¡Nos encantaría saber tu experiencia!</p>
+    <div id="resena-success"><div style="font-size:2.5rem">🌸</div><p style="color:var(--rose);font-weight:700;margin-top:.5rem">¡Gracias por tu reseña! 💕</p></div>
+    <form id="resena-form" onsubmit="submitResena(event)">
+      <div class="stars-pick" id="stars-pick">
+        <button type="button" onclick="setStars(1)">★</button>
+        <button type="button" onclick="setStars(2)">★</button>
+        <button type="button" onclick="setStars(3)">★</button>
+        <button type="button" onclick="setStars(4)">★</button>
+        <button type="button" onclick="setStars(5)">★</button>
+      </div>
+      <input type="hidden" id="resena-stars-val" value="5">
+      <div class="resena-grid">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="text" name="evento" placeholder="Tipo de evento (ej. Boda, XV)">
+        <textarea name="comentario" placeholder="¿Cómo fue tu experiencia? ✨" class="full" required></textarea>
+      </div>
+      <button type="submit" class="resena-submit">✦ Publicar reseña</button>
+    </form>
   </div>
 </section>
 
@@ -765,7 +854,7 @@ function buildGallery(){
     secEl.appendChild(sec);
   });
 
-  // lazy load: load video src only when visible
+  // lazy load: load and autoplay video src when visible
   const lazyObs=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -774,12 +863,21 @@ function buildGallery(){
         const vid=item.querySelector('.gal-video-el');
         if(vid && !vid.src){
           vid.src=VIDEOS[gi].s;
+          vid.muted=true;
+          vid.loop=true;
           vid.load();
+          vid.addEventListener('canplay',()=>{
+            vid.play().catch(()=>{});
+            item.classList.add('loaded');
+            const pb=item.querySelector('.gal-play-btn');
+            if(pb) pb.textContent='⏸';
+            item.classList.add('gal-playing');
+          },{once:true});
         }
         lazyObs.unobserve(item);
       }
     });
-  },{rootMargin:'200px'});
+  },{rootMargin:'150px'});
 
   document.querySelectorAll('.gal-item').forEach(el=>lazyObs.observe(el));
   observeReveal();
@@ -789,11 +887,11 @@ function galTogglePlay(e,btn){
   e.stopPropagation();
   const item=btn.closest('.gal-item');
   const vid=item.querySelector('.gal-video-el');
-  if(!vid.src){ const gi=parseInt(item.dataset.gi); vid.src=VIDEOS[gi].s; vid.load(); }
+  // load if not yet loaded
+  if(!vid.src){ const gi=parseInt(item.dataset.gi); vid.src=VIDEOS[gi].s; vid.muted=true; vid.loop=true; vid.load(); vid.addEventListener('canplay',()=>{ vid.play().catch(()=>{}); item.classList.add('loaded','gal-playing'); btn.textContent='⏸'; },{once:true}); return; }
   if(vid.paused){
-    // pause all others
-    document.querySelectorAll('.gal-video-el').forEach(v=>{ if(v!==vid){ v.pause(); v.closest('.gal-item')?.classList.remove('loaded','gal-playing'); v.closest('.gal-item')?.querySelector('.gal-play-btn') && (v.closest('.gal-item').querySelector('.gal-play-btn').textContent='▶'); }});
-    vid.muted=true; vid.play();
+    document.querySelectorAll('.gal-video-el').forEach(v=>{ if(v!==vid){ v.pause(); const pi=v.closest('.gal-item'); if(pi){ pi.classList.remove('gal-playing'); const pb=pi.querySelector('.gal-play-btn'); if(pb) pb.textContent='▶'; } }});
+    vid.play().catch(()=>{});
     item.classList.add('loaded','gal-playing');
     btn.textContent='⏸';
   } else {
@@ -1172,27 +1270,50 @@ let secretBuf='';
 document.addEventListener('keydown',e=>{ secretBuf=(secretBuf+e.key).slice(-5); if(secretBuf==='admin') openAdminLogin(); });
 
 // ═══════════════════════════════════════
+//  LOCAL AI FALLBACK
+// ═══════════════════════════════════════
+const AI_LOCAL={
+  precio:['precio','costo','cuánto','cuanto','cobran','vale','tarifa','cuestan'],
+  bronce:['bronce','bronze'],
+  basica:['básica','basica','básico','basico'],
+  plata:['plata','silver'],
+  oro:['oro plus','oro premium','oro','gold','dorado'],
+  tiempo:['tiempo','tarda','cuándo','cuando','entrega','demora','días','dias','rapido','rapido'],
+  pago:['pago','pagar','transferencia','tarjeta','efectivo','abono','deposito','depósito'],
+  evento:['evento','boda','bautizo','xv','quince','cumple','graduac','baby shower','comunión','confirmac','shower'],
+  proceso:['proceso','como funciona','cómo funciona','pasos','qué necesito','que necesito'],
+  whatsapp:['contacto','teléfono','telefono','número','numero','whatsapp','llamar','comunicar'],
+  revision:['revision','revisión','cambio','modificar','cambiar','correc'],
+};
+const AI_ANS={
+  precio:`💰 Nuestros precios son:\n\n📷 Imagen: $69 MXN\n🎬 Video: $149 MXN\n📄 PDF con botones: $129 MXN\n▶️ Video con botones: $199 MXN\n\n🌐 Paquetes Web:\n• Básica $199 · Bronce $359 · Plata $499\n• Oro $655 · Oro Plus $799 · Oro Premium $999\n\n¿Cuál te interesa? 💕`,
+  bronce:`📦 Web Bronce $359 incluye:\n✦ Frase de tu elección\n✦ Música de fondo\n✦ 2 botones de ubicación\n✦ 1 botón de confirmación\n✦ Cuenta regresiva\n✦ Nombre de papás\n✦ Lluvia de sobres\n✦ Galería de fotos\n✦ Código de vestimenta\n\n¿Te gustaría solicitarlo? 🌸`,
+  basica:`📦 Web Básica $199 incluye:\n✦ Música de fondo\n✦ 1 botón de ubicación\n✦ 1 botón de confirmación\n✦ Cuenta regresiva\n✦ Datos básicos del evento\n\nPerfecta para eventos íntimos 💕`,
+  plata:`📦 Web Plata $499 incluye todo lo de Web Bronce más:\n✦ Pases digitales para 150 personas\n\nIdeal cuando tienes muchos invitados ✨`,
+  oro:`💎 Web Oro $655 – nuestro más popular:\n✦ Pases digitales ilimitados\n✦ Lluvia de sobres / mesa de regalos\n✦ Galería de fotos dinámica\n✦ Opciones de hospedaje\n\nOro Plus $799 agrega QR de acceso y fotos.\nOro Premium $999 agrega animaciones, app y acomodo de mesas 🌟`,
+  tiempo:`⏰ Tu invitación estará lista en 24 a 48 horas después de enviarnos tus datos. Incluimos hasta 2 revisiones sin costo extra. ¡Tu evento quedará perfecto! 💕`,
+  pago:`💳 Aceptamos:\n✦ Transferencia bancaria (SPEI)\n✦ Efectivo\n✦ Consulta disponibilidad de tarjeta\n\nEscríbenos al WhatsApp 4426084804 para coordinar el pago 📲`,
+  evento:`🎉 Hacemos invitaciones para:\n💍 Bodas · 👑 XV Años · 🎂 Cumpleaños\n🎓 Graduaciones · 🕊️ Bautizos\n🍼 Baby Shower · ⛪ Primera Comunión\n✨ Revelación de sexo y mucho más!\n\n¿Para qué evento lo necesitas? 💕`,
+  proceso:`📋 El proceso es sencillo:\n1️⃣ Elige tu paquete o tipo\n2️⃣ Llena el formulario con tus datos\n3️⃣ Diseñamos tu invitación\n4️⃣ La recibes en 24-48 hrs\n5️⃣ Hasta 2 revisiones incluidas\n\n¡Así de fácil! 🌸`,
+  whatsapp:`📱 Contáctanos directo:\nWhatsApp: 4426084804\n📷 Instagram: @momentosencantados\n\nEstamos para atenderte con mucho gusto 💕`,
+  revision:`✏️ Incluimos hasta 2 revisiones sin costo adicional en todos nuestros paquetes. Si necesitas más cambios, podemos cotizarlos aparte. ¡Queremos que quede perfecto! 💕`,
+};
+function getLocalAns(text){
+  const t=text.toLowerCase();
+  for(const [key,kws] of Object.entries(AI_LOCAL)){
+    if(kws.some(k=>t.includes(k))) return AI_ANS[key];
+  }
+  return null;
+}
+
+// ═══════════════════════════════════════
 //  AI CHAT
 // ═══════════════════════════════════════
 const AI_SYS=`Eres la asistente virtual de Momentos Encantados, empresa mexicana de invitaciones digitales. Responde SIEMPRE en español, de forma amable, breve y con emojis 💕. Nunca digas que tienes un error; si no puedes responder, sugiere el WhatsApp 4426084804.
-
 TIPOS: Imagen $69 | Video $149 | PDF con botones $129 | Video con botones $199
-
-PAQUETES WEB:
-- Web Básica $199: música, 1 ubicación, 1 confirmación, cuenta regresiva, datos básicos
-- Web Bronce $359: frase, música, 2 ubicaciones, confirmación, cuenta regresiva, papás, lluvia sobres, galería, vestimenta
-- Web Plata $499: todo Bronce + pases digitales 150 personas
-- Web Oro $655: frases, música, 2 ubicaciones, confirmación, pases ilimitados, cuenta regresiva, lluvia/mesa regalos, galería dinámica, hospedaje, vestimenta
-- Web Oro Plus $799: todo Oro + QR acceso + QR fotos
-- Web Oro Premium $999: todo Oro Plus + música automática + animaciones + app entrada QR + acomodo mesas + experiencia interactiva
-
-EVENTOS: bodas, XV años, cumpleaños adultos e infantiles, graduaciones, bautizos, baby shower, primera comunión, confirmaciones, bodas de plata, revelación de sexo y más.
-
-PROCESO: 1) Elige paquete 2) Envía tus datos 3) Lista en 24–48 hrs 4) Hasta 2 revisiones incluidas.
-
-PAGO: transferencia, efectivo, preguntar por tarjeta. WhatsApp: 4426084804.
-
-Cuando alguien pregunta por precios, da todos de forma clara. Invita siempre a explorar la galería o a hacer clic en "Quiero este paquete". Sé entusiasta y cálida. Responde con máximo 3 párrafos cortos.`;
+PAQUETES WEB: Básica $199 | Bronce $359 | Plata $499 | Oro $655 | Oro Plus $799 | Oro Premium $999
+EVENTOS: bodas, XV años, cumpleaños, graduaciones, bautizos, baby shower, comunión, confirmación, revelación de sexo y más.
+PROCESO: datos → diseño → 24-48 hrs → 2 revisiones incluidas. PAGO: transferencia, efectivo. WhatsApp: 4426084804.`;
 
 const chatHist=[]; let aiOpen=false;
 function toggleAI(){
@@ -1212,30 +1333,121 @@ async function sendAI(){
   document.getElementById('ai-quick-btns').style.display='none';
   addMsg(text,'user');
   chatHist.push({role:'user',content:text});
+
+  // Always try local first — instant response
+  const local=getLocalAns(text);
+  if(local){
+    addMsg(local,'bot');
+    chatHist.push({role:'assistant',content:local});
+    return;
+  }
+
   const typing=addMsg('Escribiendo...','bot');
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:500,system:AI_SYS,messages:chatHist})
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:400,system:AI_SYS,messages:chatHist})
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
     const data=await res.json();
-    const reply=(data.content||[]).map(b=>b.text||'').join('')||'Te recomiendo escribirnos al WhatsApp 4426084804 💕';
+    const reply=(data.content||[]).map(b=>b.text||'').join('')||null;
     typing.remove();
-    addMsg(reply,'bot');
-    chatHist.push({role:'assistant',content:reply});
+    const out=reply||'Escríbenos al WhatsApp 4426084804 y te ayudamos de inmediato 💕';
+    addMsg(out,'bot');
+    chatHist.push({role:'assistant',content:out});
   }catch(err){
     typing.remove();
-    addMsg('¡Hola! Por el momento no puedo responder aquí, pero escríbenos directo al WhatsApp 📲 4426084804 y te atendemos de inmediato 💕','bot');
+    const fb='Escríbenos directo al WhatsApp 📲 4426084804 y te ayudamos a elegir tu invitación perfecta 💕';
+    addMsg(fb,'bot');
+    chatHist.push({role:'assistant',content:fb});
   }
 }
 function quickAsk(q){ document.getElementById('ai-input').value=q; sendAI(); }
 function addMsg(text,cls){
   const c=document.getElementById('ai-msgs');
-  const d=document.createElement('div'); d.className='amsg '+cls; d.textContent=text;
+  const d=document.createElement('div'); d.className='amsg '+cls;
+  d.textContent=text;
   c.appendChild(d); c.scrollTop=c.scrollHeight; return d;
 }
+
+// ═══════════════════════════════════════
+//  HERO STRIP
+// ═══════════════════════════════════════
+function buildHeroStrip(){
+  const cats=[...new Set(VIDEOS.map(v=>v.c))];
+  const picks=cats.map(cat=>VIDEOS.find(v=>v.c===cat)).filter(Boolean);
+  const track=document.getElementById('hero-strip-track');
+  if(!track) return;
+  track.innerHTML='';
+  picks.forEach(vid=>{
+    const gi=VIDEOS.indexOf(vid);
+    const card=document.createElement('div');
+    card.className='hs-card';
+    card.title=vid.c+' – toca para ver';
+    card.innerHTML=`
+      <div class="hs-card-inner">
+        <div class="hs-card-bg"></div>
+        <div class="hs-card-icon">${CAT_ICONS[vid.c]||'🎬'}</div>
+        <div class="hs-card-label">${vid.c}</div>
+      </div>
+      <video src="${vid.s}" muted loop playsinline preload="none" controlsList="nodownload" oncontextmenu="return false"></video>
+      <div class="hs-card-bar">${vid.c}</div>`;
+    card.addEventListener('mouseenter',()=>{ const v=card.querySelector('video'); v.play().catch(()=>{}); card.classList.add('playing'); });
+    card.addEventListener('mouseleave',()=>{ const v=card.querySelector('video'); v.pause(); v.currentTime=0; card.classList.remove('playing'); });
+    card.addEventListener('click',()=>openLB(gi));
+    track.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════
+//  REVIEWS
+// ═══════════════════════════════════════
+const DEFAULT_RESENAS=[
+  {nombre:"Karla M.",evento:"Boda",estrellas:5,comentario:"Quedé encantada con mi invitación web. Mis invitados no paraban de decirme lo bonita que estaba. ¡100% recomendada!"},
+  {nombre:"Daniela R.",evento:"XV Años",estrellas:5,comentario:"Super rápida la entrega y el diseño quedó exactamente como lo quería. Mis XV fueron perfectos gracias a Momentos Encantados 💕"},
+  {nombre:"Ana González",evento:"Bautizo",estrellas:5,comentario:"Me atendieron muy bien y el diseño quedó precioso. Mis invitados quedaron sorprendidos. ¡Definitivamente volveré a pedir!"},
+];
+let resenas=loadState('me_resenas',DEFAULT_RESENAS);
+let selectedStars=5;
+function setStars(n){
+  selectedStars=n;
+  document.getElementById('resena-stars-val').value=n;
+  document.querySelectorAll('.stars-pick button').forEach((b,i)=>b.classList.toggle('active',i<n));
+}
+function renderResenas(){
+  const grid=document.getElementById('resenas-grid');
+  if(!grid) return;
+  if(!resenas.length){ grid.innerHTML='<p style="text-align:center;color:var(--tm);grid-column:1/-1">Sé el primero en dejar una reseña 💕</p>'; return; }
+  grid.innerHTML=resenas.map(r=>`
+    <div class="resena-card reveal">
+      <div class="resena-quote">"</div>
+      <div class="resena-stars">${'★'.repeat(r.estrellas||5)}${'☆'.repeat(5-(r.estrellas||5))}</div>
+      <p class="resena-text">${r.comentario}</p>
+      <div class="resena-author">
+        <div class="resena-avatar">${r.nombre?r.nombre[0].toUpperCase():'😊'}</div>
+        <div>
+          <div class="resena-name">${r.nombre||'Anónimo'}</div>
+          ${r.evento?`<div class="resena-event">${r.evento}</div>`:''}
+        </div>
+      </div>
+    </div>`).join('');
+  observeReveal();
+}
+function submitResena(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const r={nombre:fd.get('nombre')||'Anónimo',evento:fd.get('evento')||'',comentario:fd.get('comentario'),estrellas:parseInt(document.getElementById('resena-stars-val').value)||5,fecha:new Date().toLocaleDateString('es-MX')};
+  resenas.unshift(r);
+  saveState('me_resenas',resenas);
+  // also save as a message for admin view
+  saveMsg({timestamp:new Date().toLocaleString('es-MX'),tipo:'Reseña',nombre:r.nombre,evento:r.evento,estrellas:'★'.repeat(r.estrellas),comentario:r.comentario});
+  renderResenas();
+  document.getElementById('resena-form').style.display='none';
+  document.getElementById('resena-success').style.display='block';
+}
+// init stars
+setTimeout(()=>{ document.querySelectorAll('.stars-pick button').forEach((b,i)=>b.classList.add('active')); },100);
 
 // ═══════════════════════════════════════
 //  PETALS
@@ -1261,8 +1473,11 @@ function observeReveal(){ document.querySelectorAll('.reveal:not(.visible)').for
 renderTipos();
 renderPaquetes();
 buildGallery();
+buildHeroStrip();
+renderResenas();
 observeReveal();
 trackCat('Inicio');
+
 </script>
 </body>
 </html>
