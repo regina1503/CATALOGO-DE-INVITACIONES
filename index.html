@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Momentos Encantados – Invitaciones Digitales</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
@@ -10,15 +10,15 @@
   --bl:#f5c6d0;--bll:#fce8ed;--bld:#e8a0b0;
   --rose:#c97a8c;--rd:#a05570;
   --gold:#c9a84c;--gl:#f0d98a;
-  --cream:#fdf6f0;--lav:#e8d5f0;--lavm:#c9a8d8;
-  --td:#4a2c35;--tm:#7a4a58;--tl:#b07a88;
+  --cream:#fdf6f0;--lav:#e8d5f0;
+  --td:#4a2c35;--tm:#7a4a58;
   --w:#fff;--sh:0 8px 32px rgba(160,85,112,.13);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--td);overflow-x:hidden}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,246,240,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--bl);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;box-shadow:0 2px 12px rgba(160,85,112,.08)}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--rd);display:flex;align-items:center;gap:.4rem;text-decoration:none}
 .nav-logo span{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--rose)}
@@ -29,7 +29,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,246,240,
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(160,85,112,.35)}
 @media(max-width:640px){.nav-links{display:none}}
 
-/* ── HERO ── */
+/* HERO */
 #hero{min-height:100vh;background:linear-gradient(160deg,#fce8ed 0%,#fdf6f0 50%,#f0e8f5 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 1.5rem 3rem;position:relative;overflow:hidden}
 .petals-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .petal{position:absolute;border-radius:70% 30% 70% 30%/30% 70% 30% 70%;opacity:0;animation:fall linear infinite}
@@ -47,20 +47,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,246,240,
 .hero-stat-l{font-size:.75rem;color:var(--tm);letter-spacing:.06em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── BUTTONS ── */
-.btn-p{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.72rem 1.8rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 6px 20px rgba(160,85,112,.3);transition:transform .2s,box-shadow .2s;display:inline-block}
+/* BUTTONS */
+.btn-p{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.72rem 1.8rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 6px 20px rgba(160,85,112,.3);transition:transform .2s,box-shadow .2s;display:inline-block;border:none;cursor:pointer;font-family:'Lato',sans-serif}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(160,85,112,.4)}
 .btn-s{background:transparent;border:2px solid var(--rose);color:var(--rose);padding:.72rem 1.8rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:background .2s,color .2s;display:inline-block}
 .btn-s:hover{background:var(--rose);color:#fff}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 section{padding:5rem 1.5rem}
 .section-header{text-align:center;margin-bottom:3rem}
 .section-label{font-family:'Great Vibes',cursive;font-size:1.5rem;color:var(--rose);display:block;margin-bottom:.3rem}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.3rem);color:var(--td)}
 .section-div{width:60px;height:3px;background:linear-gradient(90deg,var(--rose),var(--gold));margin:.8rem auto 0;border-radius:99px}
 
-/* ── TIPOS ── */
+/* TIPOS */
 #tipos{background:var(--w)}
 .tipos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem;max-width:950px;margin:0 auto}
 .tipo-card{background:linear-gradient(160deg,var(--bll),var(--w));border:1.5px solid var(--bl);border-radius:20px;padding:1.8rem 1.4rem;text-align:center;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;cursor:pointer}
@@ -71,7 +71,7 @@ section{padding:5rem 1.5rem}
 .tipo-desc{font-size:.85rem;color:var(--tm);line-height:1.55;margin-bottom:.9rem}
 .tipo-price{display:inline-block;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;font-size:1.25rem;font-weight:700;padding:.28rem .85rem;border-radius:50px}
 
-/* ── PAQUETES ── */
+/* PAQUETES */
 #paquetes{background:linear-gradient(180deg,var(--cream) 0%,var(--bll) 100%)}
 .paquetes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.7rem;max-width:1200px;margin:0 auto}
 .pkg-card{background:var(--w);border:1.5px solid var(--bl);border-radius:24px;overflow:hidden;box-shadow:var(--sh);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
@@ -88,160 +88,211 @@ section{padding:5rem 1.5rem}
 .pkg-features li:last-child{border-bottom:none}
 .pkg-features li::before{content:'✦';color:var(--rose);flex-shrink:0;font-size:.75rem;margin-top:2px}
 .pkg-cta{padding:0 1.3rem 1.3rem}
-.pkg-btn{display:block;width:100%;text-align:center;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.72rem;border-radius:50px;text-decoration:none;font-weight:700;transition:opacity .2s,transform .2s;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:.95rem}
+.pkg-btn{display:block;width:100%;text-align:center;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.72rem;border-radius:50px;font-weight:700;transition:opacity .2s,transform .2s;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:.95rem}
 .pkg-btn:hover{opacity:.9;transform:scale(1.02)}
 .pkg-card.feat .pkg-btn{background:linear-gradient(135deg,var(--gold),#b8882a)}
 
-/* ── GALERÍA ── */
+/* GALERÍA */
 #galeria{background:var(--w)}
-.gallery-tabs{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin-bottom:2.5rem}
+.gallery-tabs{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin-bottom:2rem}
 .tab-btn{background:var(--bll);border:1.5px solid var(--bl);color:var(--rd);padding:.45rem 1.1rem;border-radius:50px;cursor:pointer;font-size:.85rem;font-weight:700;transition:all .2s;font-family:'Lato',sans-serif}
 .tab-btn.active,.tab-btn:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 .gal-section{display:none}
 .gal-section.active{display:block}
-.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;max-width:1100px;margin:0 auto}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem;max-width:1100px;margin:0 auto}
 @media(max-width:480px){.gal-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
 
-.gal-item{border-radius:14px;overflow:hidden;background:var(--bll);aspect-ratio:9/16;position:relative;cursor:pointer;box-shadow:0 4px 14px rgba(160,85,112,.1);transition:transform .3s,box-shadow .3s}
-.gal-item:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(160,85,112,.2)}
-.gal-item video{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.gal-title{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(74,44,53,.85) 0%,transparent 100%);padding:.5rem .6rem .45rem;font-size:.72rem;color:#fff;font-weight:700;line-height:1.2;text-align:center}
-.gal-play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:rgba(255,255,255,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s}
-.gal-item:hover .gal-play-icon{opacity:1}
-.gal-play-icon::after{content:'';border-left:12px solid var(--rd);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+/* GALLERY CARD with lazy video */
+.gal-item{border-radius:14px;overflow:hidden;background:var(--bll);aspect-ratio:9/16;position:relative;cursor:pointer;box-shadow:0 4px 14px rgba(160,85,112,.1);transition:transform .25s,box-shadow .25s}
+.gal-item:hover{transform:scale(1.03);box-shadow:0 8px 24px rgba(160,85,112,.2)}
+.gal-thumb{width:100%;height:100%;object-fit:cover;display:block;background:var(--bll)}
+.gal-video-el{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
+.gal-item.loaded .gal-video-el{display:block}
+.gal-item.loaded .gal-thumb-wrap{display:none}
+.gal-thumb-wrap{position:absolute;inset:0;background:linear-gradient(135deg,var(--bll),var(--lav));display:flex;align-items:center;justify-content:center}
+.gal-thumb-icon{font-size:2.5rem;opacity:.5}
+.gal-title{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(74,44,53,.88) 0%,transparent 100%);padding:.55rem .55rem .45rem;font-size:.7rem;color:#fff;font-weight:700;line-height:1.2;text-align:center}
+/* play/pause overlay */
+.gal-controls{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;opacity:0;transition:opacity .2s;background:rgba(74,44,53,.18)}
+.gal-item:hover .gal-controls{opacity:1}
+.gal-play-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform .15s;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.gal-play-btn:hover{transform:scale(1.1)}
+.gal-seek-row{display:flex;gap:.3rem;align-items:center}
+.gal-seek-btn{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.85);border:none;cursor:pointer;font-size:.7rem;display:flex;align-items:center;justify-content:center}
+.gal-seek-btn:hover{background:#fff}
+.gal-playing .gal-controls{opacity:0}
+.gal-playing:hover .gal-controls{opacity:1}
 
-/* ── LIGHTBOX ── */
-#lightbox{position:fixed;inset:0;z-index:2000;background:rgba(15,5,10,.96);display:none;flex-direction:column;align-items:center;justify-content:center}
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;z-index:2000;background:rgba(10,3,8,.96);display:none;flex-direction:column;align-items:center;justify-content:center}
 #lightbox.open{display:flex}
-.lb-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;background:linear-gradient(180deg,rgba(0,0,0,.6),transparent);z-index:10}
-.lb-title{color:#fff;font-family:'Playfair Display',serif;font-size:1rem;font-weight:400}
-.lb-close{background:none;border:none;color:rgba(255,255,255,.8);font-size:1.6rem;cursor:pointer;line-height:1}
-.lb-video-wrap{width:min(340px,85vw);aspect-ratio:9/16;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-.lb-video-wrap video{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;width:calc(100% + 100px);left:-50px;padding:0 4px;pointer-events:none}
-.lb-nav button{pointer-events:all;background:rgba(255,255,255,.15);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s}
-.lb-nav button:hover{background:rgba(255,255,255,.3)}
-.lb-bottom{margin-top:1.2rem;display:flex;flex-direction:column;align-items:center;gap:.7rem}
-.lb-model-btn{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.6rem 1.6rem;border-radius:50px;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;font-size:.9rem;transition:opacity .2s}
-.lb-model-btn:hover{opacity:.88}
-.lb-counter{color:rgba(255,255,255,.5);font-size:.8rem}
-@media(max-width:480px){.lb-nav{width:calc(100% + 70px);left:-35px}}
+.lb-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;background:linear-gradient(180deg,rgba(0,0,0,.65),transparent);z-index:10}
+.lb-title{color:#fff;font-family:'Playfair Display',serif;font-size:1rem}
+.lb-close{background:none;border:none;color:rgba(255,255,255,.8);font-size:1.7rem;cursor:pointer;line-height:1}
+.lb-wrap{width:min(320px,82vw);aspect-ratio:9/16;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb-wrap video{width:100%;height:100%;object-fit:cover}
+/* lb controls */
+.lb-ctrl{position:absolute;bottom:0;left:0;right:0;padding:.8rem .7rem .6rem;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent);display:flex;flex-direction:column;gap:.5rem}
+.lb-progress{width:100%;height:4px;background:rgba(255,255,255,.3);border-radius:99px;cursor:pointer;position:relative;-webkit-appearance:none;appearance:none}
+.lb-progress::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;cursor:pointer;margin-top:-5px}
+.lb-progress::-webkit-slider-runnable-track{height:4px;border-radius:99px;background:rgba(255,255,255,.3)}
+.lb-btn-row{display:flex;align-items:center;gap:.6rem;justify-content:center}
+.lb-ctrl-btn{background:rgba(255,255,255,.18);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.lb-ctrl-btn:hover{background:rgba(255,255,255,.35)}
+.lb-ctrl-btn.main{width:46px;height:46px;font-size:1.1rem;background:rgba(255,255,255,.92);color:var(--rd)}
+.lb-time{color:rgba(255,255,255,.7);font-size:.72rem;margin-left:.3rem}
+.lb-nav-side{position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;width:calc(100% + 90px);left:-45px;pointer-events:none}
+.lb-nav-side button{pointer-events:all;background:rgba(255,255,255,.15);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s}
+.lb-nav-side button:hover{background:rgba(255,255,255,.3)}
+.lb-bottom{margin-top:1.1rem;display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.lb-model-btn{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.6rem 1.6rem;border-radius:50px;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;font-size:.9rem}
+.lb-counter{color:rgba(255,255,255,.45);font-size:.78rem}
+@media(max-width:480px){.lb-nav-side{width:calc(100% + 60px);left:-30px}}
 
-/* ── FORM MODAL ── */
+/* FORM MODAL */
 #form-modal{position:fixed;inset:0;z-index:2100;background:rgba(74,44,53,.6);display:none;align-items:center;justify-content:center;padding:1rem}
 #form-modal.open{display:flex}
 .fmod-inner{background:var(--w);border-radius:24px;width:min(540px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(74,44,53,.3)}
-.fmod-head{background:linear-gradient(135deg,var(--rose),var(--rd));padding:1.4rem 1.6rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2}
-.fmod-head h3{color:#fff;font-family:'Playfair Display',serif;font-size:1.2rem}
+.fmod-head{background:linear-gradient(135deg,var(--rose),var(--rd));padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2}
+.fmod-head h3{color:#fff;font-family:'Playfair Display',serif;font-size:1.15rem}
 .fmod-close{background:none;border:none;color:rgba(255,255,255,.8);font-size:1.4rem;cursor:pointer}
-.fmod-body{padding:1.6rem}
-.fmod-model-info{background:var(--bll);border-radius:12px;padding:.9rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
-.fmod-model-thumb{width:50px;height:50px;border-radius:8px;background:var(--bl);overflow:hidden;flex-shrink:0}
+.fmod-body{padding:1.5rem}
+.fmod-model-info{background:var(--bll);border-radius:12px;padding:.85rem;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem}
+.fmod-model-thumb{width:46px;height:46px;border-radius:8px;background:var(--bl);overflow:hidden;flex-shrink:0}
 .fmod-model-thumb video{width:100%;height:100%;object-fit:cover}
-.fmod-model-name{font-weight:700;color:var(--rd);font-size:.9rem}
-.fmod-model-label{font-size:.75rem;color:var(--tm)}
-.fmod-note{font-size:.82rem;color:var(--tm);margin-bottom:1rem;line-height:1.5;padding:.7rem;background:var(--bll);border-radius:10px;border-left:3px solid var(--rose)}
-.fmod-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.fmod-model-name{font-weight:700;color:var(--rd);font-size:.88rem}
+.fmod-model-label{font-size:.73rem;color:var(--tm)}
+.fmod-note{font-size:.81rem;color:var(--tm);margin-bottom:1rem;line-height:1.5;padding:.7rem;background:var(--bll);border-radius:10px;border-left:3px solid var(--rose)}
+.fmod-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 .fmod-grid .full{grid-column:1/-1}
-.fmod-label{font-size:.82rem;color:var(--tm);font-weight:700;display:block;margin-bottom:.3rem}
-.fmod-grid input,.fmod-grid textarea,.fmod-grid select{width:100%;padding:.7rem .95rem;border:1.5px solid var(--bl);border-radius:11px;background:var(--w);color:var(--td);font-family:'Lato',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.fmod-label{font-size:.8rem;color:var(--tm);font-weight:700;display:block;margin-bottom:.28rem}
+.fmod-grid input,.fmod-grid textarea,.fmod-grid select{width:100%;padding:.68rem .9rem;border:1.5px solid var(--bl);border-radius:10px;background:var(--w);color:var(--td);font-family:'Lato',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s}
 .fmod-grid input:focus,.fmod-grid textarea:focus,.fmod-grid select:focus{border-color:var(--rose)}
-.fmod-grid textarea{resize:vertical;min-height:80px}
-.fmod-submit{width:100%;margin-top:.9rem;padding:.8rem;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
-.fmod-wa{display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25d366;color:#fff;padding:.75rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.88rem;margin-top:.7rem}
-.fmod-or{text-align:center;color:var(--tm);font-size:.82rem;margin:.6rem 0 .2rem}
+.fmod-grid textarea{resize:vertical;min-height:75px}
+.fmod-submit{width:100%;margin-top:.85rem;padding:.78rem;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;font-size:.93rem;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.fmod-wa{display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25d366;color:#fff;padding:.72rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.86rem;margin-top:.65rem}
+.fmod-or{text-align:center;color:var(--tm);font-size:.8rem;margin:.55rem 0 .2rem}
 .fmod-success{text-align:center;padding:2rem;display:none}
 .fmod-success .s-icon{font-size:3rem;margin-bottom:.8rem}
-.fmod-success h4{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--rd);margin-bottom:.5rem}
+.fmod-success h4{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--rd);margin-bottom:.45rem}
 @media(max-width:480px){.fmod-grid{grid-template-columns:1fr}.fmod-grid .full{grid-column:1}}
 
-/* ── CONTACTO ── */
+/* CONTACTO */
 #contacto{background:linear-gradient(160deg,#fce8ed,#f0e8f5)}
 .contact-wrap{max-width:700px;margin:0 auto}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 .contact-grid .full{grid-column:1/-1}
-.contact-grid input,.contact-grid textarea,.contact-grid select{width:100%;padding:.78rem 1rem;border:1.5px solid var(--bl);border-radius:12px;background:var(--w);color:var(--td);font-family:'Lato',sans-serif;font-size:.92rem;outline:none;transition:border-color .2s}
+.contact-grid input,.contact-grid textarea,.contact-grid select{width:100%;padding:.76rem 1rem;border:1.5px solid var(--bl);border-radius:12px;background:var(--w);color:var(--td);font-family:'Lato',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
 .contact-grid input:focus,.contact-grid textarea:focus,.contact-grid select:focus{border-color:var(--rose)}
-.contact-grid textarea{resize:vertical;min-height:100px}
-.contact-submit{width:100%;padding:.82rem;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;margin-top:.5rem}
-.contact-or{text-align:center;color:var(--tm);margin:1.3rem 0 .4rem;font-size:.88rem}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:.55rem;background:#25d366;color:#fff;padding:.82rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:opacity .2s}
+.contact-grid textarea{resize:vertical;min-height:95px}
+.contact-submit{width:100%;padding:.8rem;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;font-size:.93rem;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;margin-top:.5rem}
+.contact-or{text-align:center;color:var(--tm);margin:1.2rem 0 .4rem;font-size:.86rem}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:.55rem;background:#25d366;color:#fff;padding:.8rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.93rem;transition:opacity .2s}
 .wa-btn:hover{opacity:.88}
 #cform-success{display:none;text-align:center;padding:2rem;background:var(--w);border-radius:16px;border:1.5px solid var(--bl);color:var(--rd)}
 @media(max-width:480px){.contact-grid{grid-template-columns:1fr}.contact-grid .full{grid-column:1}}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{background:var(--td);color:rgba(255,255,255,.7);text-align:center;padding:2rem 1.5rem;font-size:.86rem}
 footer a{color:var(--bl);text-decoration:none}
 .ft-logo{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--bl);display:block;margin-bottom:.5rem}
 
-/* ── AI FAB ── */
+/* AI FAB */
 #ai-fab{position:fixed;bottom:2rem;right:2rem;z-index:1000;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rd));box-shadow:0 6px 24px rgba(160,85,112,.45);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;animation:pulseBtn 3s ease-in-out infinite}
 @keyframes pulseBtn{0%,100%{box-shadow:0 6px 24px rgba(160,85,112,.45)}50%{box-shadow:0 6px 36px rgba(160,85,112,.7)}}
 #ai-fab:hover{transform:scale(1.1)}
-.ai-tooltip{position:fixed;bottom:6.2rem;right:2rem;z-index:999;background:var(--w);border:1.5px solid var(--bl);border-radius:11px;padding:.55rem .9rem;font-size:.8rem;color:var(--rd);font-weight:700;box-shadow:var(--sh);white-space:nowrap;pointer-events:none;animation:fadeUp .4s ease both}
-#ai-panel{position:fixed;bottom:6rem;right:2rem;z-index:999;width:min(370px,calc(100vw - 2rem));height:500px;background:var(--w);border:1.5px solid var(--bl);border-radius:22px;box-shadow:0 16px 64px rgba(160,85,112,.22);display:none;flex-direction:column;overflow:hidden}
+.ai-tooltip{position:fixed;bottom:6.2rem;right:2rem;z-index:999;background:var(--w);border:1.5px solid var(--bl);border-radius:11px;padding:.5rem .85rem;font-size:.78rem;color:var(--rd);font-weight:700;box-shadow:var(--sh);white-space:nowrap;pointer-events:none}
+#ai-panel{position:fixed;bottom:6rem;right:2rem;z-index:999;width:min(370px,calc(100vw - 2rem));height:490px;background:var(--w);border:1.5px solid var(--bl);border-radius:22px;box-shadow:0 16px 64px rgba(160,85,112,.22);display:none;flex-direction:column;overflow:hidden}
 #ai-panel.open{display:flex;animation:slideUp .3s ease both}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.ai-head{background:linear-gradient(135deg,var(--rose),var(--rd));padding:.9rem 1.1rem;display:flex;align-items:center;gap:.65rem}
-.ai-avatar{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-.ai-head-text h4{color:#fff;font-size:.9rem;font-weight:700}
-.ai-head-text p{color:rgba(255,255,255,.72);font-size:.72rem}
+.ai-head{background:linear-gradient(135deg,var(--rose),var(--rd));padding:.85rem 1.1rem;display:flex;align-items:center;gap:.6rem}
+.ai-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:1rem}
 .ai-head-text{flex:1}
+.ai-head-text h4{color:#fff;font-size:.88rem;font-weight:700}
+.ai-head-text p{color:rgba(255,255,255,.7);font-size:.7rem}
 .ai-x{background:none;border:none;color:rgba(255,255,255,.8);cursor:pointer;font-size:1.2rem}
-.ai-msgs{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.65rem}
+.ai-msgs{flex:1;overflow-y:auto;padding:.85rem;display:flex;flex-direction:column;gap:.6rem}
 .ai-msgs::-webkit-scrollbar{width:3px}
 .ai-msgs::-webkit-scrollbar-thumb{background:var(--bl);border-radius:3px}
-.amsg{max-width:88%;padding:.6rem .85rem;border-radius:15px;font-size:.85rem;line-height:1.5}
-.amsg.bot{background:var(--bll);color:var(--td);border-radius:4px 15px 15px 15px;align-self:flex-start}
-.amsg.user{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border-radius:15px 4px 15px 15px;align-self:flex-end}
-.ai-quick{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 .8rem .55rem}
-.ai-quick button{background:var(--bll);border:1px solid var(--bl);color:var(--rd);padding:.28rem .65rem;border-radius:50px;font-size:.72rem;cursor:pointer;font-family:'Lato',sans-serif;transition:background .2s}
+.amsg{max-width:88%;padding:.58rem .82rem;border-radius:14px;font-size:.84rem;line-height:1.5}
+.amsg.bot{background:var(--bll);color:var(--td);border-radius:4px 14px 14px 14px;align-self:flex-start}
+.amsg.user{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border-radius:14px 4px 14px 14px;align-self:flex-end}
+.ai-quick{display:flex;flex-wrap:wrap;gap:.32rem;padding:0 .75rem .5rem}
+.ai-quick button{background:var(--bll);border:1px solid var(--bl);color:var(--rd);padding:.25rem .6rem;border-radius:50px;font-size:.7rem;cursor:pointer;font-family:'Lato',sans-serif;transition:background .15s}
 .ai-quick button:hover{background:var(--bl)}
-.ai-inp-row{display:flex;gap:.45rem;padding:.7rem;border-top:1px solid var(--bl)}
-.ai-inp-row input{flex:1;padding:.55rem .85rem;border:1.5px solid var(--bl);border-radius:50px;font-family:'Lato',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;color:var(--td)}
+.ai-inp-row{display:flex;gap:.4rem;padding:.65rem;border-top:1px solid var(--bl)}
+.ai-inp-row input{flex:1;padding:.52rem .82rem;border:1.5px solid var(--bl);border-radius:50px;font-family:'Lato',sans-serif;font-size:.84rem;outline:none;transition:border-color .2s;color:var(--td)}
 .ai-inp-row input:focus{border-color:var(--rose)}
-.ai-send{background:var(--rose);color:#fff;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:.95rem;transition:background .2s;flex-shrink:0}
+.ai-send{background:var(--rose);color:#fff;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:.9rem;transition:background .15s;flex-shrink:0}
 .ai-send:hover{background:var(--rd)}
 
-/* ── ADMIN PANEL ── */
-#admin-overlay{position:fixed;inset:0;z-index:3000;background:rgba(10,5,8,.97);display:none;flex-direction:column;overflow:hidden}
+/* ADMIN LOGIN */
+#admin-login{position:fixed;inset:0;z-index:4000;background:rgba(8,2,5,.98);display:none;align-items:center;justify-content:center}
+#admin-login.open{display:flex}
+.adm-login-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:2.4rem;width:min(340px,90vw);text-align:center}
+.adm-login-box .adm-l-icon{font-size:2.5rem;margin-bottom:.6rem;display:block}
+.adm-login-box h3{color:#f5c6d0;font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:.35rem}
+.adm-login-box p{color:rgba(255,255,255,.4);font-size:.8rem;margin-bottom:1.4rem}
+.adm-login-box input{width:100%;padding:.68rem 1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;color:#fff;font-family:'Lato',sans-serif;font-size:.9rem;outline:none;margin-bottom:.75rem}
+.adm-login-box input::placeholder{color:rgba(255,255,255,.28)}
+.adm-login-btn{width:100%;padding:.73rem;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;font-size:.93rem}
+.adm-login-err{color:#ff8a9a;font-size:.78rem;margin-top:.4rem;display:none}
+
+/* ADMIN PANEL */
+#admin-overlay{position:fixed;inset:0;z-index:3500;background:#0e050a;display:none;flex-direction:column;overflow:hidden}
 #admin-overlay.open{display:flex}
-.adm-head{background:linear-gradient(135deg,var(--rd),#6a2035);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
-.adm-head h2{color:#fff;font-family:'Playfair Display',serif;font-size:1.2rem}
-.adm-close-btn{background:rgba(255,255,255,.15);border:none;color:#fff;padding:.4rem .9rem;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;font-size:.85rem}
-.adm-tabs{display:flex;gap:0;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1)}
-.adm-tab{background:none;border:none;color:rgba(255,255,255,.55);padding:.75rem 1.4rem;cursor:pointer;font-family:'Lato',sans-serif;font-size:.85rem;font-weight:700;transition:all .2s;border-bottom:2px solid transparent}
+.adm-topbar{background:linear-gradient(135deg,#6a1530,#a05570);padding:.9rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.adm-topbar h2{color:#fff;font-family:'Playfair Display',serif;font-size:1.15rem}
+.adm-top-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.adm-top-btn{background:rgba(255,255,255,.15);border:none;color:#fff;padding:.38rem .85rem;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;font-size:.82rem;transition:background .15s}
+.adm-top-btn:hover{background:rgba(255,255,255,.28)}
+.adm-top-btn.danger{background:rgba(255,100,100,.2)}
+.adm-tabs{display:flex;background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08);overflow-x:auto}
+.adm-tab{background:none;border:none;color:rgba(255,255,255,.5);padding:.72rem 1.3rem;cursor:pointer;font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700;transition:all .2s;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
 .adm-tab.active{color:#fff;border-bottom-color:var(--rose)}
-.adm-content{flex:1;overflow-y:auto;padding:1.4rem}
+.adm-body{flex:1;overflow-y:auto;padding:1.3rem}
 .adm-section{display:none}
 .adm-section.active{display:block}
-.msg-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;margin-bottom:.9rem}
-.msg-card h4{color:var(--bl);font-size:.9rem;margin-bottom:.4rem}
-.msg-card p{color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.5}
-.msg-card .msg-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem}
-.msg-meta span{background:rgba(255,255,255,.1);padding:.2rem .6rem;border-radius:50px;font-size:.72rem;color:rgba(255,255,255,.6)}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem}
-.stat-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1.2rem;text-align:center}
-.stat-card .sn{font-size:2rem;font-weight:900;color:var(--rose);font-family:'Playfair Display',serif}
-.stat-card .sl{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:.2rem;letter-spacing:.05em}
-.interest-bar{margin-bottom:.8rem}
-.interest-bar .ib-label{display:flex;justify-content:space-between;font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:.3rem}
-.interest-bar .ib-track{background:rgba(255,255,255,.08);border-radius:99px;height:8px;overflow:hidden}
+
+/* Admin messages */
+.msg-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;margin-bottom:.85rem}
+.msg-card h4{color:var(--bl);font-size:.88rem;margin-bottom:.35rem}
+.msg-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
+.msg-meta span{background:rgba(255,255,255,.1);padding:.18rem .55rem;border-radius:50px;font-size:.7rem;color:rgba(255,255,255,.55)}
+
+/* Admin stats */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.9rem;margin-bottom:1.4rem}
+.stat-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:13px;padding:1.1rem;text-align:center}
+.stat-card .sn{font-size:1.9rem;font-weight:900;color:var(--rose);font-family:'Playfair Display',serif}
+.stat-card .sl{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:.18rem;letter-spacing:.05em}
+.interest-bar{margin-bottom:.75rem}
+.interest-bar .ib-label{display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.55);margin-bottom:.28rem}
+.interest-bar .ib-track{background:rgba(255,255,255,.07);border-radius:99px;height:7px;overflow:hidden}
 .interest-bar .ib-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--rose),var(--rd));transition:width 1s ease}
 
-/* ── ADMIN LOGIN ── */
-#admin-login{position:fixed;inset:0;z-index:3100;background:rgba(10,5,8,.98);display:none;align-items:center;justify-content:center}
-#admin-login.open{display:flex}
-.adm-login-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2.5rem;width:min(340px,90vw);text-align:center}
-.adm-login-box h3{color:var(--bl);font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.4rem}
-.adm-login-box p{color:rgba(255,255,255,.45);font-size:.82rem;margin-bottom:1.5rem}
-.adm-login-box input{width:100%;padding:.7rem 1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;color:#fff;font-family:'Lato',sans-serif;font-size:.9rem;outline:none;margin-bottom:.8rem}
-.adm-login-box input::placeholder{color:rgba(255,255,255,.3)}
-.adm-login-btn{width:100%;padding:.75rem;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
-.adm-login-err{color:#ff8a9a;font-size:.8rem;margin-top:.5rem;display:none}
+/* Admin editor */
+.adm-pkg-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.1rem;margin-bottom:.85rem}
+.adm-pkg-card h4{color:#f0d090;font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.6rem}
+.adm-row{display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;flex-wrap:wrap}
+.adm-row label{color:rgba(255,255,255,.55);font-size:.78rem;min-width:90px}
+.adm-row input,.adm-row textarea{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Lato',sans-serif;font-size:.85rem;padding:.45rem .75rem;outline:none;min-width:0}
+.adm-row input:focus,.adm-row textarea:focus{border-color:var(--rose)}
+.adm-save-btn{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;padding:.45rem 1rem;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700}
 
-/* ── SCROLL REVEAL ── */
+/* Admin videos */
+.adm-video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem;margin-bottom:1rem}
+.adm-vid-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden;position:relative;aspect-ratio:9/16}
+.adm-vid-item video{width:100%;height:100%;object-fit:cover}
+.adm-vid-item .adm-vid-title{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.75);padding:.35rem .4rem;font-size:.65rem;color:#fff;text-align:center}
+.adm-vid-item .adm-vid-del{position:absolute;top:.3rem;right:.3rem;background:rgba(200,50,50,.85);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.7rem;display:flex;align-items:center;justify-content:center}
+.adm-add-form{background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.2);border-radius:12px;padding:1.1rem;margin-bottom:1rem}
+.adm-add-form h4{color:rgba(255,255,255,.7);font-size:.85rem;margin-bottom:.7rem}
+.adm-add-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.5rem}
+@media(max-width:480px){.adm-add-row{grid-template-columns:1fr}}
+.adm-cat-sel,.adm-title-inp,.adm-url-inp{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Lato',sans-serif;font-size:.83rem;padding:.43rem .7rem;outline:none;width:100%}
+.adm-cat-sel option{background:#2a0a15;color:#fff}
+
+/* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 </style>
@@ -273,8 +324,8 @@ footer a{color:var(--bl);text-decoration:none}
       <a class="btn-s" href="#galeria">Ver ejemplos</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-n">+500</div><div class="hero-stat-l">INVITACIONES CREADAS</div></div>
-      <div class="hero-stat"><div class="hero-stat-n">6</div><div class="hero-stat-l">TIPOS DE EVENTO</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" id="stat-inv">+500</div><div class="hero-stat-l">INVITACIONES CREADAS</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">6+</div><div class="hero-stat-l">TIPOS DE EVENTO</div></div>
       <div class="hero-stat"><div class="hero-stat-n">24/7</div><div class="hero-stat-l">DISPONIBLES</div></div>
     </div>
   </div>
@@ -287,35 +338,10 @@ footer a{color:var(--bl);text-decoration:none}
     <h2 class="section-title">Tipos de invitación</h2>
     <div class="section-div"></div>
   </div>
-  <div class="tipos-grid">
-    <div class="tipo-card reveal" onclick="openFormModal('Imagen','$69')">
-      <div class="tipo-icon">🖼️</div>
-      <h3 class="tipo-name">Imagen</h3>
-      <p class="tipo-desc">Diseño personalizado en formato imagen, fácil de enviar por WhatsApp o redes.</p>
-      <div class="tipo-price">$69 MXN</div>
-    </div>
-    <div class="tipo-card reveal" onclick="openFormModal('Video','$149')">
-      <div class="tipo-icon">🎬</div>
-      <h3 class="tipo-name">Video</h3>
-      <p class="tipo-desc">Invitación animada en video con música. Impresiona a tus invitados.</p>
-      <div class="tipo-price">$149 MXN</div>
-    </div>
-    <div class="tipo-card reveal" onclick="openFormModal('PDF con botones','$129')">
-      <div class="tipo-icon">📄</div>
-      <h3 class="tipo-name">PDF con botones</h3>
-      <p class="tipo-desc">PDF de 1 página con botones interactivos: ubicación, confirmación y más.</p>
-      <div class="tipo-price">$129 MXN</div>
-    </div>
-    <div class="tipo-card reveal" onclick="openFormModal('Video con botones','$199')">
-      <div class="tipo-icon">▶️</div>
-      <h3 class="tipo-name">Video con botones</h3>
-      <p class="tipo-desc">Video animado con botones interactivos para confirmar asistencia y ubicación.</p>
-      <div class="tipo-price">$199 MXN</div>
-    </div>
-  </div>
+  <div class="tipos-grid" id="tipos-grid"></div>
 </section>
 
-<!-- PAQUETES WEB -->
+<!-- PAQUETES -->
 <section id="paquetes">
   <div class="section-header reveal">
     <span class="section-label">Nuestros paquetes</span>
@@ -323,50 +349,7 @@ footer a{color:var(--bl);text-decoration:none}
     <div class="section-div"></div>
     <p style="margin-top:.8rem;color:var(--tm);font-size:.92rem">Páginas web personalizadas con funciones interactivas para tu evento</p>
   </div>
-  <div class="paquetes-grid">
-    <div class="pkg-card reveal">
-      <div class="pkg-head"><h3 class="pkg-name">Web Básica</h3><div class="pkg-price">$199 <span>MXN</span></div></div>
-      <ul class="pkg-features">
-        <li>Música de fondo</li><li>1 Botón de ubicación</li><li>1 Botón de confirmación</li><li>Cuenta regresiva</li><li>Datos básicos del evento</li>
-      </ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('Web Básica','$199')">Quiero este paquete</button></div>
-    </div>
-    <div class="pkg-card reveal">
-      <div class="pkg-head"><h3 class="pkg-name">Web Bronce</h3><div class="pkg-price">$359 <span>MXN</span></div></div>
-      <ul class="pkg-features">
-        <li>Frase de su elección</li><li>Música de fondo</li><li>2 Botones de ubicación</li><li>1 Botón de confirmación</li><li>Cuenta regresiva</li><li>Nombre de papás</li><li>Lluvia de sobres</li><li>Galería de fotos</li><li>Código de vestimenta</li>
-      </ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('Web Bronce','$359')">Quiero este paquete</button></div>
-    </div>
-    <div class="pkg-card reveal">
-      <div class="pkg-head"><h3 class="pkg-name">Web Plata</h3><div class="pkg-price">$499 <span>MXN</span></div></div>
-      <ul class="pkg-features">
-        <li>Frases de su elección</li><li>Música de fondo</li><li>2 Botones de ubicación</li><li>1 Botón de confirmación</li><li>Cuenta regresiva</li><li>Pases digitales para 150 personas</li><li>Lluvia de sobres</li><li>Galería de fotos</li><li>Código de vestimenta</li>
-      </ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('Web Plata','$499')">Quiero este paquete</button></div>
-    </div>
-    <div class="pkg-card feat reveal">
-      <div class="pkg-head"><div class="pkg-badge">⭐ MÁS POPULAR</div><h3 class="pkg-name">Web Oro</h3><div class="pkg-price">$655 <span>MXN</span></div></div>
-      <ul class="pkg-features">
-        <li>Frases de su elección</li><li>Música de fondo</li><li>2 Botones de ubicación</li><li>1 Botón de confirmación</li><li>Pases digitales ilimitados</li><li>Cuenta regresiva</li><li>Lluvia de sobres / mesa de regalos</li><li>Galería de fotos dinámica</li><li>Opciones de hospedaje</li><li>Código de vestimenta</li>
-      </ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('Web Oro','$655')">Quiero este paquete</button></div>
-    </div>
-    <div class="pkg-card feat reveal">
-      <div class="pkg-head"><h3 class="pkg-name">Web Oro Plus</h3><div class="pkg-price">$799 <span>MXN</span></div></div>
-      <ul class="pkg-features">
-        <li>Todo lo de Web Oro</li><li>QR de acceso al evento</li><li>QR para subir fotos el día del evento</li>
-      </ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('Web Oro Plus','$799')">Quiero este paquete</button></div>
-    </div>
-    <div class="pkg-card reveal">
-      <div class="pkg-head"><div class="pkg-badge">✨ NUEVO</div><h3 class="pkg-name">Web Oro Premium</h3><div class="pkg-price">$999 <span>MXN</span></div></div>
-      <ul class="pkg-features">
-        <li>Todo lo de Web Oro Plus</li><li>Música de reproducción automática</li><li>Invitación con animaciones</li><li>App entrada día del evento (QR dinámico)</li><li>Acomodo de mesas para invitados</li><li>Experiencia interactiva e inolvidable</li>
-      </ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('Web Oro Premium','$999')">Quiero este paquete</button></div>
-    </div>
-  </div>
+  <div class="paquetes-grid" id="paquetes-grid"></div>
 </section>
 
 <!-- GALERÍA -->
@@ -375,7 +358,7 @@ footer a{color:var(--bl);text-decoration:none}
     <span class="section-label">Nuestros diseños</span>
     <h2 class="section-title">Galería de ejemplos</h2>
     <div class="section-div"></div>
-    <p style="margin-top:.8rem;color:var(--tm);font-size:.88rem">Toca cualquier video para verlo en pantalla completa</p>
+    <p style="margin-top:.8rem;color:var(--tm);font-size:.85rem">🎬 Toca para reproducir · ⏩ Avanza · ↩ Retrocede · Haz clic para ver completo</p>
   </div>
   <div class="gallery-tabs" id="gal-tabs"></div>
   <div id="gal-sections"></div>
@@ -406,11 +389,11 @@ footer a{color:var(--bl);text-decoration:none}
       </form>
       <p class="contact-or">— o escríbenos directo —</p>
       <a class="wa-btn" href="https://wa.me/524426084804?text=Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n" target="_blank">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
         Chatear por WhatsApp
       </a>
     </div>
-    <div id="cform-success"><div style="font-size:2.5rem;margin-bottom:.8rem">🌸</div><h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--rd);margin-bottom:.5rem">¡Mensaje recibido!</h3><p style="color:var(--tm)">Te contactaremos pronto para hacer tu evento inolvidable ✨</p></div>
+    <div id="cform-success"><div style="font-size:2.5rem;margin-bottom:.8rem">🌸</div><h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--rd);margin-bottom:.5rem">¡Mensaje recibido!</h3><p style="color:var(--tm)">Te contactaremos pronto ✨</p></div>
   </div>
 </section>
 
@@ -423,7 +406,7 @@ footer a{color:var(--bl);text-decoration:none}
 
 <!-- AI FAB -->
 <div id="ai-tooltip-el" class="ai-tooltip">✨ ¡Pregúntame lo que sea!</div>
-<button id="ai-fab" onclick="toggleAI()" title="Asistente IA">
+<button id="ai-fab" onclick="toggleAI()">
   <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
 </button>
 <div id="ai-panel">
@@ -433,7 +416,7 @@ footer a{color:var(--bl);text-decoration:none}
     <button class="ai-x" onclick="toggleAI()">✕</button>
   </div>
   <div class="ai-msgs" id="ai-msgs">
-    <div class="amsg bot">¡Hola! 💕 Soy el asistente de <strong>Momentos Encantados</strong>. Puedo ayudarte con precios, paquetes, tipos de invitación o cualquier duda. ¿En qué te puedo ayudar hoy?</div>
+    <div class="amsg bot">¡Hola! 💕 Soy la asistente de <strong>Momentos Encantados</strong>. Puedo ayudarte con precios, paquetes, tiempos de entrega o cualquier duda. ¿En qué te ayudo?</div>
   </div>
   <div class="ai-quick" id="ai-quick-btns">
     <button onclick="quickAsk('¿Cuáles son los precios?')">💰 Precios</button>
@@ -454,10 +437,19 @@ footer a{color:var(--bl);text-decoration:none}
     <button class="lb-close" onclick="closeLB()">✕</button>
   </div>
   <div style="position:relative">
-    <div class="lb-video-wrap">
-      <video id="lb-video" autoplay loop playsinline controlsList="nodownload" oncontextmenu="return false"></video>
+    <div class="lb-wrap">
+      <video id="lb-video" playsinline controlsList="nodownload" oncontextmenu="return false" ontimeupdate="lbTimeUpdate()"></video>
+      <div class="lb-ctrl">
+        <input type="range" class="lb-progress" id="lb-prog" min="0" max="100" value="0" oninput="lbSeek(this.value)">
+        <div class="lb-btn-row">
+          <button class="lb-ctrl-btn" onclick="lbSkip(-10)" title="Retroceder 10s">⏪</button>
+          <button class="lb-ctrl-btn main" id="lb-play-btn" onclick="lbTogglePlay()">▶</button>
+          <button class="lb-ctrl-btn" onclick="lbSkip(10)" title="Adelantar 10s">⏩</button>
+          <span class="lb-time" id="lb-time">0:00</span>
+        </div>
+      </div>
     </div>
-    <div class="lb-nav">
+    <div class="lb-nav-side">
       <button onclick="lbNav(-1)">&#8592;</button>
       <button onclick="lbNav(1)">&#8594;</button>
     </div>
@@ -486,14 +478,14 @@ footer a{color:var(--bl);text-decoration:none}
         <button type="submit" class="fmod-submit">✦ Enviar solicitud</button>
         <p class="fmod-or">— o contáctanos directo —</p>
         <a class="fmod-wa" id="fmod-wa-link" href="#" target="_blank">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
           Enviar por WhatsApp
         </a>
       </form>
       <div class="fmod-success" id="fmod-success">
         <div class="s-icon">🌸</div>
         <h4>¡Solicitud enviada!</h4>
-        <p style="color:var(--tm);font-size:.88rem">Nos pondremos en contacto contigo muy pronto para hacer tu evento inolvidable ✨</p>
+        <p style="color:var(--tm);font-size:.86rem">Te contactaremos pronto para hacer tu evento inolvidable ✨</p>
       </div>
     </div>
   </div>
@@ -502,44 +494,60 @@ footer a{color:var(--bl);text-decoration:none}
 <!-- ADMIN LOGIN -->
 <div id="admin-login">
   <div class="adm-login-box">
-    <div style="font-size:2rem;margin-bottom:.5rem">🔐</div>
+    <span class="adm-l-icon">🔐</span>
     <h3>Panel Administrador</h3>
-    <p>Acceso exclusivo para Momentos Encantados</p>
-    <input type="password" id="adm-pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')adminLogin()">
-    <button class="adm-login-btn" onclick="adminLogin()">Ingresar</button>
-    <div class="adm-login-err" id="adm-err">Contraseña incorrecta</div>
-    <div style="margin-top:1rem"><button onclick="closeAdminLogin()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:.8rem">Cancelar</button></div>
+    <p>Acceso exclusivo · Momentos Encantados</p>
+    <input type="password" id="adm-pwd" placeholder="Contraseña secreta" onkeydown="if(event.key==='Enter')adminLogin()">
+    <button class="adm-login-btn" onclick="adminLogin()">Ingresar al panel</button>
+    <div class="adm-login-err" id="adm-err">Contraseña incorrecta ✗</div>
+    <div style="margin-top:1rem"><button onclick="closeAdminLogin()" style="background:none;border:none;color:rgba(255,255,255,.25);cursor:pointer;font-size:.78rem">Cancelar</button></div>
   </div>
 </div>
 
 <!-- ADMIN PANEL -->
 <div id="admin-overlay">
-  <div class="adm-head">
+  <div class="adm-topbar">
     <h2>🌸 Panel Momentos Encantados</h2>
-    <button class="adm-close-btn" onclick="closeAdmin()">Cerrar ✕</button>
+    <div class="adm-top-actions">
+      <button class="adm-top-btn" onclick="exportMsgs()">📥 Exportar mensajes</button>
+      <button class="adm-top-btn danger" onclick="closeAdmin()">✕ Cerrar panel</button>
+    </div>
   </div>
   <div class="adm-tabs">
     <button class="adm-tab active" onclick="switchAdmTab('mensajes',this)">📩 Mensajes</button>
     <button class="adm-tab" onclick="switchAdmTab('estadisticas',this)">📊 Estadísticas</button>
+    <button class="adm-tab" onclick="switchAdmTab('paquetes',this)">💎 Paquetes y Precios</button>
+    <button class="adm-tab" onclick="switchAdmTab('videos',this)">🎬 Gestionar Videos</button>
   </div>
-  <div class="adm-content">
-    <div class="adm-section active" id="adm-mensajes">
-      <div id="adm-msgs-list"></div>
-    </div>
-    <div class="adm-section" id="adm-estadisticas">
-      <div class="stat-grid" id="adm-stat-grid"></div>
-      <h4 style="color:rgba(255,255,255,.6);font-size:.85rem;letter-spacing:.06em;margin-bottom:1rem">INTERÉS POR CATEGORÍA</h4>
-      <div id="adm-bars"></div>
-    </div>
+  <div class="adm-body">
+    <div class="adm-section active" id="adm-mensajes"></div>
+    <div class="adm-section" id="adm-estadisticas"></div>
+    <div class="adm-section" id="adm-paquetes"></div>
+    <div class="adm-section" id="adm-videos"></div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-//  DATOS DE VIDEOS
-// ═══════════════════════════════════════════════
-const VIDEOS = [
-  // ── BODAS ──
+// ═══════════════════════════════════════
+//  DATA – editable via admin
+// ═══════════════════════════════════════
+const DEFAULT_TIPOS = [
+  {icon:"🖼️",name:"Imagen",desc:"Diseño personalizado en formato imagen para WhatsApp o redes sociales.",price:"$69"},
+  {icon:"🎬",name:"Video",desc:"Invitación animada en video con música. Impresiona a tus invitados.",price:"$149"},
+  {icon:"📄",name:"PDF con botones",desc:"PDF de 1 página con botones interactivos: ubicación, confirmación y más.",price:"$129"},
+  {icon:"▶️",name:"Video con botones",desc:"Video animado con botones interactivos de confirmación y ubicación.",price:"$199"},
+];
+const DEFAULT_PKGS = [
+  {name:"Web Básica",price:"$199",feat:false,badge:"",features:["Música de fondo","1 Botón de ubicación","1 Botón de confirmación","Cuenta regresiva","Datos básicos del evento"]},
+  {name:"Web Bronce",price:"$359",feat:false,badge:"",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación","Cuenta regresiva","Nombre de papás","Lluvia de sobres","Galería de fotos","Código de vestimenta"]},
+  {name:"Web Plata",price:"$499",feat:false,badge:"",features:["Todo Web Bronce","Pases digitales para 150 personas"]},
+  {name:"Web Oro",price:"$655",feat:true,badge:"⭐ MÁS POPULAR",features:["Frases de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación","Pases digitales ilimitados","Cuenta regresiva","Lluvia de sobres / mesa de regalos","Galería de fotos dinámica","Opciones de hospedaje","Código de vestimenta"]},
+  {name:"Web Oro Plus",price:"$799",feat:true,badge:"",features:["Todo lo de Web Oro","QR de acceso al evento","QR para subir fotos el día del evento"]},
+  {name:"Web Oro Premium",price:"$999",feat:false,badge:"✨ NUEVO",features:["Todo lo de Web Oro Plus","Música de reproducción automática","Invitación con animaciones","App entrada día del evento (QR dinámico)","Acomodo de mesas para invitados","Experiencia interactiva e inolvidable"]},
+];
+
+const DEFAULT_VIDEOS = [
+  // BODAS
   {c:"Bodas",t:"Boda Civil Azul",s:"https://raw.githubusercontent.com/regina1503/paquetes-invi/main/azul%20civil.mp4"},
   {c:"Bodas",t:"Boda Elegante",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20.mp4"},
   {c:"Bodas",t:"Boda Azul V1",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODA%20AZUL.mp4"},
@@ -560,9 +568,8 @@ const VIDEOS = [
   {c:"Bodas",t:"Boda Valeria y Eddy",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/20250928_163342.mp4"},
   {c:"Bodas",t:"Bodas de Plata",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BODAS%20DE%20PLATA.mp4"},
   {c:"Bodas",t:"Boda con Detalles",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-10%20a%20las%2011.49.20_6dce3976.mp4"},
-  {c:"Bodas",t:"Boda Especial V2",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/20250713_231154.mp4"},
-
-  // ── XV AÑOS ──
+  {c:"Bodas",t:"Boda Especial",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/20250713_231154.mp4"},
+  // XV
   {c:"XV Años",t:"XV Azul",s:"https://raw.githubusercontent.com/regina1503/paquetes-invi/main/AZUL%20XV.mp4"},
   {c:"XV Años",t:"XV Azul Hombre",s:"https://raw.githubusercontent.com/regina1503/INVIME-2/main/XV%20AZUL%20HOMBRE.mp4"},
   {c:"XV Años",t:"XV Azul Rey",s:"https://raw.githubusercontent.com/regina1503/INVIME-2/main/XV%20AZUL%20REY.mp4"},
@@ -590,8 +597,8 @@ const VIDEOS = [
   {c:"XV Años",t:"XV 2026 A",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/WhatsApp%20Video%202026-06-10%20at%209.23.09%20PM.mp4"},
   {c:"XV Años",t:"XV 2026 B",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/WhatsApp%20Video%202026-06-10%20at%209.28.45%20PM.mp4"},
   {c:"XV Años",t:"XV 2026 C",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/WhatsApp%20Video%202026-06-10%20at%209.33.32%20PM.mp4"},
-
-  // ── CUMPLEAÑOS ──
+  {c:"XV Años",t:"XV 2026 D",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/WhatsApp%20Video%202026-06-10%20at%209.27.10%20PM.mp4"},
+  // CUMPLEAÑOS
   {c:"Cumpleaños",t:"Cumpleaños 50",s:"https://raw.githubusercontent.com/regina1503/INVIME-2/main/CUMPLEA%C3%91OS%2050.mp4"},
   {c:"Cumpleaños",t:"Cumpleaños",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/CUMPLEA%C3%91OS.mp4"},
   {c:"Cumpleaños",t:"Amelia",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/AMELIA.mp4"},
@@ -608,13 +615,12 @@ const VIDEOS = [
   {c:"Cumpleaños",t:"Diego (Ben 10)",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(1).mp4"},
   {c:"Cumpleaños",t:"Cumpleaños Rosa",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).mp4"},
   {c:"Cumpleaños",t:"Samantha",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/Samantha.mp4"},
-  {c:"Cumpleaños",t:"Cumpleaños Primavera",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-09%20a%20las%2020.45.25_41ac51e4.mp4"},
   {c:"Cumpleaños",t:"El Rey León",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/The%20king%20(4).mp4"},
   {c:"Cumpleaños",t:"Blancanieves",s:"https://raw.githubusercontent.com/regina1503/paquetes-invi/main/Mis%20xv%20a%C3%B1os%20(5).mp4"},
-  {c:"Cumpleaños",t:"Boda Elegante Cumple",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/El%20texto%20del%20p%C3%A1rrafo%20(1).mp4"},
-  {c:"Cumpleaños",t:"Cumpleaños Especial",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/El%20texto%20del%20p%C3%A1rrafo%20(3).mp4"},
-
-  // ── INFANTIL ──
+  {c:"Cumpleaños",t:"Cumpleaños Primavera",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Video%20de%20WhatsApp%202025-03-09%20a%20las%2020.45.25_41ac51e4.mp4"},
+  {c:"Cumpleaños",t:"Especial V2",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/El%20texto%20del%20p%C3%A1rrafo%20(3).mp4"},
+  {c:"Cumpleaños",t:"Cumpleaños Elegante",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/El%20texto%20del%20p%C3%A1rrafo%20(1).mp4"},
+  // INFANTIL
   {c:"Infantil",t:"Dinosaurio",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/W%20(1).mp4"},
   {c:"Infantil",t:"La Granja",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/Vamos%20a%20Festejar%20(1).mp4"},
   {c:"Infantil",t:"Mis 5 Años Galilea",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/GALY%20(1).mp4"},
@@ -633,117 +639,233 @@ const VIDEOS = [
   {c:"Infantil",t:"3 Años Joss Copia",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Copia%20de%20Mis%20tres%20a%C3%B1os%20(1).mp4"},
   {c:"Infantil",t:"Minnie Mouse",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/minie%20mouse.mp4"},
   {c:"Infantil",t:"Primer Año Mickey",s:"https://raw.githubusercontent.com/regina1503/INVIME-2/main/PRIEMR%20A%C3%91O%20MICKEY.mp4"},
-
-  // ── GRADUACIÓN ──
+  // GRADUACIÓN
   {c:"Graduación",t:"Graduación",s:"https://raw.githubusercontent.com/regina1503/paquetes-invi/main/graduacion.mp4"},
   {c:"Graduación",t:"Graduación Regina",s:"https://raw.githubusercontent.com/regina1503/INVIME-2/main/GRADUACION%20REGINA.mp4"},
   {c:"Graduación",t:"Graduación Íker Gael",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Te%20invito%20a%20festejar%20mi%20graduaci%C3%B3n%20%C3%8Dker%20Gael%20(3).mp4"},
-
-  // ── BAUTIZO ──
+  // BAUTIZO
   {c:"Bautizo",t:"Bautizo Interactivo",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BAUTIZO%20INTERACTIVA.mp4"},
   {c:"Bautizo",t:"Bautizo Julián",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/BAUTIZO%20JULIAN.mp4"},
   {c:"Bautizo",t:"Bautizo y 1er Año Bella",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/MI%20BAUTIZO%20Y%20PRIMER%20A%C3%91O%20BELLA%20(1).mp4"},
-
-  // ── PRIMERA COMUNIÓN / RELIGIOSO ──
+  // RELIGIOSO
   {c:"Religioso",t:"Confirmación Matías",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/mathias%20confirmacion.mp4"},
   {c:"Religioso",t:"Natalia Primera Comunión",s:"https://raw.githubusercontent.com/regina1503/INVITACIONES-ME-1/main/Wedding.mp4"},
+  {c:"Religioso",t:"XV Festivo Comunión",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Ven%20a%20celebrar%20mi.mp4"},
   {c:"Religioso",t:"Ubicación Ceremonia",s:"https://raw.githubusercontent.com/regina1503/invitaciones/main/Confirmaci%C3%B3n%20y%20ubicaci%C3%B3n%F0%9F%AA%82.mp4"},
-
-  // ── ESPECIALES ──
+  // ESPECIALES
   {c:"Especiales",t:"Revelación de Sexo",s:"https://raw.githubusercontent.com/regina1503/paquetes-invi/main/%C2%BFNi%C3%B1o%20o%20ni%C3%B1a%20(3).mp4"},
 ];
 
-const CAT_ICONS = {
-  "Bodas":"💍","XV Años":"👑","Cumpleaños":"🎂","Infantil":"🎈",
-  "Graduación":"🎓","Bautizo":"🕊️","Religioso":"⛪","Especiales":"✨"
-};
+const CAT_ICONS={"Bodas":"💍","XV Años":"👑","Cumpleaños":"🎂","Infantil":"🎈","Graduación":"🎓","Bautizo":"🕊️","Religioso":"⛪","Especiales":"✨"};
 
-// Build gallery
-(function buildGallery(){
-  const cats = [...new Set(VIDEOS.map(v=>v.c))];
-  const tabsEl = document.getElementById('gal-tabs');
-  const sectionsEl = document.getElementById('gal-sections');
+// ═══════════════════════════════════════
+//  STATE – load from localStorage
+// ═══════════════════════════════════════
+function loadState(key, def){ try{ const v=localStorage.getItem(key); return v?JSON.parse(v):def; }catch(e){ return def; } }
+function saveState(key, val){ try{ localStorage.setItem(key,JSON.stringify(val)); }catch(e){} }
+
+let TIPOS = loadState('me_tipos', DEFAULT_TIPOS);
+let PKGS  = loadState('me_pkgs',  DEFAULT_PKGS);
+let VIDEOS = loadState('me_videos', DEFAULT_VIDEOS);
+
+// ═══════════════════════════════════════
+//  RENDER TIPOS
+// ═══════════════════════════════════════
+function renderTipos(){
+  const grid = document.getElementById('tipos-grid');
+  grid.innerHTML = TIPOS.map(t=>`
+    <div class="tipo-card reveal" onclick="openFormModal('${t.name}','${t.price}')">
+      <div class="tipo-icon">${t.icon}</div>
+      <h3 class="tipo-name">${t.name}</h3>
+      <p class="tipo-desc">${t.desc}</p>
+      <div class="tipo-price">${t.price} MXN</div>
+    </div>`).join('');
+  observeReveal();
+}
+
+// ═══════════════════════════════════════
+//  RENDER PAQUETES
+// ═══════════════════════════════════════
+function renderPaquetes(){
+  const grid = document.getElementById('paquetes-grid');
+  grid.innerHTML = PKGS.map(p=>`
+    <div class="pkg-card${p.feat?' feat':''} reveal">
+      <div class="pkg-head">
+        ${p.badge?`<div class="pkg-badge">${p.badge}</div>`:''}
+        <h3 class="pkg-name">${p.name}</h3>
+        <div class="pkg-price">${p.price} <span>MXN</span></div>
+      </div>
+      <ul class="pkg-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('${p.name}','${p.price}')">Quiero este paquete</button></div>
+    </div>`).join('');
+  observeReveal();
+}
+
+// ═══════════════════════════════════════
+//  GALLERY – lazy load with IntersectionObserver
+// ═══════════════════════════════════════
+let galIdxMap = []; // maps cat item index -> global VIDEOS index
+
+function buildGallery(){
+  const cats=[...new Set(VIDEOS.map(v=>v.c))];
+  const tabsEl=document.getElementById('gal-tabs');
+  const secEl=document.getElementById('gal-sections');
+  tabsEl.innerHTML=''; secEl.innerHTML=''; galIdxMap=[];
+
   cats.forEach((cat,ci)=>{
-    const btn = document.createElement('button');
-    btn.className = 'tab-btn' + (ci===0?' active':'');
-    btn.dataset.tab = ci;
-    btn.textContent = (CAT_ICONS[cat]||'🎉') + ' ' + cat;
-    btn.onclick = ()=>{
+    const btn=document.createElement('button');
+    btn.className='tab-btn'+(ci===0?' active':'');
+    btn.textContent=(CAT_ICONS[cat]||'🎉')+' '+cat;
+    btn.onclick=()=>{
       document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
       document.querySelectorAll('.gal-section').forEach(s=>s.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('gal-s-'+ci).classList.add('active');
-      trackCategoryView(cat);
+      trackCat(cat);
     };
     tabsEl.appendChild(btn);
 
-    const sec = document.createElement('div');
-    sec.className = 'gal-section' + (ci===0?' active':'');
-    sec.id = 'gal-s-'+ci;
-    const grid = document.createElement('div');
-    grid.className = 'gal-grid';
-    const catVids = VIDEOS.filter(v=>v.c===cat);
-    catVids.forEach((vid,vi)=>{
-      const globalIdx = VIDEOS.indexOf(vid);
-      const item = document.createElement('div');
-      item.className = 'gal-item reveal';
-      item.dataset.idx = globalIdx;
-      item.innerHTML = `
-        <video src="${vid.s}" autoplay muted loop playsinline preload="metadata" style="pointer-events:none" oncontextmenu="return false"></video>
+    const sec=document.createElement('div');
+    sec.className='gal-section'+(ci===0?' active':'');
+    sec.id='gal-s-'+ci;
+    const grid=document.createElement('div');
+    grid.className='gal-grid';
+    const catVids=VIDEOS.filter(v=>v.c===cat);
+    catVids.forEach((vid)=>{
+      const gi=VIDEOS.indexOf(vid);
+      const item=document.createElement('div');
+      item.className='gal-item reveal';
+      item.dataset.gi=gi;
+      item.innerHTML=`
+        <div class="gal-thumb-wrap"><div class="gal-thumb-icon">🎬</div></div>
+        <video class="gal-video-el" preload="none" playsinline muted loop controlsList="nodownload" oncontextmenu="return false"></video>
         <div class="gal-title">${vid.t}</div>
-        <div class="gal-play-icon"></div>`;
-      item.onclick = ()=>openLB(globalIdx);
+        <div class="gal-controls">
+          <button class="gal-play-btn" onclick="galTogglePlay(event,this)">▶</button>
+          <div class="gal-seek-row">
+            <button class="gal-seek-btn" onclick="galSeek(event,-5)">⏪</button>
+            <button class="gal-seek-btn" onclick="galFullscreen(event,${gi})">⛶</button>
+            <button class="gal-seek-btn" onclick="galSeek(event,5)">⏩</button>
+          </div>
+        </div>`;
       grid.appendChild(item);
     });
     sec.appendChild(grid);
-    sectionsEl.appendChild(sec);
+    secEl.appendChild(sec);
   });
-})();
 
-// ═══════════════════════════════════════════════
-//  LIGHTBOX
-// ═══════════════════════════════════════════════
-let lbIdx = 0;
-function openLB(idx){
-  lbIdx = idx;
-  renderLB();
+  // lazy load: load video src only when visible
+  const lazyObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const item=e.target;
+        const gi=parseInt(item.dataset.gi);
+        const vid=item.querySelector('.gal-video-el');
+        if(vid && !vid.src){
+          vid.src=VIDEOS[gi].s;
+          vid.load();
+        }
+        lazyObs.unobserve(item);
+      }
+    });
+  },{rootMargin:'200px'});
+
+  document.querySelectorAll('.gal-item').forEach(el=>lazyObs.observe(el));
+  observeReveal();
+}
+
+function galTogglePlay(e,btn){
+  e.stopPropagation();
+  const item=btn.closest('.gal-item');
+  const vid=item.querySelector('.gal-video-el');
+  if(!vid.src){ const gi=parseInt(item.dataset.gi); vid.src=VIDEOS[gi].s; vid.load(); }
+  if(vid.paused){
+    // pause all others
+    document.querySelectorAll('.gal-video-el').forEach(v=>{ if(v!==vid){ v.pause(); v.closest('.gal-item')?.classList.remove('loaded','gal-playing'); v.closest('.gal-item')?.querySelector('.gal-play-btn') && (v.closest('.gal-item').querySelector('.gal-play-btn').textContent='▶'); }});
+    vid.muted=true; vid.play();
+    item.classList.add('loaded','gal-playing');
+    btn.textContent='⏸';
+  } else {
+    vid.pause();
+    item.classList.remove('gal-playing');
+    btn.textContent='▶';
+  }
+}
+function galSeek(e,sec){
+  e.stopPropagation();
+  const item=e.target.closest('.gal-item');
+  const vid=item.querySelector('.gal-video-el');
+  if(vid.readyState>=1) vid.currentTime=Math.max(0,vid.currentTime+sec);
+}
+function galFullscreen(e,gi){
+  e.stopPropagation();
+  openLB(gi);
+}
+
+// ═══════════════════════════════════════
+//  LIGHTBOX with controls
+// ═══════════════════════════════════════
+let lbIdx=0, lbPlaying=false;
+function openLB(gi){
+  lbIdx=gi; renderLB();
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow='hidden';
-  trackVideoView(VIDEOS[idx].t, VIDEOS[idx].c);
+  trackVideoView(VIDEOS[gi].t,VIDEOS[gi].c);
 }
 function closeLB(){
   document.getElementById('lightbox').classList.remove('open');
-  document.getElementById('lb-video').pause();
-  document.getElementById('lb-video').src='';
+  const v=document.getElementById('lb-video');
+  v.pause(); v.src='';
   document.body.style.overflow='';
 }
 function renderLB(){
-  const v = VIDEOS[lbIdx];
-  const vid = document.getElementById('lb-video');
-  vid.src = v.s;
-  vid.load(); vid.play();
-  document.getElementById('lb-title-el').textContent = v.t + ' · ' + v.c;
-  document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + VIDEOS.length;
+  const vid=VIDEOS[lbIdx];
+  const v=document.getElementById('lb-video');
+  v.src=vid.s; v.load(); v.play(); lbPlaying=true;
+  document.getElementById('lb-play-btn').textContent='⏸';
+  document.getElementById('lb-title-el').textContent=vid.t+' · '+vid.c;
+  document.getElementById('lb-counter').textContent=(lbIdx+1)+' / '+VIDEOS.length;
+  document.getElementById('lb-prog').value=0;
+  document.getElementById('lb-time').textContent='0:00';
 }
 function lbNav(dir){
-  lbIdx = (lbIdx + dir + VIDEOS.length) % VIDEOS.length;
+  lbIdx=(lbIdx+dir+VIDEOS.length)%VIDEOS.length;
   renderLB();
 }
-function wantThisModel(){
-  const v = VIDEOS[lbIdx];
-  closeLB();
-  openFormModal('Invitación personalizada', '', v);
+function lbTogglePlay(){
+  const v=document.getElementById('lb-video');
+  const btn=document.getElementById('lb-play-btn');
+  if(v.paused){ v.play(); btn.textContent='⏸'; lbPlaying=true; }
+  else { v.pause(); btn.textContent='▶'; lbPlaying=false; }
 }
+function lbSkip(s){
+  const v=document.getElementById('lb-video');
+  if(v.readyState>=1) v.currentTime=Math.max(0,v.currentTime+s);
+}
+function lbSeek(val){
+  const v=document.getElementById('lb-video');
+  if(v.duration) v.currentTime=(val/100)*v.duration;
+}
+function lbTimeUpdate(){
+  const v=document.getElementById('lb-video');
+  if(!v.duration) return;
+  const pct=(v.currentTime/v.duration)*100;
+  document.getElementById('lb-prog').value=pct;
+  const m=Math.floor(v.currentTime/60), s=Math.floor(v.currentTime%60);
+  document.getElementById('lb-time').textContent=m+':'+(s<10?'0':'')+s;
+}
+function wantThisModel(){ const v=VIDEOS[lbIdx]; closeLB(); openFormModal('Invitación personalizada','',v); }
 document.getElementById('lightbox').addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft') lbNav(-1);
   if(e.key==='ArrowRight') lbNav(1);
+  if(e.key===' ') lbTogglePlay();
   if(e.key==='Escape') closeLB();
 });
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  FORM MODAL
-// ═══════════════════════════════════════════════
-const PKG_FIELDS = {
+// ═══════════════════════════════════════
+const PKG_FIELDS={
   'Imagen':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','notas'],
   'Video':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','notas'],
   'PDF con botones':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','url_ubicacion','tel_confirmacion','notas'],
@@ -751,166 +873,103 @@ const PKG_FIELDS = {
   'Web Básica':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','tel_confirmacion','notas'],
   'Web Bronce':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','url_ubicacion2','tel_confirmacion','nombre_papas','codigo_vestimenta','frase','notas'],
   'Web Plata':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','url_ubicacion2','tel_confirmacion','nombre_papas','codigo_vestimenta','frase','notas'],
-  'Web Oro':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','url_ubicacion2','tel_confirmacion','nombre_papas','codigo_vestimenta','frase','mesa_regalos','hospedaje','notas'],
-  'Web Oro Plus':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','url_ubicacion2','tel_confirmacion','nombre_papas','codigo_vestimenta','frase','mesa_regalos','hospedaje','notas'],
-  'Web Oro Premium':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','url_ubicacion2','tel_confirmacion','nombre_papas','codigo_vestimenta','frase','mesa_regalos','hospedaje','notas'],
+  'default':['nombre','telefono','evento','fecha','hora','lugar','color_tematica','musica','url_ubicacion','url_ubicacion2','tel_confirmacion','nombre_papas','codigo_vestimenta','frase','mesa_regalos','hospedaje','notas'],
 };
-const FIELD_META = {
-  nombre:{label:'Tu nombre completo',placeholder:'Ej. María González',type:'text',req:true},
-  telefono:{label:'WhatsApp / Teléfono',placeholder:'Ej. 4421234567',type:'tel',req:true},
-  evento:{label:'Tipo de evento',placeholder:'Boda, XV, Cumpleaños...',type:'select',options:['Boda','XV Años','Cumpleaños','Graduación','Bautizo','Baby Shower','Comunión','Otro'],req:true},
-  fecha:{label:'Fecha del evento',placeholder:'',type:'date',req:true},
-  hora:{label:'Hora del evento',placeholder:'',type:'time',req:false},
-  lugar:{label:'Lugar / Salón',placeholder:'Nombre del salón o dirección',type:'text',req:true},
-  color_tematica:{label:'Color o temática',placeholder:'Ej. Rosa y dorado, Cenicienta...',type:'text',req:false},
-  musica:{label:'Canción preferida',placeholder:'Artista - Título (opcional)',type:'text',req:false},
-  url_ubicacion:{label:'Link de ubicación (Google Maps)',placeholder:'https://maps.google.com/...',type:'url',req:false},
-  url_ubicacion2:{label:'2° Link de ubicación (opcional)',placeholder:'Recepción, hotel...',type:'url',req:false},
-  tel_confirmacion:{label:'Número para confirmación',placeholder:'WhatsApp del anfitrión',type:'tel',req:false},
-  nombre_papas:{label:'Nombre de los papás',placeholder:'Ej. Juan y Ana González',type:'text',req:false},
-  codigo_vestimenta:{label:'Código de vestimenta',placeholder:'Ej. Formal, Casual...',type:'text',req:false},
-  frase:{label:'Frase especial / dedicatoria',placeholder:'Una frase para tu invitación',type:'textarea',req:false},
-  mesa_regalos:{label:'Mesa de regalos / lluvia de sobres',placeholder:'Link o instrucciones',type:'text',req:false},
-  hospedaje:{label:'Opciones de hospedaje',placeholder:'Nombre y dirección del hotel',type:'text',req:false},
-  notas:{label:'Notas adicionales',placeholder:'Cualquier detalle extra que quieras agregar...',type:'textarea',req:false},
+const FM={
+  nombre:{label:'Tu nombre completo',type:'text',req:true,ph:'Ej. María González'},
+  telefono:{label:'WhatsApp / Teléfono',type:'tel',req:true,ph:'Ej. 4421234567'},
+  evento:{label:'Tipo de evento',type:'select',req:true,opts:['Boda','XV Años','Cumpleaños','Graduación','Bautizo','Baby Shower','Comunión','Otro']},
+  fecha:{label:'Fecha del evento',type:'date',req:true,ph:''},
+  hora:{label:'Hora del evento',type:'time',req:false,ph:''},
+  lugar:{label:'Lugar / Salón',type:'text',req:true,ph:'Nombre del salón o dirección'},
+  color_tematica:{label:'Color o temática',type:'text',req:false,ph:'Ej. Rosa y dorado'},
+  musica:{label:'Canción preferida',type:'text',req:false,ph:'Artista – Título'},
+  url_ubicacion:{label:'Link Google Maps',type:'url',req:false,ph:'https://maps.google.com/...'},
+  url_ubicacion2:{label:'2° Link ubicación (opcional)',type:'url',req:false,ph:'Recepción, hotel...'},
+  tel_confirmacion:{label:'Número para confirmación',type:'tel',req:false,ph:'WhatsApp del anfitrión'},
+  nombre_papas:{label:'Nombre de los papás',type:'text',req:false,ph:'Ej. Juan y Ana'},
+  codigo_vestimenta:{label:'Código de vestimenta',type:'text',req:false,ph:'Ej. Formal, Casual'},
+  frase:{label:'Frase / dedicatoria',type:'textarea',req:false,ph:'Una frase especial'},
+  mesa_regalos:{label:'Mesa de regalos / lluvia de sobres',type:'text',req:false,ph:'Link o instrucciones'},
+  hospedaje:{label:'Opciones de hospedaje',type:'text',req:false,ph:'Nombre y dirección del hotel'},
+  notas:{label:'Notas adicionales',type:'textarea',req:false,ph:'Cualquier detalle extra...'},
 };
-
-let fmodPkg='', fmodPrice='', fmodModel=null;
-function openFormModal(pkg, price, model=null){
-  fmodPkg = pkg; fmodPrice = price; fmodModel = model;
-  document.getElementById('fmod-title').textContent = pkg + (price?' · '+price:'');
+let fmodPkg='',fmodPrice='',fmodModel=null;
+function openFormModal(pkg,price,model=null){
+  fmodPkg=pkg; fmodPrice=price; fmodModel=model;
+  document.getElementById('fmod-title').textContent=pkg+(price?' · '+price:'');
   document.getElementById('fmod-form').style.display='block';
   document.getElementById('fmod-success').style.display='none';
-
-  // model preview
-  const mi = document.getElementById('fmod-model-info');
-  if(model){
-    mi.style.display='flex';
-    document.getElementById('fmod-model-name').textContent = model.t;
-    const tv = document.getElementById('fmod-thumb-vid');
-    tv.src = model.s; tv.load(); tv.play();
-  } else { mi.style.display='none'; }
-
-  // note with gallery suggestion
-  const note = document.getElementById('fmod-note');
-  note.innerHTML = `📌 Completa el formulario y nos contactamos contigo.<br>
-    ${!model?'💡 <strong>¿Ya tienes un modelo en mente?</strong> Revisa nuestra <a href="#galeria" style="color:var(--rd)" onclick="closeFormModal()">galería de ejemplos</a> y regresa aquí.':'💡 Has elegido el modelo <strong>'+model.t+'</strong>. Si quieres cambiar, explóralo en nuestra galería.'}`;
-
-  // fields
-  const fieldsEl = document.getElementById('fmod-fields');
-  fieldsEl.innerHTML = '';
-  const fieldList = PKG_FIELDS[pkg] || PKG_FIELDS['Web Básica'];
-  fieldList.forEach(fk=>{
-    const fm = FIELD_META[fk]; if(!fm) return;
-    const wrap = document.createElement('div');
-    wrap.className = fm.type==='textarea'||fk==='notas'||fk==='frase'?'full':'';
-    const label = document.createElement('label');
-    label.className='fmod-label'; label.textContent=fm.label+(fm.req?' *':'');
-    wrap.appendChild(label);
+  const mi=document.getElementById('fmod-model-info');
+  if(model){ mi.style.display='flex'; document.getElementById('fmod-model-name').textContent=model.t; const tv=document.getElementById('fmod-thumb-vid'); tv.src=model.s; tv.load(); tv.play(); }
+  else mi.style.display='none';
+  document.getElementById('fmod-note').innerHTML=`📌 Completa el formulario y te contactamos. ${!model?'💡 ¿Ya tienes un modelo? Revisa nuestra <a href="#galeria" style="color:var(--rd)" onclick="closeFormModal()">galería</a>.':'💡 Modelo: <strong>'+model.t+'</strong>'}`;
+  const fields=document.getElementById('fmod-fields');
+  fields.innerHTML='';
+  const list=PKG_FIELDS[pkg]||PKG_FIELDS['default'];
+  list.forEach(k=>{ const m=FM[k]; if(!m) return;
+    const wrap=document.createElement('div');
+    wrap.className=m.type==='textarea'?'full':'';
+    const lbl=document.createElement('label'); lbl.className='fmod-label'; lbl.textContent=m.label+(m.req?' *':''); wrap.appendChild(lbl);
     let el;
-    if(fm.type==='select'){
-      el=document.createElement('select'); el.name=fk;
-      el.innerHTML='<option value="">Seleccionar...</option>'+fm.options.map(o=>`<option>${o}</option>`).join('');
-    } else if(fm.type==='textarea'){
-      el=document.createElement('textarea'); el.name=fk; el.placeholder=fm.placeholder; el.rows=3;
-    } else {
-      el=document.createElement('input'); el.type=fm.type; el.name=fk; el.placeholder=fm.placeholder||'';
-    }
-    if(fm.req) el.required=true;
-    wrap.appendChild(el);
-    fieldsEl.appendChild(wrap);
+    if(m.type==='select'){ el=document.createElement('select'); el.name=k; el.innerHTML='<option value="">Seleccionar...</option>'+m.opts.map(o=>`<option>${o}</option>`).join(''); }
+    else if(m.type==='textarea'){ el=document.createElement('textarea'); el.name=k; el.placeholder=m.ph||''; el.rows=3; }
+    else { el=document.createElement('input'); el.type=m.type; el.name=k; el.placeholder=m.ph||''; }
+    if(m.req) el.required=true;
+    wrap.appendChild(el); fields.appendChild(wrap);
   });
-
-  // WA link
-  const waLink = `https://wa.me/524426084804?text=Hola%20Momentos%20Encantados%2C%20me%20interesa%20el%20paquete%20${encodeURIComponent(pkg)}${model?'%20modelo%20'+encodeURIComponent(model.t):''}`;
-  document.getElementById('fmod-wa-link').href = waLink;
-
+  document.getElementById('fmod-wa-link').href=`https://wa.me/524426084804?text=Hola%20ME%2C%20me%20interesa%20${encodeURIComponent(pkg)}${model?'%20modelo%20'+encodeURIComponent(model.t):''}`;
   document.getElementById('form-modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeFormModal(){
-  document.getElementById('form-modal').classList.remove('open');
-  document.body.style.overflow='';
-}
+function closeFormModal(){ document.getElementById('form-modal').classList.remove('open'); document.body.style.overflow=''; }
 function submitFormModal(e){
   e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = {timestamp:new Date().toLocaleString('es-MX'), paquete:fmodPkg, precio:fmodPrice};
-  if(fmodModel) data.modelo = fmodModel.t;
-  fd.forEach((v,k)=>{if(v) data[k]=v});
-  saveMessage(data);
+  const fd=new FormData(e.target);
+  const data={timestamp:new Date().toLocaleString('es-MX'),paquete:fmodPkg,precio:fmodPrice};
+  if(fmodModel) data.modelo=fmodModel.t;
+  fd.forEach((v,k)=>{ if(v) data[k]=v; });
+  saveMsg(data);
   document.getElementById('fmod-form').style.display='none';
   document.getElementById('fmod-success').style.display='block';
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  CONTACT FORM
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 function submitContact(e){
   e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = {timestamp:new Date().toLocaleString('es-MX'), tipo:'contacto'};
-  fd.forEach((v,k)=>{if(v) data[k]=v});
-  saveMessage(data);
+  const fd=new FormData(e.target);
+  const data={timestamp:new Date().toLocaleString('es-MX'),tipo:'contacto general'};
+  fd.forEach((v,k)=>{ if(v) data[k]=v; });
+  saveMsg(data);
   document.getElementById('cform-wrap').style.display='none';
   document.getElementById('cform-success').style.display='block';
 }
 
-// ═══════════════════════════════════════════════
-//  LOCAL STORAGE & STATS
-// ═══════════════════════════════════════════════
-function saveMessage(data){
-  let msgs = getMessages();
-  msgs.push(data);
-  try{ localStorage.setItem('me_msgs', JSON.stringify(msgs)); }catch(e){}
-}
-function getMessages(){
-  try{ return JSON.parse(localStorage.getItem('me_msgs')||'[]'); }catch(e){ return []; }
-}
-function trackCategoryView(cat){
-  let stats = getStats();
-  stats.catViews = stats.catViews||{};
-  stats.catViews[cat] = (stats.catViews[cat]||0)+1;
-  stats.totalVisits = (stats.totalVisits||0)+1;
-  stats.lastVisit = new Date().toLocaleString('es-MX');
-  const hr = new Date().getHours();
-  stats.hourCounts = stats.hourCounts||{};
-  const bucket = hr<12?'Mañana':hr<18?'Tarde':'Noche';
-  stats.hourCounts[bucket] = (stats.hourCounts[bucket]||0)+1;
-  try{ localStorage.setItem('me_stats', JSON.stringify(stats)); }catch(e){}
-}
-function trackVideoView(title, cat){
-  let stats = getStats();
-  stats.videoViews = stats.videoViews||{};
-  stats.videoViews[title] = (stats.videoViews[title]||0)+1;
-  trackCategoryView(cat);
-}
-function getStats(){
-  try{ return JSON.parse(localStorage.getItem('me_stats')||'{}'); }catch(e){ return {}; }
-}
+// ═══════════════════════════════════════
+//  STORAGE
+// ═══════════════════════════════════════
+function saveMsg(data){ const msgs=getMsgs(); msgs.push(data); saveState('me_msgs',msgs); }
+function getMsgs(){ return loadState('me_msgs',[]); }
+function getStats(){ return loadState('me_stats',{}); }
+function saveStats(s){ saveState('me_stats',s); }
+function trackCat(cat){ const s=getStats(); s.catViews=s.catViews||{}; s.catViews[cat]=(s.catViews[cat]||0)+1; s.totalVisits=(s.totalVisits||0)+1; s.lastVisit=new Date().toLocaleString('es-MX'); const hr=new Date().getHours(); s.hourCounts=s.hourCounts||{}; const bkt=hr<12?'Mañana':hr<18?'Tarde':'Noche'; s.hourCounts[bkt]=(s.hourCounts[bkt]||0)+1; saveStats(s); }
+function trackVideoView(title,cat){ const s=getStats(); s.videoViews=s.videoViews||{}; s.videoViews[title]=(s.videoViews[title]||0)+1; trackCat(cat); }
 
-// ═══════════════════════════════════════════════
-//  ADMIN PANEL
-// ═══════════════════════════════════════════════
-const ADMIN_PWD = 'momentos2025';
-function openAdminLogin(){
-  document.getElementById('admin-login').classList.add('open');
-  document.getElementById('adm-pwd').value='';
-  document.getElementById('adm-err').style.display='none';
-}
+// ═══════════════════════════════════════
+//  ADMIN
+// ═══════════════════════════════════════
+const ADMIN_PWD='momentosE2025!';
+function openAdminLogin(){ document.getElementById('admin-login').classList.add('open'); document.getElementById('adm-pwd').value=''; document.getElementById('adm-err').style.display='none'; }
 function closeAdminLogin(){ document.getElementById('admin-login').classList.remove('open'); }
 function adminLogin(){
-  if(document.getElementById('adm-pwd').value===ADMIN_PWD){
-    closeAdminLogin();
-    openAdmin();
-  } else {
-    document.getElementById('adm-err').style.display='block';
-  }
+  if(document.getElementById('adm-pwd').value===ADMIN_PWD){ closeAdminLogin(); openAdmin(); }
+  else { document.getElementById('adm-err').style.display='block'; }
 }
 function openAdmin(){
   document.getElementById('admin-overlay').classList.add('open');
-  renderAdminMsgs();
-  renderAdminStats();
+  renderAdmMsgs(); renderAdmStats(); renderAdmPkgs(); renderAdmVideos();
 }
 function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
 function switchAdmTab(id,btn){
@@ -919,164 +978,219 @@ function switchAdmTab(id,btn){
   btn.classList.add('active');
   document.getElementById('adm-'+id).classList.add('active');
 }
-function renderAdminMsgs(){
-  const list = document.getElementById('adm-msgs-list');
-  const msgs = getMessages().reverse();
-  if(!msgs.length){ list.innerHTML='<p style="color:rgba(255,255,255,.4);text-align:center;margin-top:2rem">No hay mensajes aún.</p>'; return; }
-  list.innerHTML = msgs.map(m=>{
-    const fields = Object.entries(m).filter(([k])=>k!=='timestamp');
-    return `<div class="msg-card">
-      <h4>📩 ${m.nombre||m.paquete||'Mensaje'} · <span style="opacity:.6;font-weight:400">${m.timestamp}</span></h4>
-      <div class="msg-meta">${fields.map(([k,v])=>`<span><strong>${k.replace(/_/g,' ')}:</strong> ${v}</span>`).join('')}</div>
-    </div>`;
-  }).join('');
+
+// Messages tab
+function renderAdmMsgs(){
+  const el=document.getElementById('adm-mensajes');
+  const msgs=getMsgs().reverse();
+  if(!msgs.length){ el.innerHTML='<p style="color:rgba(255,255,255,.35);text-align:center;margin-top:2rem;font-size:.9rem">No hay mensajes aún.</p>'; return; }
+  el.innerHTML=`<p style="color:rgba(255,255,255,.4);font-size:.8rem;margin-bottom:1rem">${msgs.length} mensaje(s) recibido(s)</p>`+
+  msgs.map(m=>`<div class="msg-card">
+    <h4>📩 ${m.nombre||m.tipo||'Mensaje'} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp}</span></h4>
+    <div class="msg-meta">${Object.entries(m).filter(([k])=>k!=='timestamp').map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
+  </div>`).join('');
 }
-function renderAdminStats(){
-  const stats = getStats();
-  const msgs = getMessages();
-  const catViews = stats.catViews||{};
-  const maxCat = Math.max(1, ...Object.values(catViews));
-  const grid = document.getElementById('adm-stat-grid');
-  grid.innerHTML = `
-    <div class="stat-card"><div class="sn">${stats.totalVisits||0}</div><div class="sl">VISITAS TOTALES</div></div>
-    <div class="stat-card"><div class="sn">${msgs.length}</div><div class="sl">MENSAJES RECIBIDOS</div></div>
-    <div class="stat-card"><div class="sn">${Object.keys(stats.videoViews||{}).length}</div><div class="sl">VIDEOS VISTOS</div></div>
-    <div class="stat-card"><div class="sn">${stats.lastVisit?stats.lastVisit.split(',')[0]:'—'}</div><div class="sl">ÚLTIMA VISITA</div></div>
-    <div class="stat-card"><div class="sn">${(()=>{const h=stats.hourCounts||{};return Object.entries(h).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—'})()}</div><div class="sl">HORA MÁS ACTIVA</div></div>
-    <div class="stat-card"><div class="sn">${(()=>{const v=stats.catViews||{};return Object.entries(v).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—'})()}</div><div class="sl">CATEGORÍA FAVORITA</div></div>`;
-  const bars = document.getElementById('adm-bars');
-  const allCats = [...new Set(VIDEOS.map(v=>v.c))];
-  bars.innerHTML = allCats.map(cat=>`
-    <div class="interest-bar">
-      <div class="ib-label"><span>${CAT_ICONS[cat]||''} ${cat}</span><span>${catViews[cat]||0} vistas</span></div>
-      <div class="ib-track"><div class="ib-fill" style="width:${Math.round(((catViews[cat]||0)/maxCat)*100)}%"></div></div>
-    </div>`).join('');
-  // top videos
-  const topVids = Object.entries(stats.videoViews||{}).sort((a,b)=>b[1]-a[1]).slice(0,5);
-  if(topVids.length){
-    bars.innerHTML += `<h4 style="color:rgba(255,255,255,.6);font-size:.85rem;letter-spacing:.06em;margin:1.5rem 0 1rem">TOP 5 VIDEOS MÁS VISTOS</h4>`;
-    bars.innerHTML += topVids.map(([t,n])=>`
-      <div class="interest-bar">
-        <div class="ib-label"><span>${t}</span><span>${n} veces</span></div>
-        <div class="ib-track"><div class="ib-fill" style="width:${Math.round((n/topVids[0][1])*100)}%"></div></div>
-      </div>`).join('');
-  }
+function exportMsgs(){
+  const msgs=getMsgs();
+  if(!msgs.length){ alert('No hay mensajes.'); return; }
+  const rows=[Object.keys(msgs[0]).join(','),...msgs.map(m=>Object.values(m).map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','))];
+  const blob=new Blob([rows.join('\n')],{type:'text/csv'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='mensajes_ME.csv'; a.click();
 }
-// Secret admin access: type "admin" anywhere on page
+
+// Stats tab
+function renderAdmStats(){
+  const s=getStats(); const msgs=getMsgs();
+  const catV=s.catViews||{}; const maxC=Math.max(1,...Object.values(catV));
+  const el=document.getElementById('adm-estadisticas');
+  const favCat=Object.entries(catV).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
+  const topHr=Object.entries(s.hourCounts||{}).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
+  el.innerHTML=`
+  <div class="stat-grid">
+    <div class="stat-card"><div class="sn">${s.totalVisits||0}</div><div class="sl">VISITAS</div></div>
+    <div class="stat-card"><div class="sn">${msgs.length}</div><div class="sl">MENSAJES</div></div>
+    <div class="stat-card"><div class="sn">${Object.keys(s.videoViews||{}).length}</div><div class="sl">VIDEOS VISTOS</div></div>
+    <div class="stat-card"><div class="sn">${favCat}</div><div class="sl">CATEGORÍA FAVORITA</div></div>
+    <div class="stat-card"><div class="sn">${topHr}</div><div class="sl">HORA MÁS ACTIVA</div></div>
+    <div class="stat-card"><div class="sn">${s.lastVisit?s.lastVisit.split(',')[0]:'—'}</div><div class="sl">ÚLTIMA VISITA</div></div>
+  </div>
+  <h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin-bottom:.9rem">INTERÉS POR CATEGORÍA</h4>
+  ${[...new Set(VIDEOS.map(v=>v.c))].map(cat=>`<div class="interest-bar">
+    <div class="ib-label"><span>${CAT_ICONS[cat]||''} ${cat}</span><span>${catV[cat]||0} vistas</span></div>
+    <div class="ib-track"><div class="ib-fill" style="width:${Math.round(((catV[cat]||0)/maxC)*100)}%"></div></div>
+  </div>`).join('')}
+  ${(()=>{ const top=Object.entries(s.videoViews||{}).sort((a,b)=>b[1]-a[1]).slice(0,5);
+    if(!top.length) return '';
+    return `<h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin:1.3rem 0 .9rem">TOP 5 VIDEOS MÁS VISTOS</h4>`+
+      top.map(([t,n])=>`<div class="interest-bar"><div class="ib-label"><span>${t}</span><span>${n}×</span></div><div class="ib-track"><div class="ib-fill" style="width:${Math.round((n/top[0][1])*100)}%"></div></div></div>`).join('');
+  })()}`;
+}
+
+// Packages tab
+function renderAdmPkgs(){
+  const el=document.getElementById('adm-paquetes');
+  el.innerHTML=`<h3 style="color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1rem">✏️ Editar paquetes y precios (cambios se aplican al instante)</h3>`+
+  PKGS.map((p,i)=>`<div class="adm-pkg-card">
+    <h4>${p.name}</h4>
+    <div class="adm-row"><label>Nombre</label><input value="${p.name}" onchange="PKGS[${i}].name=this.value;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
+    <div class="adm-row"><label>Precio</label><input value="${p.price}" onchange="PKGS[${i}].price=this.value;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
+    <div class="adm-row"><label>Badge</label><input value="${p.badge||''}" placeholder="Ej. ⭐ MÁS POPULAR" onchange="PKGS[${i}].badge=this.value;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
+    <div class="adm-row"><label>Destacado</label><input type="checkbox" ${p.feat?'checked':''} onchange="PKGS[${i}].feat=this.checked;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
+    <div class="adm-row"><label>Características</label><textarea rows="4" style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:Lato,sans-serif;font-size:.82rem;padding:.43rem .7rem;outline:none;resize:vertical" onchange="PKGS[${i}].features=this.value.split('\\n').filter(l=>l.trim());saveState('me_pkgs',PKGS);renderPaquetes()">${p.features.join('\n')}</textarea></div>
+  </div>`).join('')+
+  `<button class="adm-save-btn" onclick="saveState('me_pkgs',PKGS);alert('✅ Paquetes guardados')">💾 Guardar todo</button>
+   <button class="adm-top-btn" style="margin-left:.5rem" onclick="if(confirm('¿Restaurar paquetes originales?')){PKGS=JSON.parse(JSON.stringify(DEFAULT_PKGS));saveState('me_pkgs',PKGS);renderPaquetes();renderAdmPkgs();}">↺ Restaurar</button>`;
+}
+
+// Videos tab
+function renderAdmVideos(){
+  const cats=[...new Set(VIDEOS.map(v=>v.c))];
+  const el=document.getElementById('adm-videos');
+  el.innerHTML=`
+  <div class="adm-add-form">
+    <h4>➕ Agregar nuevo video</h4>
+    <div class="adm-add-row">
+      <select class="adm-cat-sel" id="adm-new-cat">
+        ${cats.map(c=>`<option>${c}</option>`).join('')}
+        <option value="__nuevo__">+ Nueva categoría...</option>
+      </select>
+      <input class="adm-title-inp" id="adm-new-cat-name" placeholder="Nombre nueva categoría" style="display:none">
+    </div>
+    <div class="adm-add-row">
+      <input class="adm-title-inp" id="adm-new-title" placeholder="Nombre del video (ej. XV Rosa 2025)">
+      <input class="adm-url-inp" id="adm-new-url" placeholder="URL raw del video (githubusercontent.com/...)">
+    </div>
+    <button class="adm-save-btn" onclick="adminAddVideo()">✦ Agregar video</button>
+  </div>
+  <p style="color:rgba(255,255,255,.45);font-size:.78rem;margin-bottom:.8rem">${VIDEOS.length} videos en total · Haz clic en ✕ para eliminar</p>
+  <div class="adm-video-grid">
+    ${VIDEOS.map((v,i)=>`<div class="adm-vid-item">
+      <video src="${v.s}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>
+      <div class="adm-vid-title">${v.t}<br><small style="opacity:.6">${v.c}</small></div>
+      <button class="adm-vid-del" onclick="adminDelVideo(${i})" title="Eliminar">✕</button>
+    </div>`).join('')}
+  </div>`;
+
+  document.getElementById('adm-new-cat').onchange=function(){
+    document.getElementById('adm-new-cat-name').style.display=this.value==='__nuevo__'?'block':'none';
+  };
+}
+function adminAddVideo(){
+  const catSel=document.getElementById('adm-new-cat').value;
+  const cat=catSel==='__nuevo__'?document.getElementById('adm-new-cat-name').value.trim():catSel;
+  const title=document.getElementById('adm-new-title').value.trim();
+  const url=document.getElementById('adm-new-url').value.trim();
+  if(!cat||!title||!url){ alert('Completa todos los campos'); return; }
+  VIDEOS.push({c:cat,t:title,s:url});
+  saveState('me_videos',VIDEOS);
+  buildGallery();
+  renderAdmVideos();
+  alert('✅ Video agregado: '+title);
+}
+function adminDelVideo(i){
+  if(!confirm('¿Eliminar "'+VIDEOS[i].t+'"?')) return;
+  VIDEOS.splice(i,1);
+  saveState('me_videos',VIDEOS);
+  buildGallery();
+  renderAdmVideos();
+}
+
+// Secret access: type "admin" on keyboard
 let secretBuf='';
-document.addEventListener('keydown',e=>{
-  secretBuf=(secretBuf+e.key).slice(-5);
-  if(secretBuf==='admin') openAdminLogin();
-});
+document.addEventListener('keydown',e=>{ secretBuf=(secretBuf+e.key).slice(-5); if(secretBuf==='admin') openAdminLogin(); });
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  AI CHAT
-// ═══════════════════════════════════════════════
-const AI_SYSTEM = `Eres la asistente virtual de Momentos Encantados, empresa de invitaciones digitales en México. 
-Responde SIEMPRE en español, de forma amable, breve y usa emojis apropiados 💕. Si no sabes algo específico, sugiere contactar por WhatsApp al 4426084804.
+// ═══════════════════════════════════════
+const AI_SYS=`Eres la asistente virtual de Momentos Encantados, empresa mexicana de invitaciones digitales. Responde SIEMPRE en español, de forma amable, breve y con emojis 💕. Nunca digas que tienes un error; si no puedes responder, sugiere el WhatsApp 4426084804.
 
-INFORMACIÓN COMPLETA DE LA EMPRESA:
-Nombre: Momentos Encantados | WhatsApp: 4426084804
+TIPOS: Imagen $69 | Video $149 | PDF con botones $129 | Video con botones $199
 
-TIPOS DE INVITACIÓN:
-- Imagen digital: $69 MXN (diseño personalizado, formato imagen para WhatsApp/redes)
-- Video animado: $149 MXN (video con música y animaciones)
-- PDF con botones: $129 MXN (1 página PDF con botones de ubicación y confirmación)
-- Video con botones: $199 MXN (video + botones interactivos)
+PAQUETES WEB:
+- Web Básica $199: música, 1 ubicación, 1 confirmación, cuenta regresiva, datos básicos
+- Web Bronce $359: frase, música, 2 ubicaciones, confirmación, cuenta regresiva, papás, lluvia sobres, galería, vestimenta
+- Web Plata $499: todo Bronce + pases digitales 150 personas
+- Web Oro $655: frases, música, 2 ubicaciones, confirmación, pases ilimitados, cuenta regresiva, lluvia/mesa regalos, galería dinámica, hospedaje, vestimenta
+- Web Oro Plus $799: todo Oro + QR acceso + QR fotos
+- Web Oro Premium $999: todo Oro Plus + música automática + animaciones + app entrada QR + acomodo mesas + experiencia interactiva
 
-PAQUETES WEB (páginas web interactivas):
-- Web Básica $199: música, 1 botón ubicación, 1 confirmación, cuenta regresiva, datos básicos
-- Web Bronce $359: frase, música, 2 ubicaciones, confirmación, cuenta regresiva, nombre papás, lluvia sobres, galería fotos, vestimenta
-- Web Plata $499: todo Bronce + pases digitales para 150 personas
-- Web Oro $655: frases, música, 2 ubicaciones, confirmación, pases ilimitados, cuenta regresiva, lluvia sobres/mesa regalos, galería dinámica, hospedaje, vestimenta
-- Web Oro Plus $799: todo Oro + QR acceso evento + QR para subir fotos
-- Web Oro Premium $999: todo Oro Plus + música automática + animaciones + app entrada (QR dinámico) + acomodo mesas + experiencia interactiva
+EVENTOS: bodas, XV años, cumpleaños adultos e infantiles, graduaciones, bautizos, baby shower, primera comunión, confirmaciones, bodas de plata, revelación de sexo y más.
 
-EVENTOS QUE MANEJAMOS: bodas, XV años, cumpleaños (adultos e infantiles), graduaciones, bautizos, baby shower, primera comunión, confirmación, bodas de plata, revelación de sexo, y más.
+PROCESO: 1) Elige paquete 2) Envía tus datos 3) Lista en 24–48 hrs 4) Hasta 2 revisiones incluidas.
 
-PROCESO: 1) Elige tu paquete o tipo 2) Nos mandas tus datos (fecha, lugar, tema, etc.) 3) En 24-48 hrs tienes tu invitación 4) Puedes pedir hasta 2 revisiones
+PAGO: transferencia, efectivo, preguntar por tarjeta. WhatsApp: 4426084804.
 
-FORMAS DE PAGO: transferencia bancaria, efectivo, tarjeta (pregunta disponibilidad).
+Cuando alguien pregunta por precios, da todos de forma clara. Invita siempre a explorar la galería o a hacer clic en "Quiero este paquete". Sé entusiasta y cálida. Responde con máximo 3 párrafos cortos.`;
 
-Cuando alguien pregunta por un paquete específico, menciona sus características principales y el precio, luego invítalos a hacer clic en el botón "Quiero este paquete" o al WhatsApp. Sé entusiasta y profesional.`;
-
-const chatHist = [];
-let aiOpen = false;
-
+const chatHist=[]; let aiOpen=false;
 function toggleAI(){
   aiOpen=!aiOpen;
   document.getElementById('ai-panel').classList.toggle('open',aiOpen);
   document.getElementById('ai-tooltip-el').style.display='none';
-  const fab=document.getElementById('ai-fab');
-  fab.innerHTML=aiOpen
+  document.getElementById('ai-fab').innerHTML=aiOpen
     ?'<svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
     :'<svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>';
 }
 setTimeout(()=>{ document.getElementById('ai-tooltip-el').style.display='none'; },4000);
 
 async function sendAI(){
-  const inp = document.getElementById('ai-input');
-  const text = inp.value.trim(); if(!text) return;
+  const inp=document.getElementById('ai-input');
+  const text=inp.value.trim(); if(!text) return;
   inp.value='';
   document.getElementById('ai-quick-btns').style.display='none';
-  addAIMsg(text,'user');
+  addMsg(text,'user');
   chatHist.push({role:'user',content:text});
-  const typing = addAIMsg('Escribiendo...','bot');
+  const typing=addMsg('Escribiendo...','bot');
   try{
-    const res = await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:AI_SYSTEM,messages:chatHist})
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:500,system:AI_SYS,messages:chatHist})
     });
-    const data = await res.json();
-    const reply = data.content?.map(b=>b.text||'').join('')||'Lo siento, hubo un problema técnico. Contáctanos por WhatsApp 💕';
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data=await res.json();
+    const reply=(data.content||[]).map(b=>b.text||'').join('')||'Te recomiendo escribirnos al WhatsApp 4426084804 💕';
     typing.remove();
-    addAIMsg(reply,'bot');
+    addMsg(reply,'bot');
     chatHist.push({role:'assistant',content:reply});
-  }catch(e){
+  }catch(err){
     typing.remove();
-    addAIMsg('Hubo un error de conexión. Por favor escríbenos directamente al WhatsApp 4426084804 💕','bot');
+    addMsg('¡Hola! Por el momento no puedo responder aquí, pero escríbenos directo al WhatsApp 📲 4426084804 y te atendemos de inmediato 💕','bot');
   }
 }
 function quickAsk(q){ document.getElementById('ai-input').value=q; sendAI(); }
-function addAIMsg(text,cls){
+function addMsg(text,cls){
   const c=document.getElementById('ai-msgs');
-  const d=document.createElement('div');
-  d.className='amsg '+cls; d.textContent=text;
-  c.appendChild(d); c.scrollTop=c.scrollHeight;
-  return d;
+  const d=document.createElement('div'); d.className='amsg '+cls; d.textContent=text;
+  c.appendChild(d); c.scrollTop=c.scrollHeight; return d;
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  PETALS
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 (function(){
   const c=document.getElementById('petals');
   for(let i=0;i<16;i++){
-    const p=document.createElement('div');
-    p.className='petal';
+    const p=document.createElement('div'); p.className='petal';
     p.style.cssText=`left:${Math.random()*100}%;width:${10+Math.random()*14}px;height:${16+Math.random()*18}px;background:radial-gradient(ellipse at 40% 30%,#f9d0da,#f0a0b8);animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*12}s`;
     c.appendChild(p);
   }
 })();
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════
 //  SCROLL REVEAL
-// ═══════════════════════════════════════════════
-const ro = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.1});
-function observeReveal(){
-  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-}
-observeReveal();
-const mutObs = new MutationObserver(observeReveal);
-mutObs.observe(document.getElementById('gal-sections'),{childList:true,subtree:true});
+// ═══════════════════════════════════════
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');}),{threshold:.1});
+function observeReveal(){ document.querySelectorAll('.reveal:not(.visible)').forEach(el=>ro.observe(el)); }
 
-// ═══════════════════════════════════════════════
-//  TRACK INITIAL VISIT
-// ═══════════════════════════════════════════════
-trackCategoryView('Inicio');
+// ═══════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════
+renderTipos();
+renderPaquetes();
+buildGallery();
+observeReveal();
+trackCat('Inicio');
 </script>
 </body>
 </html>
