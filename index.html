@@ -1045,16 +1045,55 @@ function renderAdmPkgs(){
 // Videos tab
 function renderAdmVideos(){
   const cats=[...new Set(VIDEOS.map(v=>v.c))];
+  const allCatsOpts=cats.map(c=>`<option>${c}</option>`).join('');
   const el=document.getElementById('adm-videos');
+
+  // Build list grouped by category
+  const grouped={};
+  VIDEOS.forEach((v,i)=>{ if(!grouped[v.c]) grouped[v.c]=[]; grouped[v.c].push({v,i}); });
+
+  const groupedHTML=Object.entries(grouped).map(([cat,items])=>`
+    <div style="margin-bottom:1.5rem">
+      <h4 style="color:#f0d090;font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.4rem">
+        ${CAT_ICONS[cat]||'🎉'} ${cat} <span style="color:rgba(255,255,255,.35);font-weight:400">(${items.length})</span>
+      </h4>
+      <div style="display:flex;flex-direction:column;gap:.55rem">
+        ${items.map(({v,i})=>`
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;gap:.7rem;padding:.5rem .65rem;flex-wrap:wrap">
+            <div style="width:38px;height:38px;border-radius:7px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.08)">
+              <video src="${v.s}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover" oncontextmenu="return false"></video>
+            </div>
+            <div style="flex:1;min-width:120px">
+              <input
+                value="${v.t.replace(/"/g,'&quot;')}"
+                style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#fff;font-family:Lato,sans-serif;font-size:.82rem;padding:.3rem .6rem;outline:none;width:100%;margin-bottom:.3rem"
+                placeholder="Nombre del video"
+                onchange="VIDEOS[${i}].t=this.value;saveState('me_videos',VIDEOS);buildGallery()"
+                title="Editar nombre">
+              <select
+                style="background:#1a0810;border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#f0d090;font-family:Lato,sans-serif;font-size:.76rem;padding:.28rem .5rem;outline:none;width:100%;cursor:pointer"
+                onchange="VIDEOS[${i}].c=this.value;saveState('me_videos',VIDEOS);buildGallery();renderAdmVideos()">
+                ${cats.map(c=>`<option value="${c}"${c===v.c?' selected':''}>${CAT_ICONS[c]||'🎉'} ${c}</option>`).join('')}
+                <option value="__nueva__">+ Nueva categoría...</option>
+              </select>
+            </div>
+            <button
+              onclick="adminDelVideo(${i})"
+              style="background:rgba(220,60,60,.25);border:1px solid rgba(220,60,60,.4);color:#ff9a9a;border-radius:7px;padding:.28rem .6rem;cursor:pointer;font-size:.75rem;font-family:Lato,sans-serif;flex-shrink:0"
+              title="Eliminar">✕ Eliminar</button>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+
   el.innerHTML=`
   <div class="adm-add-form">
     <h4>➕ Agregar nuevo video</h4>
     <div class="adm-add-row">
       <select class="adm-cat-sel" id="adm-new-cat">
-        ${cats.map(c=>`<option>${c}</option>`).join('')}
+        ${allCatsOpts}
         <option value="__nuevo__">+ Nueva categoría...</option>
       </select>
-      <input class="adm-title-inp" id="adm-new-cat-name" placeholder="Nombre nueva categoría" style="display:none">
+      <input class="adm-title-inp" id="adm-new-cat-name" placeholder="Nombre de la nueva categoría" style="display:none">
     </div>
     <div class="adm-add-row">
       <input class="adm-title-inp" id="adm-new-title" placeholder="Nombre del video (ej. XV Rosa 2025)">
@@ -1062,18 +1101,40 @@ function renderAdmVideos(){
     </div>
     <button class="adm-save-btn" onclick="adminAddVideo()">✦ Agregar video</button>
   </div>
-  <p style="color:rgba(255,255,255,.45);font-size:.78rem;margin-bottom:.8rem">${VIDEOS.length} videos en total · Haz clic en ✕ para eliminar</p>
-  <div class="adm-video-grid">
-    ${VIDEOS.map((v,i)=>`<div class="adm-vid-item">
-      <video src="${v.s}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>
-      <div class="adm-vid-title">${v.t}<br><small style="opacity:.6">${v.c}</small></div>
-      <button class="adm-vid-del" onclick="adminDelVideo(${i})" title="Eliminar">✕</button>
-    </div>`).join('')}
-  </div>`;
+  <p style="color:rgba(255,255,255,.4);font-size:.78rem;margin-bottom:1rem">
+    📹 ${VIDEOS.length} videos · Edita el <strong style="color:#f0d090">nombre</strong> o cambia la <strong style="color:#f0d090">categoría</strong> directamente en cada fila
+  </p>
+  ${groupedHTML}`;
 
   document.getElementById('adm-new-cat').onchange=function(){
     document.getElementById('adm-new-cat-name').style.display=this.value==='__nuevo__'?'block':'none';
   };
+
+  // Handle "nueva categoría" selects inside existing rows
+  el.querySelectorAll('select').forEach(sel=>{
+    if(sel.id==='adm-new-cat') return; // skip the add-form select
+    sel.addEventListener('change',function(){
+      if(this.value==='__nueva__'){
+        const name=prompt('Nombre de la nueva categoría:');
+        if(name&&name.trim()){
+          const idx=parseInt(this.dataset.idx||this.closest('[data-i]')?.dataset.i);
+          // find the video index from the onchange attr
+          const match=this.getAttribute('onchange').match(/VIDEOS\[(\d+)\]/);
+          if(match){
+            const vi=parseInt(match[1]);
+            VIDEOS[vi].c=name.trim();
+            saveState('me_videos',VIDEOS);
+            buildGallery();
+            renderAdmVideos();
+          }
+        } else {
+          // revert
+          const match=this.getAttribute('onchange').match(/VIDEOS\[(\d+)\]/);
+          if(match) this.value=VIDEOS[parseInt(match[1])].c;
+        }
+      }
+    });
+  });
 }
 function adminAddVideo(){
   const catSel=document.getElementById('adm-new-cat').value;
