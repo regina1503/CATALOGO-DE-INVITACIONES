@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Momentos Encantados – Invitaciones Digitales</title>
+
+<!-- Vista previa al compartir el enlace (WhatsApp, Facebook, Instagram, etc.) -->
+<meta property="og:title" content="Momentos Encantados – Invitaciones Digitales">
+<meta property="og:description" content="Invitaciones digitales únicas y personalizadas para bodas, XV años, bautizos y toda ocasión especial. Diseños interactivos, entrega rápida y confirmación de asistencia incluida.">
+<meta property="og:image" content="https://raw.githubusercontent.com/regina1503/CATALOGO-DE-INVITACIONES/main/Gemini_Generated_Image_qmnavbqmnavbqmna.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Momentos Encantados – Invitaciones Digitales">
+<meta name="twitter:description" content="Invitaciones digitales únicas y personalizadas para bodas, XV años, bautizos y toda ocasión especial.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/regina1503/CATALOGO-DE-INVITACIONES/main/Gemini_Generated_Image_qmnavbqmnavbqmna.png">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/regina1503/CATALOGO-DE-INVITACIONES/main/Gemini_Generated_Image_qmnavbqmnavbqmna.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -70,6 +81,7 @@ section{padding:5rem 1.5rem}
 .tipo-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--td);margin-bottom:.35rem}
 .tipo-desc{font-size:.85rem;color:var(--tm);line-height:1.55;margin-bottom:.9rem}
 .tipo-price{display:inline-block;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;font-size:1.25rem;font-weight:700;padding:.28rem .85rem;border-radius:50px}
+.tipo-entrega{margin-top:.6rem;font-size:.75rem;color:var(--tm);font-weight:700}
 
 /* PAQUETES */
 #paquetes{background:linear-gradient(180deg,var(--cream) 0%,var(--bll) 100%)}
@@ -80,6 +92,9 @@ section{padding:5rem 1.5rem}
 .pkg-head{background:linear-gradient(135deg,var(--bl),var(--lav));padding:1.5rem;text-align:center;position:relative}
 .pkg-card.feat .pkg-head{background:linear-gradient(135deg,#f0d090,#e8b070)}
 .pkg-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.1em;padding:.18rem .75rem;border-radius:0 0 9px 9px}
+.pkg-promo-badge{background:linear-gradient(135deg,#e85d5d,#c93c3c);color:#fff;font-size:.68rem;font-weight:700;padding:.3rem .7rem;border-radius:50px;display:inline-block;margin:1.6rem auto .5rem;animation:pulseglow 1.8s ease-in-out infinite}
+@keyframes pulseglow{0%,100%{box-shadow:0 0 0 0 rgba(200,60,60,.4)}50%{box-shadow:0 0 0 6px rgba(200,60,60,0)}}
+.pkg-strike{font-size:1.05rem;color:var(--tm);text-decoration:line-through;font-weight:600;opacity:.65}
 .pkg-name{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--td);margin-bottom:.25rem}
 .pkg-price{font-size:1.9rem;font-weight:900;color:var(--rd)}
 .pkg-price span{font-size:.9rem;font-weight:400;color:var(--tm)}
@@ -88,6 +103,8 @@ section{padding:5rem 1.5rem}
 .pkg-features li:last-child{border-bottom:none}
 .pkg-features li::before{content:'✦';color:var(--rose);flex-shrink:0;font-size:.75rem;margin-top:2px}
 .pkg-cta{padding:0 1.3rem 1.3rem}
+.pkg-entrega{padding:0 1.3rem .8rem;font-size:.76rem;color:var(--tm);font-weight:700}
+.pkg-confirm{padding:0 1.3rem .3rem;font-size:.76rem;color:var(--rose);font-weight:700}
 .pkg-btn{display:block;width:100%;text-align:center;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.72rem;border-radius:50px;font-weight:700;transition:opacity .2s,transform .2s;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:.95rem}
 .pkg-btn:hover{opacity:.9;transform:scale(1.02)}
 .pkg-card.feat .pkg-btn{background:linear-gradient(135deg,var(--gold),#b8882a)}
@@ -121,6 +138,11 @@ section{padding:5rem 1.5rem}
 .gal-controls{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;opacity:0;transition:opacity .22s;background:linear-gradient(180deg,rgba(74,44,53,.08) 0%,rgba(74,44,53,.45) 100%)}
 .gal-item:hover .gal-controls{opacity:1}
 .gal-play-btn{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rd));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(160,85,112,.5)}
+/* spinner de carga de video */
+.gal-spinner{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:rgba(74,44,53,.25);z-index:5}
+.gal-item.gal-loading .gal-spinner{display:flex}
+.gal-spinner::after{content:'';width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;animation:galspin .8s linear infinite}
+@keyframes galspin{to{transform:rotate(360deg)}}
 .gal-play-btn:hover{transform:scale(1.12);box-shadow:0 6px 22px rgba(160,85,112,.7)}
 .gal-seek-row{display:flex;gap:.35rem;align-items:center}
 .gal-seek-btn{width:30px;height:30px;border-radius:50%;background:rgba(253,246,240,.85);border:none;cursor:pointer;font-size:.68rem;display:flex;align-items:center;justify-content:center;color:var(--rd);font-weight:700;transition:background .15s,transform .15s}
@@ -156,6 +178,60 @@ section{padding:5rem 1.5rem}
 
 /* FORM MODAL */
 #form-modal{position:fixed;inset:0;z-index:2100;background:rgba(74,44,53,.6);display:none;align-items:center;justify-content:center;padding:1rem}
+/* TRUST BAR */
+.trust-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem;max-width:900px;margin:0 auto 2.2rem;padding:0 1rem}
+.trust-item{display:flex;align-items:center;gap:.45rem;font-size:.82rem;color:var(--tm);font-weight:700}
+.trust-item span{font-size:1.15rem}
+/* QUIZ CTA */
+.quiz-cta-wrap{text-align:center;margin:1.4rem 0 2.4rem}
+.quiz-cta-btn{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;padding:.85rem 1.8rem;border-radius:50px;font-family:'Lato',sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;box-shadow:0 8px 24px rgba(160,85,112,.35);transition:transform .2s}
+.quiz-cta-btn:hover{transform:translateY(-2px) scale(1.02)}
+/* COMPARADOR */
+.comp-toggle-wrap{text-align:center;margin-top:1.6rem}
+.comp-toggle-btn{background:none;border:1.5px solid var(--rose);color:var(--rd);padding:.6rem 1.4rem;border-radius:50px;font-family:'Lato',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
+#comp-table-wrap{display:none;overflow-x:auto;max-width:1100px;margin:1.6rem auto 0;-webkit-overflow-scrolling:touch}
+#comp-table-wrap.open{display:block}
+.comp-table{border-collapse:collapse;width:100%;min-width:640px;background:var(--w);border-radius:16px;overflow:hidden;box-shadow:var(--sh)}
+.comp-table th,.comp-table td{padding:.6rem .7rem;text-align:center;font-size:.78rem;border-bottom:1px solid var(--bl)}
+.comp-table th{background:var(--cream);font-family:'Playfair Display',serif;font-size:.85rem;color:var(--td);position:sticky;top:0}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:700;color:var(--tm);min-width:170px}
+.comp-table th.feat-col{background:linear-gradient(135deg,#f0d090,#e8b070);color:#5a3d10}
+.comp-yes{color:var(--rose);font-weight:900}
+.comp-no{color:var(--bl)}
+/* UPSELL BOX (dentro del modal de cotización) */
+.upsell-box{background:linear-gradient(135deg,#fdf3e7,#f9e4c8);border:1.5px solid var(--gold);border-radius:14px;padding:.9rem 1.1rem;margin-bottom:1.1rem;font-size:.82rem;color:#6b4a1a}
+.upsell-box strong{color:#8a5a10}
+.upsell-btn{display:inline-block;margin-top:.5rem;background:linear-gradient(135deg,var(--gold),#b8882a);color:#fff;border:none;padding:.45rem 1rem;border-radius:50px;font-family:'Lato',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer}
+/* FAQ */
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--bl)}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:1.1rem .3rem;font-family:'Lato',sans-serif;font-weight:700;font-size:.94rem;color:var(--td);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-q .fq-ic{transition:transform .25s;color:var(--rose);flex-shrink:0}
+.faq-item.open .fq-ic{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--tm);font-size:.87rem;line-height:1.6;padding:0 .3rem}
+.faq-item.open .faq-a{padding-bottom:1.1rem}
+/* QUIZ MODAL */
+#quiz-modal{position:fixed;inset:0;z-index:2150;background:rgba(74,44,53,.6);display:none;align-items:center;justify-content:center;padding:1rem}
+#quiz-modal.open{display:flex}
+.quiz-inner{background:var(--w);border-radius:24px;width:min(520px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(74,44,53,.3)}
+.quiz-head{background:linear-gradient(135deg,var(--rose),var(--rd));padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.quiz-head h3{color:#fff;font-family:'Playfair Display',serif;font-size:1.15rem}
+.quiz-close{background:none;border:none;color:rgba(255,255,255,.8);font-size:1.4rem;cursor:pointer}
+.quiz-body{padding:1.6rem}
+.quiz-progress{display:flex;gap:.35rem;margin-bottom:1.3rem}
+.quiz-progress span{flex:1;height:5px;border-radius:3px;background:var(--bl)}
+.quiz-progress span.on{background:var(--rose)}
+.quiz-step h4{font-family:'Playfair Display',serif;color:var(--td);font-size:1.05rem;margin-bottom:1rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.6rem}
+.quiz-opt{border:1.5px solid var(--bl);border-radius:12px;padding:.75rem 1rem;cursor:pointer;font-family:'Lato',sans-serif;font-size:.88rem;color:var(--td);text-align:left;background:var(--cream);transition:all .15s}
+.quiz-opt:hover{border-color:var(--rose);background:#fdeff2}
+.quiz-opt.sel{border-color:var(--rose);background:#fdeff2;box-shadow:0 0 0 2px var(--gl)}
+.quiz-next{margin-top:1.3rem;width:100%;background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;padding:.8rem;border-radius:12px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.quiz-result{text-align:center}
+.quiz-result .qr-pkg{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--rd);margin:.6rem 0 .2rem}
+.quiz-result .qr-price{font-size:1.6rem;color:var(--rose);font-weight:800;margin-bottom:.8rem}
+.quiz-result ul{text-align:left;list-style:none;margin:0 auto 1.2rem;max-width:340px;color:var(--tm);font-size:.85rem;line-height:1.9}
+.quiz-result ul li::before{content:'✓ ';color:var(--rose);font-weight:900}
 #form-modal.open{display:flex}
 .fmod-inner{background:var(--w);border-radius:24px;width:min(540px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(74,44,53,.3)}
 .fmod-head{background:linear-gradient(135deg,var(--rose),var(--rd));padding:1.3rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:2}
@@ -264,6 +340,20 @@ footer a{color:var(--bl);text-decoration:none}
 .msg-card h4{color:var(--bl);font-size:.88rem;margin-bottom:.35rem}
 .msg-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}
 .msg-meta span{background:rgba(255,255,255,.1);padding:.18rem .55rem;border-radius:50px;font-size:.7rem;color:rgba(255,255,255,.55)}
+.msg-card.is-pedido{border-color:rgba(240,208,144,.35)}
+/* Pedidos tracker */
+.ped-summary{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.1rem}
+.ped-sum-card{flex:1;min-width:120px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.8rem;text-align:center;color:rgba(255,255,255,.6);font-size:.72rem}
+.ped-sum-card span{display:block;font-family:'Playfair Display',serif;font-size:1.5rem;color:#f0d090;margin-bottom:.2rem}
+.ped-sum-card.warn span{color:#f0b25a}
+.ped-sum-card.danger span{color:#e87a7a}
+.ped-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem}
+.ped-filter-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);padding:.4rem .9rem;border-radius:50px;font-family:'Lato',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer}
+.ped-filter-btn.active{background:var(--rose);border-color:var(--rose);color:#fff}
+.ped-controls{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.08)}
+.ped-ctrl{flex:1;min-width:150px;display:flex;flex-direction:column;gap:.3rem}
+.ped-ctrl label{color:rgba(255,255,255,.45);font-size:.7rem;font-weight:700}
+.ped-ctrl select,.ped-ctrl input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Lato',sans-serif;font-size:.82rem;padding:.4rem .6rem;outline:none}
 
 /* Admin stats */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.9rem;margin-bottom:1.4rem}
@@ -280,8 +370,8 @@ footer a{color:var(--bl);text-decoration:none}
 .adm-pkg-card h4{color:#f0d090;font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.6rem}
 .adm-row{display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;flex-wrap:wrap}
 .adm-row label{color:rgba(255,255,255,.55);font-size:.78rem;min-width:90px}
-.adm-row input,.adm-row textarea{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Lato',sans-serif;font-size:.85rem;padding:.45rem .75rem;outline:none;min-width:0}
-.adm-row input:focus,.adm-row textarea:focus{border-color:var(--rose)}
+.adm-row input,.adm-row textarea,.adm-row select{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Lato',sans-serif;font-size:.85rem;padding:.45rem .75rem;outline:none;min-width:0}
+.adm-row input:focus,.adm-row textarea:focus,.adm-row select:focus{border-color:var(--rose)}
 .adm-save-btn{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;padding:.45rem 1rem;border-radius:8px;cursor:pointer;font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700}
 
 /* Admin videos */
@@ -322,6 +412,9 @@ footer a{color:var(--bl);text-decoration:none}
 /* REVIEWS */
 #resenas{background:linear-gradient(160deg,#fdf0f5,var(--cream))}
 .resenas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.3rem;max-width:1000px;margin:0 auto 2.5rem}
+.resena-avg-wrap{margin-top:.8rem;display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:.95rem;color:var(--tm);font-weight:700}
+.resena-avg-wrap .ra-stars{color:var(--gold);font-size:1.15rem;letter-spacing:1px}
+.resena-avg-wrap .ra-num{color:var(--rd);font-size:1.15rem}
 .resena-card{background:var(--w);border:1.5px solid var(--bl);border-radius:18px;padding:1.4rem;position:relative;transition:transform .3s,box-shadow .3s}
 .resena-card:hover{transform:translateY(-4px);box-shadow:var(--sh)}
 .resena-quote{font-size:2.5rem;color:var(--bl);line-height:1;margin-bottom:.3rem;font-family:'Playfair Display',serif}
@@ -369,18 +462,18 @@ footer a{color:var(--bl);text-decoration:none}
 <section id="hero">
   <div class="petals-wrap" id="petals"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Momentos Encantados</p>
-    <h1 class="hero-title">Invitaciones digitales<br><em>para cada momento especial</em></h1>
-    <div class="hero-badge">✦ Diseños únicos · Personalizados · 100% digitales ✦</div>
-    <p class="hero-sub">Diseños únicos, prácticos y personalizados para tu evento soñado. Disponibles 24/7 para tus invitados.</p>
+    <p class="hero-eyebrow" id="hero-eyebrow">Momentos Encantados</p>
+    <h1 class="hero-title" id="hero-title">Invitaciones digitales<br><em>para cada momento especial</em></h1>
+    <div class="hero-badge" id="hero-badge">✦ Diseños únicos · Personalizados · 100% digitales ✦</div>
+    <p class="hero-sub" id="hero-sub">Diseños únicos, prácticos y personalizados para tu evento soñado. Disponibles 24/7 para tus invitados.</p>
     <div class="hero-btns">
       <a class="btn-p" href="#paquetes">Ver paquetes</a>
       <a class="btn-s" href="#galeria">Ver ejemplos</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-n" id="stat-inv">+500</div><div class="hero-stat-l">INVITACIONES CREADAS</div></div>
-      <div class="hero-stat"><div class="hero-stat-n">6+</div><div class="hero-stat-l">TIPOS DE EVENTO</div></div>
-      <div class="hero-stat"><div class="hero-stat-n">24/7</div><div class="hero-stat-l">DISPONIBLES</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" id="stat-tipos">6+</div><div class="hero-stat-l">TIPOS DE EVENTO</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" id="stat-disp">24/7</div><div class="hero-stat-l">DISPONIBLES</div></div>
     </div>
   </div>
 </section>
@@ -412,7 +505,15 @@ footer a{color:var(--bl);text-decoration:none}
     <div class="section-div"></div>
     <p style="margin-top:.8rem;color:var(--tm);font-size:.92rem">Páginas web personalizadas con funciones interactivas para tu evento</p>
   </div>
+  <div class="trust-bar reveal" id="trust-bar"></div>
+  <div class="quiz-cta-wrap reveal">
+    <button class="quiz-cta-btn" onclick="openQuiz()">🤔 ¿No sabes cuál elegir? Descubre tu paquete ideal</button>
+  </div>
   <div class="paquetes-grid" id="paquetes-grid"></div>
+  <div class="comp-toggle-wrap">
+    <button class="comp-toggle-btn" id="comp-toggle-btn" onclick="toggleComparador()">📊 Ver comparación completa de paquetes</button>
+  </div>
+  <div id="comp-table-wrap"></div>
 </section>
 
 <!-- GALERÍA -->
@@ -451,7 +552,7 @@ footer a{color:var(--bl);text-decoration:none}
         <button type="submit" class="contact-submit">✦ Enviar mensaje</button>
       </form>
       <p class="contact-or">— o escríbenos directo —</p>
-      <a class="wa-btn" href="https://wa.me/524426084804?text=Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n" target="_blank">
+      <a class="wa-btn" id="wa-main-btn" href="https://wa.me/524426084804?text=Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n" target="_blank">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
         Chatear por WhatsApp
       </a>
@@ -466,6 +567,7 @@ footer a{color:var(--bl);text-decoration:none}
     <span class="section-label">Lo que dicen</span>
     <h2 class="section-title">Reseñas de clientes</h2>
     <div class="section-div"></div>
+    <div id="resena-avg" class="resena-avg-wrap"></div>
   </div>
   <div class="resenas-grid" id="resenas-grid"></div>
   <div class="resena-form-wrap reveal">
@@ -491,10 +593,20 @@ footer a{color:var(--bl);text-decoration:none}
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header reveal">
+    <span class="section-label">Dudas frecuentes</span>
+    <h2 class="section-title">Preguntas y respuestas</h2>
+    <div class="section-div"></div>
+  </div>
+  <div class="faq-wrap reveal" id="faq-wrap"></div>
+</section>
+
 <footer>
   <span class="ft-logo">Momentos Encantados</span>
   <p>Invitaciones digitales únicas para cada momento especial.</p>
-  <p style="margin-top:.4rem">📱 <a href="https://wa.me/524426084804">442-608-4804</a> &nbsp;|&nbsp; 📷 <a href="#">@momentosencantados</a></p>
+  <p style="margin-top:.4rem">📱 <a href="https://wa.me/524426084804" id="footer-wa">442-608-4804</a> &nbsp;|&nbsp; 📷 <a href="#" id="footer-ig">@momentosencantados</a></p>
   <p style="margin-top:1rem;font-size:.75rem;opacity:.4">© 2025 Momentos Encantados · Todos los derechos reservados</p>
 </footer>
 
@@ -567,6 +679,7 @@ footer a{color:var(--bl);text-decoration:none}
         <div><div class="fmod-model-name" id="fmod-model-name"></div><div class="fmod-model-label">Modelo seleccionado</div></div>
       </div>
       <div class="fmod-note" id="fmod-note"></div>
+      <div class="upsell-box" id="fmod-upsell" style="display:none"></div>
       <form id="fmod-form" onsubmit="submitFormModal(event)">
         <div class="fmod-grid" id="fmod-fields"></div>
         <button type="submit" class="fmod-submit">✦ Enviar solicitud</button>
@@ -581,6 +694,20 @@ footer a{color:var(--bl);text-decoration:none}
         <h4>¡Solicitud enviada!</h4>
         <p style="color:var(--tm);font-size:.86rem">Te contactaremos pronto para hacer tu evento inolvidable ✨</p>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ COTIZADOR -->
+<div id="quiz-modal">
+  <div class="quiz-inner">
+    <div class="quiz-head">
+      <h3>✨ Encuentra tu paquete ideal</h3>
+      <button class="quiz-close" onclick="closeQuiz()">✕</button>
+    </div>
+    <div class="quiz-body">
+      <div class="quiz-progress" id="quiz-progress"></div>
+      <div id="quiz-content"></div>
     </div>
   </div>
 </div>
@@ -608,36 +735,68 @@ footer a{color:var(--bl);text-decoration:none}
     </div>
   </div>
   <div class="adm-tabs">
-    <button class="adm-tab active" onclick="switchAdmTab('mensajes',this)">📩 Mensajes</button>
+    <button class="adm-tab active" onclick="switchAdmTab('mensajes',this)">🎁 Pedidos</button>
     <button class="adm-tab" onclick="switchAdmTab('estadisticas',this)">📊 Estadísticas</button>
+    <button class="adm-tab" onclick="switchAdmTab('sitio',this)">🖋️ Sitio y Contacto</button>
+    <button class="adm-tab" onclick="switchAdmTab('tipos',this)">🎟️ Tipos</button>
     <button class="adm-tab" onclick="switchAdmTab('paquetes',this)">💎 Paquetes y Precios</button>
     <button class="adm-tab" onclick="switchAdmTab('videos',this)">🎬 Gestionar Videos</button>
   </div>
   <div class="adm-body">
     <div class="adm-section active" id="adm-mensajes"></div>
     <div class="adm-section" id="adm-estadisticas"></div>
+    <div class="adm-section" id="adm-sitio"></div>
+    <div class="adm-section" id="adm-tipos"></div>
     <div class="adm-section" id="adm-paquetes"></div>
     <div class="adm-section" id="adm-videos"></div>
   </div>
 </div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCMbaWgXGXkc-e-H4qkNDM6LKREBQbjmR0",
+  authDomain: "momentos-encantados.firebaseapp.com",
+  projectId: "momentos-encantados",
+  storageBucket: "momentos-encantados.firebasestorage.app",
+  messagingSenderId: "110600449128",
+  appId: "1:110600449128:web:e397a0e09438e388581fdd",
+  measurementId: "G-6C0KQJMX5K"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+// habilita cache local para que la página funcione aunque haya mala conexión
+try{ db.enablePersistence({synchronizeTabs:true}).catch(()=>{}); }catch(e){}
+</script>
 
 <script>
 // ═══════════════════════════════════════
 //  DATA – editable via admin
 // ═══════════════════════════════════════
 const DEFAULT_TIPOS = [
-  {icon:"🖼️",name:"Imagen",desc:"Diseño personalizado en formato imagen para WhatsApp o redes sociales.",price:"$69"},
-  {icon:"🎬",name:"Video",desc:"Invitación animada en video con música. Impresiona a tus invitados.",price:"$149"},
-  {icon:"📄",name:"PDF con botones",desc:"PDF de 1 página con botones interactivos: ubicación, confirmación y más.",price:"$129"},
-  {icon:"▶️",name:"Video con botones",desc:"Video animado con botones interactivos de confirmación y ubicación.",price:"$199"},
+  {icon:"🖼️",name:"Imagen",desc:"Diseño personalizado en formato imagen para WhatsApp o redes sociales.",price:"$69",entrega:"24 hrs"},
+  {icon:"🎬",name:"Video",desc:"Invitación animada en video con música. Impresiona a tus invitados.",price:"$149",entrega:"1-2 días"},
+  {icon:"📄",name:"PDF con botones",desc:"PDF de 1 página con botones interactivos: ubicación, confirmación y más.",price:"$129",entrega:"24-48 hrs"},
+  {icon:"▶️",name:"Video con botones",desc:"Video animado con botones interactivos de confirmación y ubicación.",price:"$199",entrega:"1-2 días"},
 ];
 const DEFAULT_PKGS = [
-  {name:"Web Básica",price:"$199",feat:false,badge:"",features:["Música de fondo","1 Botón de ubicación","1 Botón de confirmación","Cuenta regresiva","Datos básicos del evento"]},
-  {name:"Web Bronce",price:"$359",feat:false,badge:"",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación","Cuenta regresiva","Nombre de papás","Lluvia de sobres","Galería de fotos","Código de vestimenta"]},
-  {name:"Web Plata",price:"$499",feat:false,badge:"",features:["Todo Web Bronce","Pases digitales para 150 personas"]},
-  {name:"Web Oro",price:"$655",feat:true,badge:"⭐ MÁS POPULAR",features:["Frases de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación","Pases digitales ilimitados","Cuenta regresiva","Lluvia de sobres / mesa de regalos","Galería de fotos dinámica","Opciones de hospedaje","Código de vestimenta"]},
-  {name:"Web Oro Plus",price:"$799",feat:true,badge:"",features:["Todo lo de Web Oro","QR de acceso al evento","QR para subir fotos el día del evento"]},
-  {name:"Web Oro Premium",price:"$999",feat:false,badge:"✨ NUEVO",features:["Todo lo de Web Oro Plus","Música de reproducción automática","Invitación con animaciones","App entrada día del evento (QR dinámico)","Acomodo de mesas para invitados","Experiencia interactiva e inolvidable"]},
+  {name:"Web Básica",price:"$199",feat:false,badge:"",entrega:"2-3 días",confirmacion:"whatsapp",features:["Música de fondo","1 Botón de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Datos básicos del evento"]},
+  {name:"Web Bronce",price:"$359",feat:false,badge:"",entrega:"3-4 días",confirmacion:"whatsapp",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Nombre de papás","Lluvia de sobres","Galería de fotos","Código de vestimenta"]},
+  {name:"Web Plata",price:"$499",feat:false,badge:"",entrega:"3-4 días",confirmacion:"whatsapp",features:["Todo Web Bronce","Pases digitales para 150 personas"]},
+  {name:"Web Oro",price:"$659",feat:true,badge:"⭐ MÁS POPULAR",entrega:"5-7 días",confirmacion:"panel",features:["Frases de su elección","Música de fondo","2 Botones de ubicación","Confirmación de asistencia vía panel administrador","Pases digitales ilimitados","Cuenta regresiva","Lluvia de sobres / mesa de regalos","Galería de fotos dinámica","Opciones de hospedaje","Código de vestimenta"]},
+  {name:"Web Oro Plus",price:"$799",feat:true,badge:"",promoUntil:"2026-08-31",entrega:"5-7 días",confirmacion:"panel",features:["Todo lo de Web Oro","QR de acceso al evento","QR para subir fotos el día del evento"]},
+  {name:"Web Oro Premium",price:"$999",feat:false,badge:"✨ NUEVO",promoUntil:"2026-08-31",entrega:"5-7 días",confirmacion:"panel",features:["Todo lo de Web Oro Plus","Música de reproducción automática","Invitación con animaciones","App entrada día del evento (QR dinámico)","Acomodo de mesas para invitados","Experiencia interactiva e inolvidable"]},
+];
+
+const DEFAULT_FAQ = [
+  {q:"¿Cuánto tiempo tarda la entrega?",a:"Depende del tipo de diseño: Imagen 24 hrs, PDF con botones 24-48 hrs, Video o Video con botones 1-2 días, Web Básica 2-3 días, Web Bronce y Web Plata 3-4 días, y los paquetes Oro (Oro, Oro Plus, Oro Premium) 5-7 días. Si necesitas algo urgente, dinos y hacemos lo posible por acelerarlo."},
+  {q:"¿Cuántas revisiones incluye?",a:"Todos los paquetes incluyen 2 rondas de revisión sin costo extra, para ajustar textos, colores o detalles antes de la entrega final."},
+  {q:"¿Cómo puedo pagar?",a:"Aceptamos transferencia bancaria y depósito. Escríbenos por WhatsApp y te compartimos los datos para coordinar tu pago."},
+  {q:"¿La invitación funciona en cualquier celular?",a:"Sí. Es 100% digital y se ve perfecto desde cualquier celular, sin necesidad de descargar ninguna app (excepto en el paquete con App de entrada)."},
+  {q:"¿Puedo pedir cambios después de la entrega?",a:"Sí, después de las 2 revisiones incluidas puedes solicitar ajustes adicionales por un pequeño costo extra, según lo que necesites cambiar."},
+  {q:"¿Qué pasa si no sé cuál paquete elegir?",a:"Usa nuestro cotizador rápido (botón '¿No sabes cuál elegir?') y en 3 preguntas te recomendamos el paquete ideal para tu evento, o escríbenos por WhatsApp y te asesoramos personalmente."},
 ];
 
 const DEFAULT_VIDEOS = [
@@ -762,17 +921,93 @@ let TIPOS = loadState('me_tipos', DEFAULT_TIPOS);
 let PKGS  = loadState('me_pkgs',  DEFAULT_PKGS);
 let VIDEOS = loadState('me_videos', DEFAULT_VIDEOS);
 
+// Evita que la pantalla "parpadee en blanco" cuando se vuelve a dibujar
+// contenido (por ejemplo al editar algo en el admin o al llegar datos nuevos
+// de Firestore): una vez que la página ya cargó y se mostró, las tarjetas
+// nuevas aparecen visibles de inmediato en vez de reiniciar su animación de entrada.
+let pageSettled=false;
+function revealCls(){ return 'reveal'+(pageSettled?' visible':''); }
+
+// ═══════════════════════════════════════
+//  SITE CONFIG (hero, contacto) — editable desde admin, sincronizado en Firestore
+// ═══════════════════════════════════════
+const DEFAULT_SITE = {
+  eyebrow:"Momentos Encantados",
+  titleLine1:"Invitaciones digitales",
+  titleLine2:"para cada momento especial",
+  badge:"✦ Diseños únicos · Personalizados · 100% digitales ✦",
+  sub:"Diseños únicos, prácticos y personalizados para tu evento soñado. Disponibles 24/7 para tus invitados.",
+  statInv:"+500",
+  statTipos:"6+",
+  statDisp:"24/7",
+  whatsapp:"4426084804",
+  instagram:"momentosencantados"
+};
+let SITE = loadState('me_site', DEFAULT_SITE);
+
+function applySite(){
+  const g=id=>document.getElementById(id);
+  if(g('hero-eyebrow')) g('hero-eyebrow').textContent = SITE.eyebrow;
+  if(g('hero-title')) g('hero-title').innerHTML = `${SITE.titleLine1}<br><em>${SITE.titleLine2}</em>`;
+  if(g('hero-badge')) g('hero-badge').textContent = SITE.badge;
+  if(g('hero-sub')) g('hero-sub').textContent = SITE.sub;
+  if(g('stat-inv')) g('stat-inv').textContent = SITE.statInv;
+  if(g('stat-tipos')) g('stat-tipos').textContent = SITE.statTipos;
+  if(g('stat-disp')) g('stat-disp').textContent = SITE.statDisp;
+  renderTrustBar();
+  const waMsg='Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n';
+  if(g('wa-main-btn')) g('wa-main-btn').href = `https://wa.me/52${SITE.whatsapp}?text=${waMsg}`;
+  if(g('footer-wa')){
+    const d=SITE.whatsapp||'';
+    g('footer-wa').href = `https://wa.me/52${d}`;
+    g('footer-wa').textContent = d.length===10 ? `${d.slice(0,3)}-${d.slice(3,6)}-${d.slice(6)}` : d;
+  }
+  if(g('footer-ig')){
+    g('footer-ig').href = `https://instagram.com/${SITE.instagram}`;
+    g('footer-ig').textContent = `@${SITE.instagram}`;
+  }
+}
+
+// Guarda TIPOS + PKGS + SITE juntos en un solo documento de Firestore
+// para que se vean iguales en cualquier dispositivo desde el que entres.
+let saveSiteTimer=null;
+function saveSiteConfig(){
+  saveState('me_tipos',TIPOS); saveState('me_pkgs',PKGS); saveState('me_site',SITE);
+  clearTimeout(saveSiteTimer);
+  saveSiteTimer=setTimeout(()=>{
+    db.collection('config').doc('site').set({tipos:TIPOS,pkgs:PKGS,site:SITE},{merge:true})
+      .catch(err=>console.warn('No se pudo sincronizar config, se guardó localmente',err));
+  },400); // pequeño retraso para no escribir en cada tecla
+}
+let lastSiteConfigJSON=null;
+function listenSiteConfig(){
+  db.collection('config').doc('site').onSnapshot(doc=>{
+    if(!doc.exists) return;
+    const d=doc.data();
+    const json=JSON.stringify(d);
+    if(json===lastSiteConfigJSON) return; // sin cambios reales, evita redibujar y parpadear
+    lastSiteConfigJSON=json;
+    if(d.tipos) TIPOS=d.tipos;
+    if(d.pkgs) PKGS=d.pkgs;
+    if(d.site) SITE=Object.assign({},DEFAULT_SITE,d.site);
+    saveState('me_tipos',TIPOS); saveState('me_pkgs',PKGS); saveState('me_site',SITE);
+    renderTipos(); renderPaquetes(); applySite();
+    if(document.getElementById('admin-overlay')?.classList.contains('open')){ renderAdmTipos(); renderAdmPkgs(); renderAdmSitio(); }
+  },err=>console.warn('Firestore config offline, usando copia local',err));
+}
+
 // ═══════════════════════════════════════
 //  RENDER TIPOS
 // ═══════════════════════════════════════
 function renderTipos(){
   const grid = document.getElementById('tipos-grid');
   grid.innerHTML = TIPOS.map(t=>`
-    <div class="tipo-card reveal" onclick="openFormModal('${t.name}','${t.price}')">
+    <div class="tipo-card ${revealCls()}" onclick="openFormModal('${t.name}','${t.price}')">
       <div class="tipo-icon">${t.icon}</div>
       <h3 class="tipo-name">${t.name}</h3>
       <p class="tipo-desc">${t.desc}</p>
       <div class="tipo-price">${t.price} MXN</div>
+      ${t.entrega?`<div class="tipo-entrega">🚚 Entrega: ${t.entrega}</div>`:''}
     </div>`).join('');
   observeReveal();
 }
@@ -780,19 +1015,200 @@ function renderTipos(){
 // ═══════════════════════════════════════
 //  RENDER PAQUETES
 // ═══════════════════════════════════════
+// ═══════════════════════════════════════
+//  PRECIO CON PROMOCIÓN POR TIEMPO LIMITADO
+//  Muestra el precio actual tachado con uno "regular" 20% más alto
+//  hasta la fecha límite; después de esa fecha, el precio sube solo.
+// ═══════════════════════════════════════
+function parsePrice(str){ return parseInt((str||'').toString().replace(/[^0-9]/g,''))||0; }
+function pkgDisplay(p){
+  if(!p.promoUntil) return {show:p.price, strike:null, promo:false};
+  const now=new Date();
+  const until=new Date(p.promoUntil+'T23:59:59');
+  const base=parsePrice(p.price);
+  const regular='$'+Math.round(base*1.2);
+  if(now<=until) return {show:p.price, strike:regular, promo:true};
+  return {show:regular, strike:null, promo:false};
+}
+
 function renderPaquetes(){
   const grid = document.getElementById('paquetes-grid');
-  grid.innerHTML = PKGS.map(p=>`
-    <div class="pkg-card${p.feat?' feat':''} reveal">
+  grid.innerHTML = PKGS.map(p=>{
+    const d=pkgDisplay(p);
+    return `
+    <div class="pkg-card${p.feat?' feat':''} ${revealCls()}">
       <div class="pkg-head">
         ${p.badge?`<div class="pkg-badge">${p.badge}</div>`:''}
+        ${d.promo?`<div class="pkg-promo-badge">🔥 Precio especial hasta el 31 de agosto</div>`:''}
         <h3 class="pkg-name">${p.name}</h3>
-        <div class="pkg-price">${p.price} <span>MXN</span></div>
+        <div class="pkg-price">${d.strike?`<span class="pkg-strike">${d.strike}</span> `:''}${d.show} <span>MXN</span></div>
       </div>
       <ul class="pkg-features">${p.features.map(f=>`<li>${f}</li>`).join('')}</ul>
-      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('${p.name}','${p.price}')">Quiero este paquete</button></div>
-    </div>`).join('');
+      <div class="pkg-confirm">${p.confirmacion==='panel'?'🖥️ Confirmación vía panel administrador':'💬 Confirmación vía WhatsApp'}</div>
+      ${p.entrega?`<div class="pkg-entrega">🚚 Tiempo de entrega: ${p.entrega}</div>`:''}
+      <div class="pkg-cta"><button class="pkg-btn" onclick="openFormModal('${p.name}','${d.show}')">Quiero este paquete</button></div>
+    </div>`;
+  }).join('');
   observeReveal();
+  renderComparador();
+}
+
+// ═══════════════════════════════════════
+//  BARRA DE CONFIANZA
+// ═══════════════════════════════════════
+function renderTrustBar(){
+  const el=document.getElementById('trust-bar');
+  if(!el) return;
+  el.innerHTML=`
+    <div class="trust-item"><span>🚀</span> Entrega 24h a 7 días según diseño</div>
+    <div class="trust-item"><span>✅</span> 2 revisiones incluidas</div>
+    <div class="trust-item"><span>💎</span> ${SITE.statInv} invitaciones creadas</div>
+    <div class="trust-item"><span>🔒</span> Pago seguro</div>`;
+}
+
+// ═══════════════════════════════════════
+//  COMPARADOR DE PAQUETES
+//  Expande features tipo "Todo lo de Web Oro" para armar la tabla completa
+// ═══════════════════════════════════════
+function expandFeatures(pkg,seen){
+  seen=seen||new Set();
+  if(seen.has(pkg.name)) return [];
+  seen.add(pkg.name);
+  let out=[];
+  (pkg.features||[]).forEach(f=>{
+    const m=f.match(/^Todo(?:\s+lo de)?\s+(.+)$/i);
+    if(m){
+      const refName=m[1].trim().toLowerCase();
+      const ref=PKGS.find(p=>p.name.toLowerCase()===refName || refName.includes(p.name.toLowerCase()));
+      if(ref) out=out.concat(expandFeatures(ref,seen));
+    } else out.push(f);
+  });
+  return out;
+}
+function toggleComparador(){
+  const w=document.getElementById('comp-table-wrap');
+  const btn=document.getElementById('comp-toggle-btn');
+  w.classList.toggle('open');
+  btn.textContent=w.classList.contains('open')?'📊 Ocultar comparación':'📊 Ver comparación completa de paquetes';
+  if(w.classList.contains('open')) w.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function renderComparador(){
+  const w=document.getElementById('comp-table-wrap');
+  if(!w) return;
+  const expanded=PKGS.map(p=>expandFeatures(p));
+  const allFeats=[];
+  expanded.forEach(list=>list.forEach(f=>{ if(!allFeats.includes(f)) allFeats.push(f); }));
+  w.innerHTML=`<table class="comp-table">
+    <thead><tr><th>Incluye</th>${PKGS.map(p=>{const d=pkgDisplay(p);return `<th${p.feat?' class="feat-col"':''}>${p.name}<br><span style="font-size:.7rem;font-weight:400">${d.strike?`<s style="opacity:.6">${d.strike}</s> `:''}${d.show} MXN</span></th>`;}).join('')}</tr></thead>
+    <tbody>${allFeats.map(f=>`<tr><td>${f}</td>${expanded.map(list=>`<td>${list.includes(f)?'<span class="comp-yes">✓</span>':'<span class="comp-no">—</span>'}</td>`).join('')}</tr>`).join('')}</tbody>
+  </table>`;
+}
+
+// ═══════════════════════════════════════
+//  FAQ ACORDEÓN
+// ═══════════════════════════════════════
+function renderFAQ(){
+  const el=document.getElementById('faq-wrap');
+  if(!el) return;
+  el.innerHTML=DEFAULT_FAQ.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <button class="faq-q" onclick="toggleFAQ(${i})">${f.q}<span class="fq-ic">+</span></button>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join('');
+}
+function toggleFAQ(i){
+  const item=document.getElementById('faq-'+i);
+  const a=item.querySelector('.faq-a');
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(fi=>{ fi.classList.remove('open'); fi.querySelector('.faq-a').style.maxHeight=null; });
+  if(!wasOpen){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+40+'px'; }
+}
+
+// ═══════════════════════════════════════
+//  UPSELL — sugiere el siguiente paquete dentro del modal de cotización
+// ═══════════════════════════════════════
+function renderUpsell(pkgName){
+  const box=document.getElementById('fmod-upsell');
+  if(!box) return;
+  const idx=PKGS.findIndex(p=>p.name===pkgName);
+  if(idx===-1 || idx>=PKGS.length-1){ box.style.display='none'; return; }
+  const current=PKGS[idx], next=PKGS[idx+1];
+  const curFeats=expandFeatures(current), nextFeats=expandFeatures(next);
+  const extra=nextFeats.filter(f=>!curFeats.includes(f)).slice(0,3);
+  if(!extra.length){ box.style.display='none'; return; }
+  box.style.display='block';
+  const nd=pkgDisplay(next);
+  box.innerHTML=`💡 <strong>${next.name} (${nd.show})</strong> te da además:<br>${extra.map(f=>'✦ '+f).join('<br>')}
+  <br><button type="button" class="upsell-btn" onclick="openFormModal('${next.name}','${nd.show}')">Cambiar a ${next.name}</button>`;
+}
+
+// ═══════════════════════════════════════
+//  QUIZ / COTIZADOR RÁPIDO
+// ═══════════════════════════════════════
+const QUIZ_STEPS=[
+  {key:'evento',q:'¿Qué tipo de evento vas a celebrar?',opts:['Boda','XV Años','Bautizo / Baptismo','Cumpleaños infantil','Cumpleaños de adulto','Evento corporativo']},
+  {key:'invitados',q:'¿Aproximadamente cuántos invitados esperas?',opts:['Menos de 50','50 a 150','150 a 300','Más de 300']},
+  {key:'extras',q:'¿Qué te gustaría que incluya tu invitación?',opts:['Solo lo básico (fecha, lugar, cuenta regresiva)','Pases digitales para mis invitados','QR de acceso el día del evento','Animaciones y experiencia interactiva']},
+];
+let quizAnswers={};
+let quizStep=0;
+function openQuiz(){
+  quizAnswers={}; quizStep=0;
+  document.getElementById('quiz-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  renderQuizStep();
+}
+function closeQuiz(){
+  document.getElementById('quiz-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function renderQuizProgress(){
+  const total=QUIZ_STEPS.length+1;
+  document.getElementById('quiz-progress').innerHTML=Array.from({length:total}).map((_,i)=>`<span class="${i<=quizStep?'on':''}"></span>`).join('');
+}
+function renderQuizStep(){
+  renderQuizProgress();
+  const content=document.getElementById('quiz-content');
+  if(quizStep<QUIZ_STEPS.length){
+    const s=QUIZ_STEPS[quizStep];
+    content.innerHTML=`<div class="quiz-step">
+      <h4>${s.q}</h4>
+      <div class="quiz-opts">${s.opts.map(o=>`<button type="button" class="quiz-opt${quizAnswers[s.key]===o?' sel':''}" onclick="quizPick('${s.key}','${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}</div>
+    </div>`;
+  } else {
+    renderQuizResult();
+  }
+}
+function quizPick(key,val){
+  quizAnswers[key]=val;
+  quizStep++;
+  renderQuizStep();
+}
+function quizRecommend(){
+  const inv=quizAnswers.invitados||'';
+  const extra=quizAnswers.extras||'';
+  const bigGroup = inv==='150 a 300' || inv==='Más de 300';
+  if(extra.includes('Animaciones')) return 5; // Oro Premium
+  if(extra.includes('QR')) return 4; // Oro Plus
+  if(extra.includes('Pases digitales')) return bigGroup?3:2; // Oro (ilimitados) o Plata
+  if(extra.includes('Solo lo básico') && !bigGroup) return 1; // Bronce
+  return bigGroup?3:2; // por defecto sugiere Oro o Plata según el tamaño del evento
+}
+function renderQuizResult(){
+  const idx=Math.min(quizRecommend(),PKGS.length-1);
+  const p=PKGS[idx];
+  const d=pkgDisplay(p);
+  const content=document.getElementById('quiz-content');
+  content.innerHTML=`<div class="quiz-result">
+    <div style="font-size:2.2rem">🎉</div>
+    <p style="color:var(--tm);font-size:.85rem">Para tu ${quizAnswers.evento||'evento'} con ${quizAnswers.invitados||'tus invitados'}, te recomendamos:</p>
+    <div class="qr-pkg">${p.name}</div>
+    ${d.promo?`<div style="font-size:.78rem;color:#c93c3c;font-weight:700;margin-bottom:.2rem">🔥 Precio especial hasta el 31 de agosto</div>`:''}
+    <div class="qr-price">${d.strike?`<s style="font-size:1rem;opacity:.55;margin-right:.4rem">${d.strike}</s>`:''}${d.show} MXN</div>
+    <ul>${p.features.slice(0,5).map(f=>`<li>${f}</li>`).join('')}</ul>
+    <button class="quiz-next" onclick="closeQuiz();openFormModal('${p.name}','${d.show}')">✦ Quiero este paquete</button>
+    <button class="comp-toggle-btn" style="margin-top:.7rem;width:100%" onclick="closeQuiz();document.getElementById('paquetes').scrollIntoView({behavior:'smooth'})">Ver todos los paquetes</button>
+  </div>`;
 }
 
 // ═══════════════════════════════════════
@@ -828,7 +1244,7 @@ function buildGallery(){
     catVids.forEach((vid)=>{
       const gi=VIDEOS.indexOf(vid);
       const item=document.createElement('div');
-      item.className='gal-item reveal';
+      item.className='gal-item '+revealCls();
       item.dataset.gi=gi;
       item.innerHTML=`
         <div class="gal-thumb-wrap">
@@ -839,6 +1255,7 @@ function buildGallery(){
           <div class="gal-thumb-label">${vid.t}</div>
         </div>
         <video class="gal-video-el" preload="none" playsinline muted loop controlsList="nodownload" oncontextmenu="return false"></video>
+        <div class="gal-spinner"></div>
         <div class="gal-title">${vid.t}</div>
         <div class="gal-controls">
           <button class="gal-play-btn" onclick="galTogglePlay(event,this)">▶</button>
@@ -862,17 +1279,20 @@ function buildGallery(){
         const gi=parseInt(item.dataset.gi);
         const vid=item.querySelector('.gal-video-el');
         if(vid && !vid.src){
+          item.classList.add('gal-loading');
           vid.src=VIDEOS[gi].s;
           vid.muted=true;
           vid.loop=true;
           vid.load();
           vid.addEventListener('canplay',()=>{
+            item.classList.remove('gal-loading');
             vid.play().catch(()=>{});
             item.classList.add('loaded');
             const pb=item.querySelector('.gal-play-btn');
             if(pb) pb.textContent='⏸';
             item.classList.add('gal-playing');
           },{once:true});
+          vid.addEventListener('error',()=>{ item.classList.remove('gal-loading'); },{once:true});
         }
         lazyObs.unobserve(item);
       }
@@ -888,7 +1308,7 @@ function galTogglePlay(e,btn){
   const item=btn.closest('.gal-item');
   const vid=item.querySelector('.gal-video-el');
   // load if not yet loaded
-  if(!vid.src){ const gi=parseInt(item.dataset.gi); vid.src=VIDEOS[gi].s; vid.muted=true; vid.loop=true; vid.load(); vid.addEventListener('canplay',()=>{ vid.play().catch(()=>{}); item.classList.add('loaded','gal-playing'); btn.textContent='⏸'; },{once:true}); return; }
+  if(!vid.src){ const gi=parseInt(item.dataset.gi); item.classList.add('gal-loading'); vid.src=VIDEOS[gi].s; vid.muted=true; vid.loop=true; vid.load(); vid.addEventListener('canplay',()=>{ item.classList.remove('gal-loading'); vid.play().catch(()=>{}); item.classList.add('loaded','gal-playing'); btn.textContent='⏸'; },{once:true}); vid.addEventListener('error',()=>{ item.classList.remove('gal-loading'); },{once:true}); return; }
   if(vid.paused){
     document.querySelectorAll('.gal-video-el').forEach(v=>{ if(v!==vid){ v.pause(); const pi=v.closest('.gal-item'); if(pi){ pi.classList.remove('gal-playing'); const pb=pi.querySelector('.gal-play-btn'); if(pb) pb.textContent='▶'; } }});
     vid.play().catch(()=>{});
@@ -1027,7 +1447,8 @@ function openFormModal(pkg,price,model=null){
     if(m.req) el.required=true;
     wrap.appendChild(el); fields.appendChild(wrap);
   });
-  document.getElementById('fmod-wa-link').href=`https://wa.me/524426084804?text=Hola%20ME%2C%20me%20interesa%20${encodeURIComponent(pkg)}${model?'%20modelo%20'+encodeURIComponent(model.t):''}`;
+  document.getElementById('fmod-wa-link').href=`https://wa.me/52${SITE.whatsapp}?text=Hola%20ME%2C%20me%20interesa%20${encodeURIComponent(pkg)}${model?'%20modelo%20'+encodeURIComponent(model.t):''}`;
+  renderUpsell(pkg);
   document.getElementById('form-modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1059,8 +1480,31 @@ function submitContact(e){
 // ═══════════════════════════════════════
 //  STORAGE
 // ═══════════════════════════════════════
-function saveMsg(data){ const msgs=getMsgs(); msgs.push(data); saveState('me_msgs',msgs); }
-function getMsgs(){ return loadState('me_msgs',[]); }
+let msgsCache=loadState('me_msgs',[]); // respaldo local mientras llega la respuesta de Firestore
+function saveMsg(data){
+  data.createdAt=firebase.firestore.FieldValue.serverTimestamp();
+  db.collection('mensajes').add(data).catch(err=>{
+    console.error(err);
+    msgsCache.push(data); saveState('me_msgs',msgsCache); // respaldo local si falla
+  });
+}
+function getMsgs(){ return msgsCache; }
+function listenMsgs(){
+  db.collection('mensajes').orderBy('createdAt','asc').onSnapshot(snap=>{
+    const remote=[];
+    snap.forEach(doc=>remote.push(Object.assign({id:doc.id},doc.data())));
+    msgsCache=remote.length?remote:msgsCache;
+    saveState('me_msgs',msgsCache);
+    // si el panel admin está abierto, refresca en vivo
+    if(document.getElementById('admin-overlay')?.classList.contains('open')){ renderAdmMsgs(); renderAdmStats(); }
+  },err=>console.warn('Firestore mensajes offline, usando copia local',err));
+}
+// Actualiza el estado de diseño o de pago de un pedido directamente en Firestore
+function updatePedido(id,field,value){
+  if(!id){ alert('Este pedido es muy antiguo y no se puede actualizar en línea (guárdalo como nota aparte).'); return; }
+  db.collection('mensajes').doc(id).update({[field]:value})
+    .catch(err=>{ console.error(err); alert('No se pudo guardar el cambio, revisa tu conexión.'); });
+}
 function getStats(){ return loadState('me_stats',{}); }
 function saveStats(s){ saveState('me_stats',s); }
 function trackCat(cat){ const s=getStats(); s.catViews=s.catViews||{}; s.catViews[cat]=(s.catViews[cat]||0)+1; s.totalVisits=(s.totalVisits||0)+1; s.lastVisit=new Date().toLocaleString('es-MX'); const hr=new Date().getHours(); s.hourCounts=s.hourCounts||{}; const bkt=hr<12?'Mañana':hr<18?'Tarde':'Noche'; s.hourCounts[bkt]=(s.hourCounts[bkt]||0)+1; saveStats(s); }
@@ -1069,7 +1513,7 @@ function trackVideoView(title,cat){ const s=getStats(); s.videoViews=s.videoView
 // ═══════════════════════════════════════
 //  ADMIN
 // ═══════════════════════════════════════
-const ADMIN_PWD='momentosE2025!';
+const ADMIN_PWD='150903';
 function openAdminLogin(){ document.getElementById('admin-login').classList.add('open'); document.getElementById('adm-pwd').value=''; document.getElementById('adm-err').style.display='none'; }
 function closeAdminLogin(){ document.getElementById('admin-login').classList.remove('open'); }
 function adminLogin(){
@@ -1078,7 +1522,7 @@ function adminLogin(){
 }
 function openAdmin(){
   document.getElementById('admin-overlay').classList.add('open');
-  renderAdmMsgs(); renderAdmStats(); renderAdmPkgs(); renderAdmVideos();
+  renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs(); renderAdmVideos();
 }
 function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
 function switchAdmTab(id,btn){
@@ -1088,16 +1532,70 @@ function switchAdmTab(id,btn){
   document.getElementById('adm-'+id).classList.add('active');
 }
 
-// Messages tab
+// Messages / Pedidos tab
+const ESTADOS_DISENO=['Pendiente','En proceso','Entregado'];
+const ESTADOS_PAGO=['No pagado','Anticipo pagado','Pagado completo'];
+let pedidoFiltro='todos';
+function setPedidoFiltro(f){ pedidoFiltro=f; renderAdmMsgs(); }
 function renderAdmMsgs(){
   const el=document.getElementById('adm-mensajes');
-  const msgs=getMsgs().reverse();
+  let msgs=getMsgs().slice().reverse();
   if(!msgs.length){ el.innerHTML='<p style="color:rgba(255,255,255,.35);text-align:center;margin-top:2rem;font-size:.9rem">No hay mensajes aún.</p>'; return; }
-  el.innerHTML=`<p style="color:rgba(255,255,255,.4);font-size:.8rem;margin-bottom:1rem">${msgs.length} mensaje(s) recibido(s)</p>`+
-  msgs.map(m=>`<div class="msg-card">
-    <h4>📩 ${m.nombre||m.tipo||'Mensaje'} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp}</span></h4>
-    <div class="msg-meta">${Object.entries(m).filter(([k])=>k!=='timestamp').map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
-  </div>`).join('');
+
+  const isPedido=m=>!!(m.paquete||m.modelo);
+  const totalPedidos=msgs.filter(isPedido).length;
+  const pendientes=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')!=='Entregado').length;
+  const sinPagar=msgs.filter(m=>isPedido(m)&&(m.pago||'No pagado')==='No pagado').length;
+
+  let filtered=msgs;
+  if(pedidoFiltro==='pendientes') filtered=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')!=='Entregado');
+  else if(pedidoFiltro==='sinpagar') filtered=msgs.filter(m=>isPedido(m)&&(m.pago||'No pagado')!=='Pagado completo');
+  else if(pedidoFiltro==='entregados') filtered=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')==='Entregado');
+  else if(pedidoFiltro==='contacto') filtered=msgs.filter(m=>!isPedido(m));
+
+  el.innerHTML=`
+    <div class="ped-summary">
+      <div class="ped-sum-card"><span>${totalPedidos}</span>Pedidos totales</div>
+      <div class="ped-sum-card warn"><span>${pendientes}</span>Por entregar</div>
+      <div class="ped-sum-card danger"><span>${sinPagar}</span>Sin pagar completo</div>
+    </div>
+    <div class="ped-filters">
+      <button class="ped-filter-btn${pedidoFiltro==='todos'?' active':''}" onclick="setPedidoFiltro('todos')">Todos</button>
+      <button class="ped-filter-btn${pedidoFiltro==='pendientes'?' active':''}" onclick="setPedidoFiltro('pendientes')">Por entregar</button>
+      <button class="ped-filter-btn${pedidoFiltro==='entregados'?' active':''}" onclick="setPedidoFiltro('entregados')">Entregados</button>
+      <button class="ped-filter-btn${pedidoFiltro==='sinpagar'?' active':''}" onclick="setPedidoFiltro('sinpagar')">Sin pagar</button>
+      <button class="ped-filter-btn${pedidoFiltro==='contacto'?' active':''}" onclick="setPedidoFiltro('contacto')">Solo contacto</button>
+    </div>
+    <p style="color:rgba(255,255,255,.4);font-size:.8rem;margin-bottom:1rem">${filtered.length} de ${msgs.length} registro(s)</p>
+  `+
+  filtered.map(m=>{
+    const pedido=isPedido(m);
+    const estado=m.estado||'Pendiente';
+    const pago=m.pago||'No pagado';
+    return `<div class="msg-card${pedido?' is-pedido':''}">
+      <h4>${pedido?'🎁':'📩'} ${m.nombre||m.tipo||'Mensaje'} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp||''}</span></h4>
+      <div class="msg-meta">${Object.entries(m).filter(([k])=>!['timestamp','id','createdAt','estado','pago','notas'].includes(k)).map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
+      ${pedido?`
+      <div class="ped-controls">
+        <div class="ped-ctrl">
+          <label>Estado del diseño</label>
+          <select onchange="updatePedido('${m.id||''}','estado',this.value);m.estado=this.value;renderAdmMsgs()">
+            ${ESTADOS_DISENO.map(s=>`<option ${estado===s?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+        <div class="ped-ctrl">
+          <label>Estado del pago</label>
+          <select onchange="updatePedido('${m.id||''}','pago',this.value);m.pago=this.value;renderAdmMsgs()">
+            ${ESTADOS_PAGO.map(s=>`<option ${pago===s?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="ped-ctrl" style="margin-top:.5rem">
+        <label>Notas internas</label>
+        <input value="${(m.notas||'').replace(/"/g,'&quot;')}" placeholder="Ej. Falta foto de la quinceañera..." onchange="updatePedido('${m.id||''}','notas',this.value)">
+      </div>`:''}
+    </div>`;
+  }).join('');
 }
 function exportMsgs(){
   const msgs=getMsgs();
@@ -1136,19 +1634,69 @@ function renderAdmStats(){
 }
 
 // Packages tab
+// Sitio y Contacto tab
+function renderAdmSitio(){
+  const el=document.getElementById('adm-sitio');
+  const row=(label,key,placeholder='')=>`<div class="adm-row"><label>${label}</label><input value="${(SITE[key]||'').toString().replace(/"/g,'&quot;')}" placeholder="${placeholder}" onchange="SITE['${key}']=this.value;applySite();saveSiteConfig()"></div>`;
+  el.innerHTML=`<h3 style="color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1rem">✏️ Textos del inicio y datos de contacto (se aplican al instante y a todos los dispositivos)</h3>
+  <div class="adm-pkg-card">
+    <h4>Hero (portada)</h4>
+    ${row('Frase pequeña (arriba del título)','eyebrow','Momentos Encantados')}
+    ${row('Título (línea 1)','titleLine1','Invitaciones digitales')}
+    ${row('Título (línea 2, en cursiva)','titleLine2','para cada momento especial')}
+    ${row('Badge','badge','✦ Diseños únicos ✦')}
+    ${row('Subtítulo','sub','Diseños únicos, prácticos y personalizados...')}
+  </div>
+  <div class="adm-pkg-card">
+    <h4>Estadísticas</h4>
+    ${row('Invitaciones creadas','statInv','+500')}
+    ${row('Tipos de evento','statTipos','6+')}
+    ${row('Disponibilidad','statDisp','24/7')}
+  </div>
+  <div class="adm-pkg-card">
+    <h4>Contacto</h4>
+    ${row('WhatsApp (10 dígitos, sin espacios)','whatsapp','4426084804')}
+    ${row('Instagram (sin @)','instagram','momentosencantados')}
+  </div>
+  <button class="adm-top-btn" onclick="if(confirm('¿Restaurar textos originales?')){SITE=JSON.parse(JSON.stringify(DEFAULT_SITE));applySite();saveSiteConfig();renderAdmSitio();}">↺ Restaurar textos originales</button>`;
+}
+
+// Tipos tab
+function renderAdmTipos(){
+  const el=document.getElementById('adm-tipos');
+  el.innerHTML=`<h3 style="color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1rem">✏️ Editar tipos de invitación (cambios se aplican al instante)</h3>`+
+  TIPOS.map((t,i)=>`<div class="adm-pkg-card">
+    <h4>${t.icon} ${t.name}</h4>
+    <div class="adm-row"><label>Ícono (emoji)</label><input value="${t.icon}" onchange="TIPOS[${i}].icon=this.value;renderTipos();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Nombre</label><input value="${t.name}" onchange="TIPOS[${i}].name=this.value;renderTipos();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Precio</label><input value="${t.price}" onchange="TIPOS[${i}].price=this.value;renderTipos();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Descripción</label><input value="${t.desc}" onchange="TIPOS[${i}].desc=this.value;renderTipos();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Tiempo de entrega</label><input value="${t.entrega||''}" placeholder="Ej. 24 hrs" onchange="TIPOS[${i}].entrega=this.value;renderTipos();saveSiteConfig()"></div>
+    <button class="adm-top-btn" style="margin-top:.5rem" onclick="if(confirm('¿Eliminar este tipo?')){TIPOS.splice(${i},1);renderTipos();saveSiteConfig();renderAdmTipos();}">🗑️ Eliminar</button>
+  </div>`).join('')+
+  `<button class="adm-save-btn" onclick="TIPOS.push({icon:'✨',name:'Nuevo tipo',desc:'Descripción...',price:'$0'});renderTipos();saveSiteConfig();renderAdmTipos()">➕ Agregar tipo</button>
+   <button class="adm-top-btn" style="margin-left:.5rem" onclick="if(confirm('¿Restaurar tipos originales?')){TIPOS=JSON.parse(JSON.stringify(DEFAULT_TIPOS));renderTipos();saveSiteConfig();renderAdmTipos();}">↺ Restaurar</button>`;
+}
+
 function renderAdmPkgs(){
   const el=document.getElementById('adm-paquetes');
   el.innerHTML=`<h3 style="color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1rem">✏️ Editar paquetes y precios (cambios se aplican al instante)</h3>`+
   PKGS.map((p,i)=>`<div class="adm-pkg-card">
     <h4>${p.name}</h4>
-    <div class="adm-row"><label>Nombre</label><input value="${p.name}" onchange="PKGS[${i}].name=this.value;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
-    <div class="adm-row"><label>Precio</label><input value="${p.price}" onchange="PKGS[${i}].price=this.value;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
-    <div class="adm-row"><label>Badge</label><input value="${p.badge||''}" placeholder="Ej. ⭐ MÁS POPULAR" onchange="PKGS[${i}].badge=this.value;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
-    <div class="adm-row"><label>Destacado</label><input type="checkbox" ${p.feat?'checked':''} onchange="PKGS[${i}].feat=this.checked;saveState('me_pkgs',PKGS);renderPaquetes()"></div>
-    <div class="adm-row"><label>Características</label><textarea rows="4" style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:Lato,sans-serif;font-size:.82rem;padding:.43rem .7rem;outline:none;resize:vertical" onchange="PKGS[${i}].features=this.value.split('\\n').filter(l=>l.trim());saveState('me_pkgs',PKGS);renderPaquetes()">${p.features.join('\n')}</textarea></div>
+    <div class="adm-row"><label>Nombre</label><input value="${p.name}" onchange="PKGS[${i}].name=this.value;renderPaquetes();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Precio</label><input value="${p.price}" onchange="PKGS[${i}].price=this.value;renderPaquetes();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Badge</label><input value="${p.badge||''}" placeholder="Ej. ⭐ MÁS POPULAR" onchange="PKGS[${i}].badge=this.value;renderPaquetes();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Destacado</label><input type="checkbox" ${p.feat?'checked':''} onchange="PKGS[${i}].feat=this.checked;renderPaquetes();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Tiempo de entrega</label><input value="${p.entrega||''}" placeholder="Ej. 5-7 días" onchange="PKGS[${i}].entrega=this.value;renderPaquetes();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Confirmación</label><select onchange="PKGS[${i}].confirmacion=this.value;renderPaquetes();saveSiteConfig()">
+      <option value="whatsapp" ${p.confirmacion==='whatsapp'?'selected':''}>💬 WhatsApp</option>
+      <option value="panel" ${p.confirmacion==='panel'?'selected':''}>🖥️ Panel administrador</option>
+    </select></div>
+    <div class="adm-row"><label>Promo hasta (vacío = sin promo)</label><input type="date" value="${p.promoUntil||''}" onchange="PKGS[${i}].promoUntil=this.value||null;renderPaquetes();saveSiteConfig()"></div>
+    <div class="adm-row"><label>Características</label><textarea rows="4" style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:Lato,sans-serif;font-size:.82rem;padding:.43rem .7rem;outline:none;resize:vertical" onchange="PKGS[${i}].features=this.value.split('\\n').filter(l=>l.trim());renderPaquetes();saveSiteConfig()">${p.features.join('\n')}</textarea></div>
   </div>`).join('')+
-  `<button class="adm-save-btn" onclick="saveState('me_pkgs',PKGS);alert('✅ Paquetes guardados')">💾 Guardar todo</button>
-   <button class="adm-top-btn" style="margin-left:.5rem" onclick="if(confirm('¿Restaurar paquetes originales?')){PKGS=JSON.parse(JSON.stringify(DEFAULT_PKGS));saveState('me_pkgs',PKGS);renderPaquetes();renderAdmPkgs();}">↺ Restaurar</button>`;
+  `<button class="adm-save-btn" onclick="saveSiteConfig();alert('✅ Paquetes guardados')">💾 Guardar todo</button>
+   <button class="adm-top-btn" style="margin-left:.5rem" onclick="if(confirm('¿Restaurar paquetes originales?')){PKGS=JSON.parse(JSON.stringify(DEFAULT_PKGS));renderPaquetes();saveSiteConfig();renderAdmPkgs();}">↺ Restaurar</button>`;
 }
 
 // Videos tab
@@ -1279,7 +1827,7 @@ const AI_LOCAL={
   plata:['plata','silver'],
   oro:['oro plus','oro premium','oro','gold','dorado'],
   tiempo:['tiempo','tarda','cuándo','cuando','entrega','demora','días','dias','rapido','rapido'],
-  pago:['pago','pagar','transferencia','tarjeta','efectivo','abono','deposito','depósito'],
+  pago:['pago','pagar','transferencia','tarjeta','abono','deposito','depósito'],
   evento:['evento','boda','bautizo','xv','quince','cumple','graduac','baby shower','comunión','confirmac','shower'],
   proceso:['proceso','como funciona','cómo funciona','pasos','qué necesito','que necesito'],
   whatsapp:['contacto','teléfono','telefono','número','numero','whatsapp','llamar','comunicar'],
@@ -1292,9 +1840,9 @@ const AI_ANS={
   plata:`📦 Web Plata $499 incluye todo lo de Web Bronce más:\n✦ Pases digitales para 150 personas\n\nIdeal cuando tienes muchos invitados ✨`,
   oro:`💎 Web Oro $655 – nuestro más popular:\n✦ Pases digitales ilimitados\n✦ Lluvia de sobres / mesa de regalos\n✦ Galería de fotos dinámica\n✦ Opciones de hospedaje\n\nOro Plus $799 agrega QR de acceso y fotos.\nOro Premium $999 agrega animaciones, app y acomodo de mesas 🌟`,
   tiempo:`⏰ Tu invitación estará lista en 24 a 48 horas después de enviarnos tus datos. Incluimos hasta 2 revisiones sin costo extra. ¡Tu evento quedará perfecto! 💕`,
-  pago:`💳 Aceptamos:\n✦ Transferencia bancaria (SPEI)\n✦ Efectivo\n✦ Consulta disponibilidad de tarjeta\n\nEscríbenos al WhatsApp 4426084804 para coordinar el pago 📲`,
+  pago:`💳 Aceptamos:\n✦ Transferencia bancaria\n✦ Depósito\n\nEscríbenos al WhatsApp 4426084804 para coordinar el pago 📲`,
   evento:`🎉 Hacemos invitaciones para:\n💍 Bodas · 👑 XV Años · 🎂 Cumpleaños\n🎓 Graduaciones · 🕊️ Bautizos\n🍼 Baby Shower · ⛪ Primera Comunión\n✨ Revelación de sexo y mucho más!\n\n¿Para qué evento lo necesitas? 💕`,
-  proceso:`📋 El proceso es sencillo:\n1️⃣ Elige tu paquete o tipo\n2️⃣ Llena el formulario con tus datos\n3️⃣ Diseñamos tu invitación\n4️⃣ La recibes en 24-48 hrs\n5️⃣ Hasta 2 revisiones incluidas\n\n¡Así de fácil! 🌸`,
+  proceso:`📋 El proceso es sencillo:\n1️⃣ Elige tu paquete o tipo\n2️⃣ Llena el formulario con tus datos\n3️⃣ Diseñamos tu invitación\n4️⃣ La recibes según el tiempo de entrega de tu paquete (24 hrs a 7 días)\n5️⃣ Hasta 2 revisiones incluidas\n\n¡Así de fácil! 🌸`,
   whatsapp:`📱 Contáctanos directo:\nWhatsApp: 4426084804\n📷 Instagram: @momentosencantados\n\nEstamos para atenderte con mucho gusto 💕`,
   revision:`✏️ Incluimos hasta 2 revisiones sin costo adicional en todos nuestros paquetes. Si necesitas más cambios, podemos cotizarlos aparte. ¡Queremos que quede perfecto! 💕`,
 };
@@ -1313,7 +1861,7 @@ const AI_SYS=`Eres la asistente virtual de Momentos Encantados, empresa mexicana
 TIPOS: Imagen $69 | Video $149 | PDF con botones $129 | Video con botones $199
 PAQUETES WEB: Básica $199 | Bronce $359 | Plata $499 | Oro $655 | Oro Plus $799 | Oro Premium $999
 EVENTOS: bodas, XV años, cumpleaños, graduaciones, bautizos, baby shower, comunión, confirmación, revelación de sexo y más.
-PROCESO: datos → diseño → 24-48 hrs → 2 revisiones incluidas. PAGO: transferencia, efectivo. WhatsApp: 4426084804.`;
+PROCESO: datos → diseño → entrega según tipo (Imagen 24h, Video 1-2 días, Web Básica 2-3 días, Bronce/Plata 3-4 días, Oro 5-7 días) → 2 revisiones incluidas. PAGO: transferencia bancaria o depósito. WhatsApp: 4426084804.`;
 
 const chatHist=[]; let aiOpen=false;
 function toggleAI(){
@@ -1408,19 +1956,29 @@ const DEFAULT_RESENAS=[
   {nombre:"Daniela R.",evento:"XV Años",estrellas:5,comentario:"Super rápida la entrega y el diseño quedó exactamente como lo quería. Mis XV fueron perfectos gracias a Momentos Encantados 💕"},
   {nombre:"Ana González",evento:"Bautizo",estrellas:5,comentario:"Me atendieron muy bien y el diseño quedó precioso. Mis invitados quedaron sorprendidos. ¡Definitivamente volveré a pedir!"},
 ];
-let resenas=loadState('me_resenas',DEFAULT_RESENAS);
+let resenas=loadState('me_resenas',DEFAULT_RESENAS); // cache local de respaldo
 let selectedStars=5;
 function setStars(n){
   selectedStars=n;
   document.getElementById('resena-stars-val').value=n;
   document.querySelectorAll('.stars-pick button').forEach((b,i)=>b.classList.toggle('active',i<n));
 }
+function renderResenaAvg(){
+  const el=document.getElementById('resena-avg');
+  if(!el) return;
+  if(!resenas.length){ el.innerHTML=''; return; }
+  const avg=resenas.reduce((s,r)=>s+(r.estrellas||5),0)/resenas.length;
+  const rounded=Math.round(avg*10)/10;
+  const full=Math.round(avg);
+  el.innerHTML=`<span class="ra-stars">${'★'.repeat(full)}${'☆'.repeat(5-full)}</span> <span class="ra-num">${rounded}</span> basado en ${resenas.length} reseña${resenas.length===1?'':'s'}`;
+}
 function renderResenas(){
   const grid=document.getElementById('resenas-grid');
   if(!grid) return;
+  renderResenaAvg();
   if(!resenas.length){ grid.innerHTML='<p style="text-align:center;color:var(--tm);grid-column:1/-1">Sé el primero en dejar una reseña 💕</p>'; return; }
   grid.innerHTML=resenas.map(r=>`
-    <div class="resena-card reveal">
+    <div class="resena-card ${revealCls()}">
       <div class="resena-quote">"</div>
       <div class="resena-stars">${'★'.repeat(r.estrellas||5)}${'☆'.repeat(5-(r.estrellas||5))}</div>
       <p class="resena-text">${r.comentario}</p>
@@ -1434,17 +1992,36 @@ function renderResenas(){
     </div>`).join('');
   observeReveal();
 }
+// Escucha en tiempo real la colección "resenas" de Firestore.
+// Así las reseñas se ven desde CUALQUIER dispositivo/navegador, no solo el de quien la escribió.
+function listenResenas(){
+  db.collection('resenas').orderBy('createdAt','desc').onSnapshot(snap=>{
+    const remote=[];
+    snap.forEach(doc=>remote.push(doc.data()));
+    if(remote.length){ resenas=remote; saveState('me_resenas',resenas); }
+    else if(!resenas.length){ resenas=DEFAULT_RESENAS; }
+    renderResenas();
+  },err=>{
+    console.warn('Firestore resenas offline, usando copia local',err);
+    renderResenas(); // usa la copia en localStorage/DEFAULT si no hay internet
+  });
+}
 function submitResena(e){
   e.preventDefault();
   const fd=new FormData(e.target);
-  const r={nombre:fd.get('nombre')||'Anónimo',evento:fd.get('evento')||'',comentario:fd.get('comentario'),estrellas:parseInt(document.getElementById('resena-stars-val').value)||5,fecha:new Date().toLocaleDateString('es-MX')};
-  resenas.unshift(r);
-  saveState('me_resenas',resenas);
-  // also save as a message for admin view
-  saveMsg({timestamp:new Date().toLocaleString('es-MX'),tipo:'Reseña',nombre:r.nombre,evento:r.evento,estrellas:'★'.repeat(r.estrellas),comentario:r.comentario});
-  renderResenas();
-  document.getElementById('resena-form').style.display='none';
-  document.getElementById('resena-success').style.display='block';
+  const r={nombre:fd.get('nombre')||'Anónimo',evento:fd.get('evento')||'',comentario:fd.get('comentario'),estrellas:parseInt(document.getElementById('resena-stars-val').value)||5,fecha:new Date().toLocaleDateString('es-MX'),createdAt:firebase.firestore.FieldValue.serverTimestamp()};
+  db.collection('resenas').add(r)
+    .then(()=>{
+      document.getElementById('resena-form').style.display='none';
+      document.getElementById('resena-success').style.display='block';
+    })
+    .catch(err=>{
+      console.error(err);
+      // respaldo local si falla la conexión, para no perder la reseña
+      resenas.unshift(r); saveState('me_resenas',resenas); renderResenas();
+      document.getElementById('resena-form').style.display='none';
+      document.getElementById('resena-success').style.display='block';
+    });
 }
 // init stars
 setTimeout(()=>{ document.querySelectorAll('.stars-pick button').forEach((b,i)=>b.classList.add('active')); },100);
@@ -1475,8 +2052,14 @@ renderPaquetes();
 buildGallery();
 buildHeroStrip();
 renderResenas();
+applySite();
+renderFAQ();
 observeReveal();
+setTimeout(()=>{ pageSettled=true; },1800);
 trackCat('Inicio');
+listenResenas(); // conecta reseñas en vivo con Firestore
+listenMsgs();    // conecta mensajes/contacto en vivo con Firestore
+listenSiteConfig(); // conecta hero, contacto, tipos y paquetes en vivo con Firestore
 
 </script>
 </body>
