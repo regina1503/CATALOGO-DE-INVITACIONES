@@ -353,6 +353,11 @@ footer a{color:var(--bl);text-decoration:none}
 .adm-tab.active{color:#fff;border-bottom-color:var(--rose)}
 .adm-body{flex:1;overflow-y:auto;padding:1.3rem}
 .adm-section{display:none}
+.adm-vid-thumb{width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;border:1px solid rgba(255,255,255,.1);transition:border-color .2s}
+.adm-vid-thumb:hover{border-color:var(--rose)}
+.adm-vid-icon{font-size:1.3rem;position:absolute;transition:opacity .2s}
+.adm-vid-thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
 /* ── Tareas ── */
 .tarea-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;margin-bottom:.75rem;display:flex;gap:.85rem;align-items:flex-start;transition:opacity .3s}
 .tarea-card.completada{opacity:.45}
@@ -1656,7 +1661,7 @@ function adminLogin(){
 }
 function openAdmin(){
   document.getElementById('admin-overlay').classList.add('open');
-  renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs(); renderAdmVideos();
+  renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs();
 }
 function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
 
@@ -1796,6 +1801,7 @@ function switchAdmTab(id,btn){
   btn.classList.add('active');
   document.getElementById('adm-'+id).classList.add('active');
   if(id==='tareas') renderTareas();
+  if(id==='videos') renderAdmVideos();
 }
 
 // Messages / Pedidos tab
@@ -1966,6 +1972,22 @@ function renderAdmPkgs(){
 }
 
 // Videos tab
+
+function admThumbLoad(div, src){
+  const vid = div.querySelector('video');
+  const icon = div.querySelector('.adm-vid-icon');
+  if(!vid.src){ vid.src = src; vid.load(); }
+  vid.style.display = 'block';
+  if(icon) icon.style.opacity = '0';
+  vid.play().catch(()=>{});
+}
+function admThumbStop(div){
+  const vid = div.querySelector('video');
+  const icon = div.querySelector('.adm-vid-icon');
+  vid.pause();
+  vid.style.display = 'none';
+  if(icon) icon.style.opacity = '1';
+}
 function renderAdmVideos(){
   const cats=[...new Set(VIDEOS.map(v=>v.c))];
   const allCatsOpts=cats.map(c=>`<option>${c}</option>`).join('');
@@ -1977,14 +1999,20 @@ function renderAdmVideos(){
 
   const groupedHTML=Object.entries(grouped).map(([cat,items])=>`
     <div style="margin-bottom:1.5rem">
-      <h4 style="color:#f0d090;font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.4rem">
+      <h4 style="color:#f0d090;font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.4rem;cursor:pointer;user-select:none"
+        onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'flex':'none';this.querySelector('.grp-arrow').textContent=this.nextElementSibling.style.display==='none'?'▶':'▼'">
         ${CAT_ICONS[cat]||'🎉'} ${cat} <span style="color:rgba(255,255,255,.35);font-weight:400">(${items.length})</span>
+        <span class="grp-arrow" style="float:right;font-size:.7rem;opacity:.5">▼</span>
       </h4>
       <div style="display:flex;flex-direction:column;gap:.55rem">
         ${items.map(({v,i})=>`
           <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;gap:.7rem;padding:.5rem .65rem;flex-wrap:wrap">
-            <div style="width:38px;height:38px;border-radius:7px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.08)">
-              <video src="${v.s}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover" oncontextmenu="return false"></video>
+            <div class="adm-vid-thumb"
+              onmouseenter="admThumbLoad(this,'${v.s.replace(/'/g,"\'")}' )"
+              onmouseleave="admThumbStop(this)"
+              title="Pasa el cursor para previsualizar">
+              <span class="adm-vid-icon">🎬</span>
+              <video preload="none" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:none" oncontextmenu="return false"></video>
             </div>
             <div style="flex:1;min-width:120px">
               <input
