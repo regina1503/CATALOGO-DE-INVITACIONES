@@ -1013,6 +1013,31 @@ let TIPOS = loadState('me_tipos', DEFAULT_TIPOS);
 let PKGS  = loadState('me_pkgs',  DEFAULT_PKGS);
 let VIDEOS = loadState('me_videos', DEFAULT_VIDEOS);
 
+// Guarda el array VIDEOS en Firestore (colección 'config', doc 'videos')
+let saveVideosTimer=null;
+function saveVideosFirestore(){
+  saveVideosFirestore(); // siempre guarda local como respaldo
+  clearTimeout(saveVideosTimer);
+  saveVideosTimer=setTimeout(()=>{
+    db.collection('config').doc('videos').set({lista:VIDEOS},{merge:false})
+      .catch(err=>console.warn('Videos: no se pudo sincronizar, guardado localmente',err));
+  },400);
+}
+
+let lastVideosJSON=null;
+function listenVideos(){
+  db.collection('config').doc('videos').onSnapshot(doc=>{
+    if(!doc.exists) return;
+    const json=JSON.stringify(doc.data().lista);
+    if(json===lastVideosJSON) return;
+    lastVideosJSON=json;
+    VIDEOS=doc.data().lista||VIDEOS;
+    saveState('me_videos',VIDEOS);
+    buildGallery();
+    if(document.getElementById('admin-overlay')?.classList.contains('open')) renderAdmVideos();
+  },err=>console.warn('Videos Firestore offline, usando copia local',err));
+}
+
 // Evita que la pantalla "parpadee en blanco" cuando se vuelve a dibujar
 // contenido (por ejemplo al editar algo en el admin o al llegar datos nuevos
 // de Firestore): una vez que la página ya cargó y se mostró, las tarjetas
@@ -1083,7 +1108,7 @@ function listenSiteConfig(){
     if(d.pkgs) PKGS=d.pkgs;
     if(d.site) SITE=Object.assign({},DEFAULT_SITE,d.site);
     saveState('me_tipos',TIPOS); saveState('me_pkgs',PKGS); saveState('me_site',SITE);
-    renderTipos(); renderPaquetes(); applySite();
+    renderTipos(); renderPaquetes(); applySite(); listenVideos(); listenTareas();
     if(document.getElementById('admin-overlay')?.classList.contains('open')){ renderAdmTipos(); renderAdmPkgs(); renderAdmSitio(); }
   },err=>console.warn('Firestore config offline, usando copia local',err));
 }
@@ -1641,7 +1666,29 @@ function closeAdmin(){ document.getElementById('admin-overlay').classList.remove
 let TAREAS = loadState('me_tareas', []);
 let tareaFiltro = 'todas';
 
-function saveTareas(){ saveState('me_tareas', TAREAS); }
+// Guarda tareas en Firestore y en localStorage como respaldo
+let saveTareasTimer=null;
+function saveTareas(){
+  saveState('me_tareas',TAREAS); // respaldo local inmediato
+  clearTimeout(saveTareasTimer);
+  saveTareasTimer=setTimeout(()=>{
+    db.collection('config').doc('tareas').set({lista:TAREAS},{merge:false})
+      .catch(err=>console.warn('Tareas: no se pudo sincronizar, guardado localmente',err));
+  },400);
+}
+
+let lastTareasJSON=null;
+function listenTareas(){
+  db.collection('config').doc('tareas').onSnapshot(doc=>{
+    if(!doc.exists) return;
+    const json=JSON.stringify(doc.data().lista);
+    if(json===lastTareasJSON) return;
+    lastTareasJSON=json;
+    TAREAS=doc.data().lista||TAREAS;
+    saveState('me_tareas',TAREAS);
+    if(document.getElementById('adm-tareas')?.parentElement?.classList.contains('active')) renderTareas();
+  },err=>console.warn('Tareas Firestore offline, usando copia local',err));
+}
 
 function addTarea(){
   const titulo = document.getElementById('t-titulo').value.trim();
@@ -1944,23 +1991,23 @@ function renderAdmVideos(){
                 value="${v.t.replace(/"/g,'&quot;')}"
                 style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#fff;font-family:Lato,sans-serif;font-size:.82rem;padding:.3rem .6rem;outline:none;width:100%;margin-bottom:.3rem"
                 placeholder="Nombre del video"
-                onchange="VIDEOS[${i}].t=this.value;saveState('me_videos',VIDEOS);buildGallery()"
+                onchange="VIDEOS[${i}].t=this.value;saveVideosFirestore();buildGallery()"
                 title="Editar nombre">
               <select
                 style="background:#1a0810;border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#f0d090;font-family:Lato,sans-serif;font-size:.76rem;padding:.28rem .5rem;outline:none;width:100%;cursor:pointer"
-                onchange="VIDEOS[${i}].c=this.value;saveState('me_videos',VIDEOS);buildGallery();renderAdmVideos()">
+                onchange="VIDEOS[${i}].c=this.value;saveVideosFirestore();buildGallery();renderAdmVideos()">
                 ${cats.map(c=>`<option value="${c}"${c===v.c?' selected':''}>${CAT_ICONS[c]||'🎉'} ${c}</option>`).join('')}
                 <option value="__nueva__">+ Nueva categoría...</option>
               </select>
               <select
                 style="background:#1a0810;border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#d0d090;font-family:Lato,sans-serif;font-size:.76rem;padding:.28rem .5rem;outline:none;width:100%;cursor:pointer;margin-top:.3rem"
                 title="Paquete al que pertenece este diseño"
-                onchange="VIDEOS[${i}].paquete=this.value==='—'?'':this.value;saveState('me_videos',VIDEOS);buildGallery()">
+                onchange="VIDEOS[${i}].paquete=this.value==='—'?'':this.value;saveVideosFirestore();buildGallery()">
                 ${['—','Web Básica','Web Bronce','Web Plata','Web Oro','Web Oro Plus','Web Oro Premium'].map(p=>`<option value="${p}"${(v.paquete||'—')===p?' selected':''}>${p}</option>`).join('')}
               </select>
               <input type="date" value="${v.added||''}" title="Fecha subida (badge NUEVO)"
                 style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:7px;color:rgba(255,255,255,.7);font-family:Lato,sans-serif;font-size:.75rem;padding:.28rem .5rem;outline:none;width:100%;margin-top:.3rem;cursor:pointer"
-                onchange="VIDEOS[${i}].added=this.value;saveState('me_videos',VIDEOS);buildGallery()">
+                onchange="VIDEOS[${i}].added=this.value;saveVideosFirestore();buildGallery()">
             </div>
             <button
               onclick="adminDelVideo(${i})"
@@ -2020,7 +2067,7 @@ function renderAdmVideos(){
           if(match){
             const vi=parseInt(match[1]);
             VIDEOS[vi].c=name.trim();
-            saveState('me_videos',VIDEOS);
+            saveVideosFirestore();
             buildGallery();
             renderAdmVideos();
           }
@@ -2045,7 +2092,7 @@ function adminAddVideo(){
   if(paquete) newVid.paquete = paquete;
   if(added)   newVid.added   = added;
   VIDEOS.push(newVid);
-  saveState('me_videos',VIDEOS);
+  saveVideosFirestore();
   buildGallery();
   renderAdmVideos();
   document.getElementById('adm-new-paquete').value='';
@@ -2055,7 +2102,7 @@ function adminAddVideo(){
 function adminDelVideo(i){
   if(!confirm('¿Eliminar "'+VIDEOS[i].t+'"?')) return;
   VIDEOS.splice(i,1);
-  saveState('me_videos',VIDEOS);
+  saveVideosFirestore();
   buildGallery();
   renderAdmVideos();
 }
@@ -2312,9 +2359,11 @@ renderFAQ();
 observeReveal();
 setTimeout(()=>{ pageSettled=true; },1800);
 trackCat('Inicio');
-listenResenas(); // conecta reseñas en vivo con Firestore
-listenMsgs();    // conecta mensajes/contacto en vivo con Firestore
+listenResenas();    // conecta reseñas en vivo con Firestore
+listenMsgs();       // conecta mensajes/contacto en vivo con Firestore
 listenSiteConfig(); // conecta hero, contacto, tipos y paquetes en vivo con Firestore
+listenVideos();     // conecta galería de videos en vivo con Firestore
+listenTareas();     // conecta tareas del admin en vivo con Firestore
 
 </script>
 </body>
