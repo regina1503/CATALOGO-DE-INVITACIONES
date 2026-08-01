@@ -107,6 +107,14 @@ section{padding:5rem 1.5rem}
 .pkg-confirm{padding:0 1.3rem .3rem;font-size:.76rem;color:var(--rose);font-weight:700}
 .pkg-pago-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);color:#2e7d32;font-size:.68rem;font-weight:700;padding:.28rem .75rem;border-radius:50px;border:1px solid #a5d6a7;margin:.6rem 1.3rem .2rem;width:fit-content}
 /* NUEVO badge en galería */
+
+.gal-pkg-tag{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:50px;margin-top:3px;border:1px solid}
+.gal-pkg-tag.basica  {background:rgba(92,107,192,.2); color:#9fa8da; border-color:rgba(92,107,192,.4)}
+.gal-pkg-tag.bronce  {background:rgba(205,127,50,.2);  color:#e0a070; border-color:rgba(205,127,50,.4)}
+.gal-pkg-tag.plata   {background:rgba(158,158,158,.2); color:#d0d0d0; border-color:rgba(158,158,158,.4)}
+.gal-pkg-tag.oro     {background:rgba(212,175,55,.2);  color:#f0d070; border-color:rgba(212,175,55,.4)}
+.gal-pkg-tag.oroplus {background:rgba(156,39,176,.2);  color:#d070f0; border-color:rgba(156,39,176,.4)}
+.gal-pkg-tag.premium {background:rgba(240,80,120,.2);  color:#f09090; border-color:rgba(240,80,120,.4)}
 .gal-nuevo-badge{position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#ff4081,#f50057);color:#fff;font-size:.6rem;font-weight:900;letter-spacing:1px;padding:3px 9px;border-radius:20px;box-shadow:0 2px 8px rgba(245,0,87,.5);animation:pulseglow 1.8s ease-in-out infinite;z-index:10;pointer-events:none}
 /* Proceso de compra */
 .proceso-section{background:linear-gradient(135deg,#fff0f5,#fce4ec);border-radius:20px;padding:2.5rem 1.5rem;margin:0 auto 1.5rem;border:1px solid var(--bl)}
@@ -345,6 +353,38 @@ footer a{color:var(--bl);text-decoration:none}
 .adm-tab.active{color:#fff;border-bottom-color:var(--rose)}
 .adm-body{flex:1;overflow-y:auto;padding:1.3rem}
 .adm-section{display:none}
+/* ── Tareas ── */
+.tarea-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1rem;margin-bottom:.75rem;display:flex;gap:.85rem;align-items:flex-start;transition:opacity .3s}
+.tarea-card.completada{opacity:.45}
+.tarea-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--rose);background:none;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .2s,border-color .2s}
+.tarea-card.completada .tarea-check{background:var(--rose);border-color:var(--rose)}
+.tarea-body{flex:1;min-width:0}
+.tarea-titulo{color:#fff;font-size:.9rem;font-weight:700;margin-bottom:.25rem;word-break:break-word}
+.tarea-card.completada .tarea-titulo{text-decoration:line-through;opacity:.6}
+.tarea-meta{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-top:.4rem}
+.tarea-prio{font-size:.65rem;font-weight:800;letter-spacing:.8px;padding:2px 8px;border-radius:50px;text-transform:uppercase}
+.prio-alta{background:rgba(229,80,80,.25);color:#ff8080}
+.prio-media{background:rgba(240,208,80,.2);color:#f0d070}
+.prio-baja{background:rgba(80,200,120,.2);color:#70d090}
+.tarea-fecha{font-size:.72rem;color:rgba(255,255,255,.4)}
+.tarea-fecha.vencida{color:#ff7070}
+.tarea-del{background:none;border:none;color:rgba(255,255,255,.25);cursor:pointer;font-size:.85rem;padding:2px 6px;border-radius:6px;transition:color .2s;flex-shrink:0}
+.tarea-del:hover{color:#ff7070}
+.tarea-form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.1rem;margin-bottom:1.2rem}
+.tarea-form h4{color:var(--bl);font-size:.85rem;font-weight:700;margin-bottom:.8rem}
+.tarea-form input,.tarea-form select,.tarea-form textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;color:#fff;font-family:'Lato',sans-serif;font-size:.85rem;padding:.45rem .75rem;outline:none;box-sizing:border-box;margin-bottom:.55rem}
+.tarea-form input:focus,.tarea-form select:focus{border-color:var(--rose)}
+.tarea-form select option{background:#2a1a22;color:#fff}
+.tarea-add-btn{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;border:none;border-radius:8px;padding:.55rem 1.2rem;font-weight:700;font-size:.83rem;cursor:pointer;width:100%;margin-top:.2rem}
+.tarea-filtros{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tarea-fil-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.55);border-radius:50px;padding:.3rem .85rem;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s}
+.tarea-fil-btn.active{background:var(--rose);border-color:var(--rose);color:#fff}
+.tarea-summary{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
+.tarea-sum-card{background:rgba(255,255,255,.06);border-radius:10px;padding:.6rem 1rem;flex:1;min-width:90px;text-align:center}
+.tarea-sum-card span{display:block;font-size:1.5rem;font-weight:800;color:var(--bl);font-family:'Playfair Display',serif}
+.tarea-sum-card p{font-size:.68rem;color:rgba(255,255,255,.45);margin:0}
+.tarea-sum-card.warn span{color:#f0d070}
+.tarea-sum-card.ok span{color:#70d090}
 .adm-section.active{display:block}
 
 /* Admin messages */
@@ -510,6 +550,36 @@ footer a{color:var(--bl);text-decoration:none}
   <div class="tipos-grid" id="tipos-grid"></div>
 </section>
 
+<!-- PAQUETES -->
+<section id="paquetes">
+  <div class="section-header reveal">
+    <span class="section-label">Nuestros paquetes</span>
+    <h2 class="section-title">Invitaciones Web</h2>
+    <div class="section-div"></div>
+    <p style="margin-top:.8rem;color:var(--tm);font-size:.92rem">Páginas web personalizadas con funciones interactivas para tu evento</p>
+  </div>
+  <div class="trust-bar reveal" id="trust-bar"></div>
+  <div class="quiz-cta-wrap reveal">
+    <button class="quiz-cta-btn" onclick="openQuiz()">🤔 ¿No sabes cuál elegir? Descubre tu paquete ideal</button>
+  </div>
+  <div class="paquetes-grid" id="paquetes-grid"></div>
+  <div class="comp-toggle-wrap">
+    <button class="comp-toggle-btn" id="comp-toggle-btn" onclick="toggleComparador()">📊 Ver comparación completa de paquetes</button>
+  </div>
+  <div id="comp-table-wrap"></div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="section-header reveal">
+    <span class="section-label">Nuestros diseños</span>
+    <h2 class="section-title">Galería de ejemplos</h2>
+    <div class="section-div"></div>
+    <p style="margin-top:.8rem;color:var(--tm);font-size:.85rem">🎬 Toca para reproducir · ⏩ Avanza · ↩ Retrocede · Haz clic para ver completo</p>
+  </div>
+  <div class="gallery-tabs" id="gal-tabs"></div>
+  <div id="gal-sections"></div>
+</section>
 
 <!-- PROCESO DE COMPRA -->
 <section id="proceso" style="padding-top:0">
@@ -547,36 +617,6 @@ footer a{color:var(--bl);text-decoration:none}
   </div>
 </section>
 
-<!-- PAQUETES -->
-<section id="paquetes">
-  <div class="section-header reveal">
-    <span class="section-label">Nuestros paquetes</span>
-    <h2 class="section-title">Invitaciones Web</h2>
-    <div class="section-div"></div>
-    <p style="margin-top:.8rem;color:var(--tm);font-size:.92rem">Páginas web personalizadas con funciones interactivas para tu evento</p>
-  </div>
-  <div class="trust-bar reveal" id="trust-bar"></div>
-  <div class="quiz-cta-wrap reveal">
-    <button class="quiz-cta-btn" onclick="openQuiz()">🤔 ¿No sabes cuál elegir? Descubre tu paquete ideal</button>
-  </div>
-  <div class="paquetes-grid" id="paquetes-grid"></div>
-  <div class="comp-toggle-wrap">
-    <button class="comp-toggle-btn" id="comp-toggle-btn" onclick="toggleComparador()">📊 Ver comparación completa de paquetes</button>
-  </div>
-  <div id="comp-table-wrap"></div>
-</section>
-
-<!-- GALERÍA -->
-<section id="galeria">
-  <div class="section-header reveal">
-    <span class="section-label">Nuestros diseños</span>
-    <h2 class="section-title">Galería de ejemplos</h2>
-    <div class="section-div"></div>
-    <p style="margin-top:.8rem;color:var(--tm);font-size:.85rem">🎬 Toca para reproducir · ⏩ Avanza · ↩ Retrocede · Haz clic para ver completo</p>
-  </div>
-  <div class="gallery-tabs" id="gal-tabs"></div>
-  <div id="gal-sections"></div>
-</section>
 
 <!-- CONTACTO -->
 <section id="contacto">
@@ -791,6 +831,7 @@ footer a{color:var(--bl);text-decoration:none}
     <button class="adm-tab" onclick="switchAdmTab('tipos',this)">🎟️ Tipos</button>
     <button class="adm-tab" onclick="switchAdmTab('paquetes',this)">💎 Paquetes y Precios</button>
     <button class="adm-tab" onclick="switchAdmTab('videos',this)">🎬 Gestionar Videos</button>
+    <button class="adm-tab" onclick="switchAdmTab('tareas',this)">✅ Tareas</button>
   </div>
   <div class="adm-body">
     <div class="adm-section active" id="adm-mensajes"></div>
@@ -799,6 +840,7 @@ footer a{color:var(--bl);text-decoration:none}
     <div class="adm-section" id="adm-tipos"></div>
     <div class="adm-section" id="adm-paquetes"></div>
     <div class="adm-section" id="adm-videos"></div>
+    <div class="adm-section" id="adm-tareas"></div>
   </div>
 </div>
 
@@ -1267,6 +1309,20 @@ function renderQuizResult(){
 // ═══════════════════════════════════════
 let galIdxMap = []; // maps cat item index -> global VIDEOS index
 
+
+function pkgTagHtml(pkg){
+  if(!pkg) return '';
+  const map = {
+    'Básica':'basica','Web Básica':'basica',
+    'Bronce':'bronce','Web Bronce':'bronce',
+    'Plata':'plata','Web Plata':'plata',
+    'Oro':'oro','Web Oro':'oro',
+    'Oro Plus':'oroplus','Web Oro Plus':'oroplus',
+    'Oro Premium':'premium','Web Oro Premium':'premium',
+  };
+  const cls = map[pkg] || 'oro';
+  return `<span class="gal-pkg-tag ${cls}">💎 ${pkg}</span>`;
+}
 function buildGallery(){
   const cats=[...new Set(VIDEOS.map(v=>v.c))];
   const tabsEl=document.getElementById('gal-tabs');
@@ -1309,6 +1365,7 @@ function buildGallery(){
         <div class="gal-spinner"></div>
         ${(()=>{ if(!vid.added) return ''; const d=(new Date()-new Date(vid.added))/(864e5); return (d>=0&&d<=60)?'<div class=\"gal-nuevo-badge\">✨ Nuevo</div>':''; })()}
         <div class="gal-title">${vid.t}</div>
+        ${pkgTagHtml(vid.paquete)}
         <div class="gal-controls">
           <button class="gal-play-btn" onclick="galTogglePlay(event,this)">▶</button>
           <div class="gal-seek-row">
@@ -1577,11 +1634,121 @@ function openAdmin(){
   renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs(); renderAdmVideos();
 }
 function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
+
+// ═══════════════════════════════════════
+//  TAREAS
+// ═══════════════════════════════════════
+let TAREAS = loadState('me_tareas', []);
+let tareaFiltro = 'todas';
+
+function saveTareas(){ saveState('me_tareas', TAREAS); }
+
+function addTarea(){
+  const titulo = document.getElementById('t-titulo').value.trim();
+  if(!titulo){ alert('Escribe el título de la tarea.'); return; }
+  const prio   = document.getElementById('t-prio').value;
+  const fecha  = document.getElementById('t-fecha').value;
+  const nota   = document.getElementById('t-nota').value.trim();
+  TAREAS.unshift({
+    id: Date.now().toString(),
+    titulo, prio, fecha, nota,
+    completada: false,
+    creadaEn: new Date().toLocaleDateString('es-MX')
+  });
+  saveTareas();
+  document.getElementById('t-titulo').value='';
+  document.getElementById('t-nota').value='';
+  document.getElementById('t-fecha').value='';
+  renderTareas();
+}
+
+function toggleTarea(id){
+  const t = TAREAS.find(t=>t.id===id);
+  if(t){ t.completada = !t.completada; saveTareas(); renderTareas(); }
+}
+
+function deleteTarea(id){
+  if(!confirm('¿Eliminar esta tarea?')) return;
+  TAREAS = TAREAS.filter(t=>t.id!==id);
+  saveTareas(); renderTareas();
+}
+
+function setTareaFiltro(f){ tareaFiltro=f; renderTareas(); }
+
+function renderTareas(){
+  const el = document.getElementById('adm-tareas');
+  if(!el) return;
+
+  const total      = TAREAS.length;
+  const pendientes = TAREAS.filter(t=>!t.completada).length;
+  const completadas= TAREAS.filter(t=>t.completada).length;
+  const hoy        = new Date().toISOString().split('T')[0];
+  const vencidas   = TAREAS.filter(t=>!t.completada && t.fecha && t.fecha < hoy).length;
+
+  let lista = TAREAS;
+  if(tareaFiltro==='pendientes')  lista = TAREAS.filter(t=>!t.completada);
+  if(tareaFiltro==='completadas') lista = TAREAS.filter(t=>t.completada);
+  if(tareaFiltro==='alta')        lista = TAREAS.filter(t=>!t.completada && t.prio==='Alta');
+  if(tareaFiltro==='vencidas')    lista = TAREAS.filter(t=>!t.completada && t.fecha && t.fecha < hoy);
+
+  el.innerHTML = `
+    <div class="tarea-form">
+      <h4>➕ Nueva tarea</h4>
+      <input id="t-titulo" placeholder="Título de la tarea..." onkeydown="if(event.key==='Enter')addTarea()">
+      <div style="display:flex;gap:.6rem">
+        <select id="t-prio" style="flex:1">
+          <option value="Alta">🔴 Alta</option>
+          <option value="Media" selected>🟡 Media</option>
+          <option value="Baja">🟢 Baja</option>
+        </select>
+        <input id="t-fecha" type="date" style="flex:1" title="Fecha límite (opcional)">
+      </div>
+      <textarea id="t-nota" placeholder="Nota o descripción (opcional)" style="min-height:55px;resize:none"></textarea>
+      <button class="tarea-add-btn" onclick="addTarea()">✅ Agregar tarea</button>
+    </div>
+
+    <div class="tarea-summary">
+      <div class="tarea-sum-card"><span>${total}</span><p>Total</p></div>
+      <div class="tarea-sum-card warn"><span>${pendientes}</span><p>Pendientes</p></div>
+      <div class="tarea-sum-card ok"><span>${completadas}</span><p>Completadas</p></div>
+      <div class="tarea-sum-card${vencidas?` warn`:''}"><span>${vencidas}</span><p>Vencidas</p></div>
+    </div>
+
+    <div class="tarea-filtros">
+      <button class="tarea-fil-btn${tareaFiltro==='todas'?' active':''}"      onclick="setTareaFiltro('todas')">Todas (${total})</button>
+      <button class="tarea-fil-btn${tareaFiltro==='pendientes'?' active':''}" onclick="setTareaFiltro('pendientes')">Pendientes (${pendientes})</button>
+      <button class="tarea-fil-btn${tareaFiltro==='alta'?' active':''}"       onclick="setTareaFiltro('alta')">🔴 Alta prioridad</button>
+      <button class="tarea-fil-btn${tareaFiltro==='vencidas'?' active':''}"   onclick="setTareaFiltro('vencidas')">⚠️ Vencidas</button>
+      <button class="tarea-fil-btn${tareaFiltro==='completadas'?' active':''}" onclick="setTareaFiltro('completadas')">✅ Completadas</button>
+    </div>
+
+    ${lista.length===0?'<p style="color:rgba(255,255,255,.3);text-align:center;margin-top:2rem">No hay tareas aquí.</p>':''}
+    ${lista.map(t=>{
+      const vencida = !t.completada && t.fecha && t.fecha < hoy;
+      const prioClass = t.prio==='Alta'?'prio-alta':t.prio==='Baja'?'prio-baja':'prio-media';
+      return `<div class="tarea-card${t.completada?' completada':''}">
+        <div class="tarea-check" onclick="toggleTarea('${t.id}')" title="${t.completada?'Marcar pendiente':'Marcar completada'}">${t.completada?'✓':''}</div>
+        <div class="tarea-body">
+          <div class="tarea-titulo">${t.titulo}</div>
+          ${t.nota?`<div style="font-size:.78rem;color:rgba(255,255,255,.45);margin-top:.2rem">${t.nota}</div>`:''}
+          <div class="tarea-meta">
+            <span class="tarea-prio ${prioClass}">${t.prio}</span>
+            ${t.fecha?`<span class="tarea-fecha${vencida?' vencida':''}">${vencida?'⚠️ ':''} Límite: ${new Date(t.fecha+'T12:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'})}</span>`:''}
+            <span class="tarea-fecha">Creada: ${t.creadaEn}</span>
+          </div>
+        </div>
+        <button class="tarea-del" onclick="deleteTarea('${t.id}')" title="Eliminar">🗑</button>
+      </div>`;
+    }).join('')}
+  `;
+}
+
 function switchAdmTab(id,btn){
   document.querySelectorAll('.adm-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.adm-section').forEach(s=>s.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('adm-'+id).classList.add('active');
+  if(id==='tareas') renderTareas();
 }
 
 // Messages / Pedidos tab
@@ -1785,6 +1952,15 @@ function renderAdmVideos(){
                 ${cats.map(c=>`<option value="${c}"${c===v.c?' selected':''}>${CAT_ICONS[c]||'🎉'} ${c}</option>`).join('')}
                 <option value="__nueva__">+ Nueva categoría...</option>
               </select>
+              <select
+                style="background:#1a0810;border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#d0d090;font-family:Lato,sans-serif;font-size:.76rem;padding:.28rem .5rem;outline:none;width:100%;cursor:pointer;margin-top:.3rem"
+                title="Paquete al que pertenece este diseño"
+                onchange="VIDEOS[${i}].paquete=this.value==='—'?'':this.value;saveState('me_videos',VIDEOS);buildGallery()">
+                ${['—','Web Básica','Web Bronce','Web Plata','Web Oro','Web Oro Plus','Web Oro Premium'].map(p=>`<option value="${p}"${(v.paquete||'—')===p?' selected':''}>${p}</option>`).join('')}
+              </select>
+              <input type="date" value="${v.added||''}" title="Fecha subida (badge NUEVO)"
+                style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:7px;color:rgba(255,255,255,.7);font-family:Lato,sans-serif;font-size:.75rem;padding:.28rem .5rem;outline:none;width:100%;margin-top:.3rem;cursor:pointer"
+                onchange="VIDEOS[${i}].added=this.value;saveState('me_videos',VIDEOS);buildGallery()">
             </div>
             <button
               onclick="adminDelVideo(${i})"
@@ -1807,6 +1983,18 @@ function renderAdmVideos(){
     <div class="adm-add-row">
       <input class="adm-title-inp" id="adm-new-title" placeholder="Nombre del video (ej. XV Rosa 2025)">
       <input class="adm-url-inp" id="adm-new-url" placeholder="URL raw del video (githubusercontent.com/...)">
+    </div>
+    <div class="adm-add-row">
+      <select id="adm-new-paquete" style="background:#1a0810;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:#d0d090;font-family:Lato,sans-serif;font-size:.84rem;padding:.42rem .7rem;outline:none;flex:1">
+        <option value="">— Sin paquete asignado —</option>
+        <option value="Web Básica">💠 Web Básica</option>
+        <option value="Web Bronce">🥉 Web Bronce</option>
+        <option value="Web Plata">🥈 Web Plata</option>
+        <option value="Web Oro">🥇 Web Oro</option>
+        <option value="Web Oro Plus">💜 Web Oro Plus</option>
+        <option value="Web Oro Premium">✨ Web Oro Premium</option>
+      </select>
+      <input class="adm-title-inp" id="adm-new-added" type="date" title="Fecha de subida (para badge NUEVO)" style="flex:0.6" placeholder="Fecha subida">
     </div>
     <button class="adm-save-btn" onclick="adminAddVideo()">✦ Agregar video</button>
   </div>
@@ -1851,10 +2039,17 @@ function adminAddVideo(){
   const title=document.getElementById('adm-new-title').value.trim();
   const url=document.getElementById('adm-new-url').value.trim();
   if(!cat||!title||!url){ alert('Completa todos los campos'); return; }
-  VIDEOS.push({c:cat,t:title,s:url});
+  const paquete = document.getElementById('adm-new-paquete').value;
+  const added   = document.getElementById('adm-new-added').value;
+  const newVid  = {c:cat, t:title, s:url};
+  if(paquete) newVid.paquete = paquete;
+  if(added)   newVid.added   = added;
+  VIDEOS.push(newVid);
   saveState('me_videos',VIDEOS);
   buildGallery();
   renderAdmVideos();
+  document.getElementById('adm-new-paquete').value='';
+  document.getElementById('adm-new-added').value='';
   alert('✅ Video agregado: '+title);
 }
 function adminDelVideo(i){
