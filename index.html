@@ -414,6 +414,13 @@ footer a{color:var(--bl);text-decoration:none}
 .ped-act-btn.wa:hover{background:rgba(70,190,120,.3)}
 .ped-act-btn.danger{background:rgba(220,80,80,.14);border-color:rgba(220,80,80,.35)}
 .ped-act-btn.danger:hover{background:rgba(220,80,80,.28)}
+.adm-pending-banner{background:linear-gradient(135deg,rgba(230,170,60,.22),rgba(230,120,60,.16));border-bottom:1px solid rgba(230,170,60,.4);color:#ffe8b8;padding:.65rem 1.5rem;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.adm-pending-banner button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif}
+.atencion-select{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:50px;color:#fff;font-family:'Lato',sans-serif;font-size:.76rem;font-weight:700;padding:.38rem .8rem;cursor:pointer;outline:none}
+.atencion-select.st-sin{border-color:rgba(220,80,80,.5);background:rgba(220,80,80,.14)}
+.atencion-select.st-proceso{border-color:rgba(230,170,60,.5);background:rgba(230,170,60,.14)}
+.atencion-select.st-atendido{border-color:rgba(90,160,220,.5);background:rgba(90,160,220,.14)}
+.atencion-select.st-realizado{border-color:rgba(70,190,120,.5);background:rgba(70,190,120,.14)}
 .ped-controls{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.08)}
 .ped-ctrl{flex:1;min-width:150px;display:flex;flex-direction:column;gap:.3rem}
 .ped-ctrl label{color:rgba(255,255,255,.45);font-size:.7rem;font-weight:700}
@@ -836,6 +843,7 @@ footer a{color:var(--bl);text-decoration:none}
       <button class="adm-top-btn danger" onclick="closeAdmin()">✕ Cerrar panel</button>
     </div>
   </div>
+  <div id="adm-pending-banner" class="adm-pending-banner" style="display:none"></div>
   <div class="adm-tabs">
     <button class="adm-tab active" onclick="switchAdmTab('mensajes',this)">🎁 Pedidos</button>
     <button class="adm-tab" onclick="switchAdmTab('estadisticas',this)">📊 Estadísticas</button>
@@ -1649,7 +1657,7 @@ function listenMsgs(){
     msgsCache=remote.length?remote:msgsCache;
     saveState('me_msgs',msgsCache);
     // si el panel admin está abierto, refresca en vivo
-    if(document.getElementById('admin-overlay')?.classList.contains('open')){ renderAdmMsgs(); renderAdmStats(); }
+    if(document.getElementById('admin-overlay')?.classList.contains('open')){ renderAdmMsgs(); renderAdmStats(); showPendingBanner(); }
   },err=>console.warn('Firestore mensajes offline, usando copia local',err));
 }
 // Actualiza el estado de diseño o de pago de un pedido directamente en Firestore
@@ -1731,6 +1739,17 @@ function adminLogin(){
 function openAdmin(){
   document.getElementById('admin-overlay').classList.add('open');
   renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs();
+  showPendingBanner();
+}
+function showPendingBanner(){
+  const banner=document.getElementById('adm-pending-banner');
+  const msgs=getMsgs();
+  const pendientes=msgs.filter(m=>estadoAtencion(m)==='Sin atender').length;
+  const enProceso=msgs.filter(m=>estadoAtencion(m)==='En proceso').length;
+  if(pendientes+enProceso===0){ banner.style.display='none'; return; }
+  banner.style.display='flex';
+  banner.innerHTML=`<span>🔔 Tienes <b>${pendientes}</b> mensaje(s) sin atender${enProceso?` y <b>${enProceso}</b> en proceso`:''}.</span>
+    <button onclick="document.getElementById('adm-pending-banner').style.display='none'">Ocultar</button>`;
 }
 function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
 
@@ -1876,6 +1895,14 @@ function switchAdmTab(id,btn){
 // Messages / Pedidos tab
 const ESTADOS_DISENO=['Pendiente','En proceso','Entregado'];
 const ESTADOS_PAGO=['No pagado','Anticipo pagado','Pagado completo'];
+const ESTADOS_ATENCION=['Sin atender','En proceso','Atendido','Realizado'];
+function estadoAtencion(m){ return m.atencion||'Sin atender'; }
+function atencionClass(v){ return v==='Sin atender'?'st-sin':v==='En proceso'?'st-proceso':v==='Atendido'?'st-atendido':'st-realizado'; }
+function updateAtencion(id,value){
+  updatePedido(id,'atencion',value);
+  const m=msgsCache.find(x=>x.id===id); if(m) m.atencion=value;
+  renderAdmMsgs(); showPendingBanner();
+}
 let pedidoFiltro='todos';
 function setPedidoFiltro(f){ pedidoFiltro=f; renderAdmMsgs(); }
 function renderAdmMsgs(){
@@ -1887,21 +1914,25 @@ function renderAdmMsgs(){
   const totalPedidos=msgs.filter(isPedido).length;
   const pendientes=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')!=='Entregado').length;
   const sinPagar=msgs.filter(m=>isPedido(m)&&(m.pago||'No pagado')==='No pagado').length;
+  const sinAtender=msgs.filter(m=>estadoAtencion(m)==='Sin atender').length;
 
   let filtered=msgs;
   if(pedidoFiltro==='pendientes') filtered=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')!=='Entregado');
   else if(pedidoFiltro==='sinpagar') filtered=msgs.filter(m=>isPedido(m)&&(m.pago||'No pagado')!=='Pagado completo');
   else if(pedidoFiltro==='entregados') filtered=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')==='Entregado');
   else if(pedidoFiltro==='contacto') filtered=msgs.filter(m=>!isPedido(m));
+  else if(pedidoFiltro==='sinatender') filtered=msgs.filter(m=>estadoAtencion(m)==='Sin atender');
 
   el.innerHTML=`
     <div class="ped-summary">
+      <div class="ped-sum-card danger"><span>${sinAtender}</span>Sin atender</div>
       <div class="ped-sum-card"><span>${totalPedidos}</span>Pedidos totales</div>
       <div class="ped-sum-card warn"><span>${pendientes}</span>Por entregar</div>
       <div class="ped-sum-card danger"><span>${sinPagar}</span>Sin pagar completo</div>
     </div>
     <div class="ped-filters">
       <button class="ped-filter-btn${pedidoFiltro==='todos'?' active':''}" onclick="setPedidoFiltro('todos')">Todos</button>
+      <button class="ped-filter-btn${pedidoFiltro==='sinatender'?' active':''}" onclick="setPedidoFiltro('sinatender')">Sin atender</button>
       <button class="ped-filter-btn${pedidoFiltro==='pendientes'?' active':''}" onclick="setPedidoFiltro('pendientes')">Por entregar</button>
       <button class="ped-filter-btn${pedidoFiltro==='entregados'?' active':''}" onclick="setPedidoFiltro('entregados')">Entregados</button>
       <button class="ped-filter-btn${pedidoFiltro==='sinpagar'?' active':''}" onclick="setPedidoFiltro('sinpagar')">Sin pagar</button>
@@ -1913,10 +1944,14 @@ function renderAdmMsgs(){
     const pedido=isPedido(m);
     const estado=m.estado||'Pendiente';
     const pago=m.pago||'No pagado';
+    const atn=estadoAtencion(m);
     return `<div class="msg-card${pedido?' is-pedido':''}">
       <h4>${pedido?'🎁':'📩'} ${m.nombre||m.tipo||'Mensaje'} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp||''}</span></h4>
-      <div class="msg-meta">${Object.entries(m).filter(([k])=>!['timestamp','id','createdAt','estado','pago','notas'].includes(k)).map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
+      <div class="msg-meta">${Object.entries(m).filter(([k])=>!['timestamp','id','createdAt','estado','pago','notas','atencion'].includes(k)).map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
       <div class="ped-actions">
+        <select class="atencion-select ${atencionClass(atn)}" onchange="updateAtencion('${m.id||''}',this.value)">
+          ${ESTADOS_ATENCION.map(s=>`<option ${atn===s?'selected':''}>${s}</option>`).join('')}
+        </select>
         ${m.telefono?`<button class="ped-act-btn wa" onclick="abrirWhatsappPedido('${m.telefono}','${(m.nombre||'').replace(/'/g,"\\'")}')">💬 WhatsApp</button>
         <button class="ped-act-btn" onclick="copiarTelefono('${m.telefono}',this)">📋 Copiar número</button>`:''}
         <button class="ped-act-btn danger" onclick="deletePedido('${m.id||''}','${(m.nombre||'').replace(/'/g,"\\'")}')">🗑️ Eliminar (ya se hizo)</button>
