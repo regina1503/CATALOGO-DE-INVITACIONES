@@ -407,6 +407,13 @@ footer a{color:var(--bl);text-decoration:none}
 .ped-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem}
 .ped-filter-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.6);padding:.4rem .9rem;border-radius:50px;font-family:'Lato',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer}
 .ped-filter-btn.active{background:var(--rose);border-color:var(--rose);color:#fff}
+.ped-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem}
+.ped-act-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;padding:.38rem .8rem;border-radius:50px;font-family:'Lato',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:background .2s}
+.ped-act-btn:hover{background:rgba(255,255,255,.16)}
+.ped-act-btn.wa{background:rgba(70,190,120,.18);border-color:rgba(70,190,120,.4)}
+.ped-act-btn.wa:hover{background:rgba(70,190,120,.3)}
+.ped-act-btn.danger{background:rgba(220,80,80,.14);border-color:rgba(220,80,80,.35)}
+.ped-act-btn.danger:hover{background:rgba(220,80,80,.28)}
 .ped-controls{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.08)}
 .ped-ctrl{flex:1;min-width:150px;display:flex;flex-direction:column;gap:.3rem}
 .ped-ctrl label{color:rgba(255,255,255,.45);font-size:.7rem;font-weight:700}
@@ -1651,10 +1658,65 @@ function updatePedido(id,field,value){
   db.collection('mensajes').doc(id).update({[field]:value})
     .catch(err=>{ console.error(err); alert('No se pudo guardar el cambio, revisa tu conexión.'); });
 }
-function getStats(){ return loadState('me_stats',{}); }
-function saveStats(s){ saveState('me_stats',s); }
-function trackCat(cat){ const s=getStats(); s.catViews=s.catViews||{}; s.catViews[cat]=(s.catViews[cat]||0)+1; s.totalVisits=(s.totalVisits||0)+1; s.lastVisit=new Date().toLocaleString('es-MX'); const hr=new Date().getHours(); s.hourCounts=s.hourCounts||{}; const bkt=hr<12?'Mañana':hr<18?'Tarde':'Noche'; s.hourCounts[bkt]=(s.hourCounts[bkt]||0)+1; saveStats(s); }
-function trackVideoView(title,cat){ const s=getStats(); s.videoViews=s.videoViews||{}; s.videoViews[title]=(s.videoViews[title]||0)+1; trackCat(cat); }
+// Elimina un pedido/mensaje (ej. ya se realizó / ya no aplica)
+function deletePedido(id,nombre){
+  if(!id){ alert('Este pedido es muy antiguo y no se puede eliminar en línea.'); return; }
+  if(!confirm(`¿Eliminar el pedido de "${nombre||'este cliente'}"? Esta acción no se puede deshacer.`)) return;
+  db.collection('mensajes').doc(id).delete()
+    .then(()=>{ msgsCache=msgsCache.filter(m=>m.id!==id); saveState('me_msgs',msgsCache); renderAdmMsgs(); })
+    .catch(err=>{ console.error(err); alert('No se pudo eliminar, revisa tu conexión.'); });
+}
+// Copia el número de WhatsApp al portapapeles
+function copiarTelefono(tel,btn){
+  if(!tel){ alert('Este pedido no tiene número guardado.'); return; }
+  const limpio=tel.toString().replace(/\D/g,'');
+  navigator.clipboard.writeText(limpio).then(()=>{
+    if(btn){ const t=btn.textContent; btn.textContent='✅ Copiado'; setTimeout(()=>btn.textContent=t,1400); }
+  }).catch(()=>alert('No se pudo copiar el número: '+limpio));
+}
+// Abre WhatsApp con el número del pedido y un mensaje inicial
+function abrirWhatsappPedido(tel,nombre){
+  if(!tel){ alert('Este pedido no tiene número guardado.'); return; }
+  const limpio=tel.toString().replace(/\D/g,'').replace(/^52/,'').replace(/^0+/,'');
+  const msg=`Hola${nombre?' '+nombre:''}, te escribo de Momentos Encantados sobre tu invitación 💕`;
+  window.open(`https://wa.me/52${limpio}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// ═══════════════════════════════════════
+//  ESTADÍSTICAS DE VISTAS (Firestore, compartidas entre dispositivos)
+// ═══════════════════════════════════════
+function getWeekKey(d){
+  d=new Date(d);
+  d.setHours(0,0,0,0);
+  d.setDate(d.getDate()+3-((d.getDay()+6)%7)); // jueves de esa semana ISO
+  const yearStart=new Date(d.getFullYear(),0,1);
+  const weekNo=Math.ceil((((d-yearStart)/86400000)+1)/7);
+  return `${d.getFullYear()}-S${String(weekNo).padStart(2,'0')}`;
+}
+function weekLabel(key){
+  const [y,w]=key.split('-S');
+  return `Sem ${parseInt(w)} · ${y}`;
+}
+let vistasCache=loadState('me_vistas_cache',[]); // respaldo local
+function trackCat(cat){
+  const semana=getWeekKey(new Date());
+  db.collection('vistas').add({tipo:'categoria',categoria:cat,semana,createdAt:firebase.firestore.FieldValue.serverTimestamp()})
+    .catch(err=>console.warn('No se pudo registrar la vista (offline)',err));
+}
+function trackVideoView(title,cat){
+  const semana=getWeekKey(new Date());
+  db.collection('vistas').add({tipo:'modelo',modelo:title,categoria:cat,semana,createdAt:firebase.firestore.FieldValue.serverTimestamp()})
+    .catch(err=>console.warn('No se pudo registrar la vista (offline)',err));
+}
+function listenVistas(){
+  db.collection('vistas').orderBy('createdAt','desc').limit(4000).onSnapshot(snap=>{
+    const remote=[];
+    snap.forEach(doc=>remote.push(doc.data()));
+    vistasCache=remote;
+    saveState('me_vistas_cache',vistasCache);
+    if(document.getElementById('admin-overlay')?.classList.contains('open')) renderAdmStats();
+  },err=>console.warn('Firestore vistas offline, usando copia local',err));
+}
 
 // ═══════════════════════════════════════
 //  ADMIN
@@ -1854,6 +1916,11 @@ function renderAdmMsgs(){
     return `<div class="msg-card${pedido?' is-pedido':''}">
       <h4>${pedido?'🎁':'📩'} ${m.nombre||m.tipo||'Mensaje'} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp||''}</span></h4>
       <div class="msg-meta">${Object.entries(m).filter(([k])=>!['timestamp','id','createdAt','estado','pago','notas'].includes(k)).map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
+      <div class="ped-actions">
+        ${m.telefono?`<button class="ped-act-btn wa" onclick="abrirWhatsappPedido('${m.telefono}','${(m.nombre||'').replace(/'/g,"\\'")}')">💬 WhatsApp</button>
+        <button class="ped-act-btn" onclick="copiarTelefono('${m.telefono}',this)">📋 Copiar número</button>`:''}
+        <button class="ped-act-btn danger" onclick="deletePedido('${m.id||''}','${(m.nombre||'').replace(/'/g,"\\'")}')">🗑️ Eliminar (ya se hizo)</button>
+      </div>
       ${pedido?`
       <div class="ped-controls">
         <div class="ped-ctrl">
@@ -1885,31 +1952,59 @@ function exportMsgs(){
 }
 
 // Stats tab
+let statsSemanaSel='actual'; // 'actual' | 'todas'
+function setStatsSemana(v){ statsSemanaSel=v; renderAdmStats(); }
 function renderAdmStats(){
-  const s=getStats(); const msgs=getMsgs();
-  const catV=s.catViews||{}; const maxC=Math.max(1,...Object.values(catV));
+  const msgs=getMsgs();
+  const vistas=vistasCache;
   const el=document.getElementById('adm-estadisticas');
+  const semanaActual=getWeekKey(new Date());
+
+  // Agrupar por semana (últimas 8 semanas con datos)
+  const porSemana={};
+  vistas.forEach(v=>{ porSemana[v.semana]=(porSemana[v.semana]||0)+1; });
+  const semanasOrdenadas=Object.keys(porSemana).sort().slice(-8);
+  const maxSemana=Math.max(1,...semanasOrdenadas.map(k=>porSemana[k]));
+
+  // Filtrar a la semana elegida o todas
+  const vistasFiltradas = statsSemanaSel==='actual' ? vistas.filter(v=>v.semana===semanaActual) : vistas;
+
+  const catV={}; vistasFiltradas.filter(v=>v.tipo==='categoria').forEach(v=>{ catV[v.categoria]=(catV[v.categoria]||0)+1; });
+  const maxC=Math.max(1,...Object.values(catV),1);
   const favCat=Object.entries(catV).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
-  const topHr=Object.entries(s.hourCounts||{}).sort((a,b)=>b[1]-a[1])[0]?.[0]||'—';
+
+  const modV={}; vistasFiltradas.filter(v=>v.tipo==='modelo').forEach(v=>{ modV[v.modelo]=(modV[v.modelo]||0)+1; });
+  const topModelos=Object.entries(modV).sort((a,b)=>b[1]-a[1]).slice(0,8);
+
   el.innerHTML=`
   <div class="stat-grid">
-    <div class="stat-card"><div class="sn">${s.totalVisits||0}</div><div class="sl">VISITAS</div></div>
+    <div class="stat-card"><div class="sn">${vistas.length}</div><div class="sl">VISTAS TOTALES</div></div>
+    <div class="stat-card"><div class="sn">${porSemana[semanaActual]||0}</div><div class="sl">VISTAS ESTA SEMANA</div></div>
     <div class="stat-card"><div class="sn">${msgs.length}</div><div class="sl">MENSAJES</div></div>
-    <div class="stat-card"><div class="sn">${Object.keys(s.videoViews||{}).length}</div><div class="sl">VIDEOS VISTOS</div></div>
+    <div class="stat-card"><div class="sn">${Object.keys(modV).length}</div><div class="sl">MODELOS VISTOS (${statsSemanaSel==='actual'?'sem.':'total'})</div></div>
     <div class="stat-card"><div class="sn">${favCat}</div><div class="sl">CATEGORÍA FAVORITA</div></div>
-    <div class="stat-card"><div class="sn">${topHr}</div><div class="sl">HORA MÁS ACTIVA</div></div>
-    <div class="stat-card"><div class="sn">${s.lastVisit?s.lastVisit.split(',')[0]:'—'}</div><div class="sl">ÚLTIMA VISITA</div></div>
   </div>
-  <h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin-bottom:.9rem">INTERÉS POR CATEGORÍA</h4>
+
+  <h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin-bottom:.9rem">VISTAS POR SEMANA</h4>
+  ${semanasOrdenadas.length?semanasOrdenadas.map(k=>`<div class="interest-bar">
+    <div class="ib-label"><span>${weekLabel(k)}${k===semanaActual?' (actual)':''}</span><span>${porSemana[k]} vistas</span></div>
+    <div class="ib-track"><div class="ib-fill" style="width:${Math.round((porSemana[k]/maxSemana)*100)}%"></div></div>
+  </div>`).join(''):'<p style="color:rgba(255,255,255,.35);font-size:.85rem">Aún no hay datos suficientes.</p>'}
+
+  <div class="ped-filters" style="margin:1.3rem 0 .9rem">
+    <button class="ped-filter-btn${statsSemanaSel==='actual'?' active':''}" onclick="setStatsSemana('actual')">Solo esta semana</button>
+    <button class="ped-filter-btn${statsSemanaSel==='todas'?' active':''}" onclick="setStatsSemana('todas')">Todo el historial</button>
+  </div>
+
+  <h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin-bottom:.9rem">INTERÉS POR CATEGORÍA (${statsSemanaSel==='actual'?'esta semana':'histórico'})</h4>
   ${[...new Set(VIDEOS.map(v=>v.c))].map(cat=>`<div class="interest-bar">
     <div class="ib-label"><span>${CAT_ICONS[cat]||''} ${cat}</span><span>${catV[cat]||0} vistas</span></div>
     <div class="ib-track"><div class="ib-fill" style="width:${Math.round(((catV[cat]||0)/maxC)*100)}%"></div></div>
   </div>`).join('')}
-  ${(()=>{ const top=Object.entries(s.videoViews||{}).sort((a,b)=>b[1]-a[1]).slice(0,5);
-    if(!top.length) return '';
-    return `<h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin:1.3rem 0 .9rem">TOP 5 VIDEOS MÁS VISTOS</h4>`+
-      top.map(([t,n])=>`<div class="interest-bar"><div class="ib-label"><span>${t}</span><span>${n}×</span></div><div class="ib-track"><div class="ib-fill" style="width:${Math.round((n/top[0][1])*100)}%"></div></div></div>`).join('');
-  })()}`;
+
+  <h4 style="color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.06em;margin:1.3rem 0 .9rem">MODELOS MÁS VISTOS (${statsSemanaSel==='actual'?'esta semana':'histórico'})</h4>
+  ${topModelos.length?topModelos.map(([t,n])=>`<div class="interest-bar"><div class="ib-label"><span>${t}</span><span>${n}×</span></div><div class="ib-track"><div class="ib-fill" style="width:${Math.round((n/topModelos[0][1])*100)}%"></div></div></div>`).join(''):'<p style="color:rgba(255,255,255,.35);font-size:.85rem">Nadie ha visto modelos todavía en este periodo.</p>'}
+  `;
 }
 
 // Packages tab
@@ -2392,6 +2487,7 @@ setTimeout(()=>{ pageSettled=true; },1800);
 trackCat('Inicio');
 listenResenas();    // conecta reseñas en vivo con Firestore
 listenMsgs();       // conecta mensajes/contacto en vivo con Firestore
+listenVistas();     // conecta estadísticas de vistas en vivo con Firestore
 listenSiteConfig(); // conecta hero, contacto, tipos y paquetes en vivo con Firestore
 listenVideos();     // conecta galería de videos en vivo con Firestore
 listenTareas();     // conecta tareas del admin en vivo con Firestore
