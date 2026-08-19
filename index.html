@@ -1039,6 +1039,7 @@ function saveState(key, val){ try{ localStorage.setItem(key,JSON.stringify(val))
 let TIPOS = loadState('me_tipos', DEFAULT_TIPOS);
 let PKGS  = loadState('me_pkgs',  DEFAULT_PKGS);
 let VIDEOS = loadState('me_videos', DEFAULT_VIDEOS);
+let videosDirty=false; // true cuando hay cambios (agregar/eliminar) sin guardar en Firestore
 
 // Guarda el array VIDEOS en Firestore (colección 'config', doc 'videos')
 let saveVideosTimer=null;
@@ -1049,6 +1050,25 @@ function saveVideosFirestore(){
     db.collection('config').doc('videos').set({lista:VIDEOS},{merge:false})
       .catch(err=>console.warn('Videos: no se pudo sincronizar, guardado localmente',err));
   },400);
+}
+
+// Guardado explícito e inmediato (usado por el botón "Guardar cambios"),
+// con retroalimentación clara de éxito/error para el administrador.
+function saveVideosNow(){
+  const btn=document.getElementById('adm-videos-save-btn');
+  if(btn){ btn.disabled=true; btn.textContent='Guardando...'; }
+  saveState('me_videos', VIDEOS);
+  db.collection('config').doc('videos').set({lista:VIDEOS},{merge:false})
+    .then(()=>{
+      videosDirty=false;
+      if(btn){ btn.disabled=false; btn.textContent='💾 Guardar cambios'; btn.classList.remove('adm-save-pending'); }
+      alert('✅ Cambios guardados en el catálogo.');
+    })
+    .catch(err=>{
+      console.error(err);
+      if(btn){ btn.disabled=false; btn.textContent='💾 Guardar cambios'; }
+      alert('⚠️ No se pudo guardar. Revisa tu conexión o permisos e inténtalo de nuevo.');
+    });
 }
 
 let lastVideosJSON=null;
@@ -1751,7 +1771,10 @@ function showPendingBanner(){
   banner.innerHTML=`<span>🔔 Tienes <b>${pendientes}</b> mensaje(s) sin atender${enProceso?` y <b>${enProceso}</b> en proceso`:''}.</span>
     <button onclick="document.getElementById('adm-pending-banner').style.display='none'">Ocultar</button>`;
 }
-function closeAdmin(){ document.getElementById('admin-overlay').classList.remove('open'); }
+function closeAdmin(){
+  if(videosDirty && !confirm('⚠️ Tienes cambios del catálogo sin guardar. Si cierras ahora se perderán. ¿Cerrar de todos modos?')) return;
+  document.getElementById('admin-overlay').classList.remove('open');
+}
 
 // ═══════════════════════════════════════
 //  TAREAS
@@ -2206,8 +2229,12 @@ function renderAdmVideos(){
     </div>
     <button class="adm-save-btn" onclick="adminAddVideo()">✦ Agregar video</button>
   </div>
+  <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;flex-wrap:wrap">
+    <button id="adm-videos-save-btn" class="adm-save-btn${videosDirty?' adm-save-pending':''}" style="${videosDirty?'background:#e0a020;box-shadow:0 0 0 2px rgba(224,160,32,.4)':''}" onclick="saveVideosNow()">💾 Guardar cambios</button>
+    ${videosDirty?'<span style="color:#f0d090;font-size:.78rem">⚠️ Tienes cambios sin guardar</span>':'<span style="color:rgba(255,255,255,.35);font-size:.78rem">✓ Todo guardado</span>'}
+  </div>
   <p style="color:rgba(255,255,255,.4);font-size:.78rem;margin-bottom:1rem">
-    📹 ${VIDEOS.length} videos · Edita el <strong style="color:#f0d090">nombre</strong> o cambia la <strong style="color:#f0d090">categoría</strong> directamente en cada fila
+    📹 ${VIDEOS.length} videos · Edita el <strong style="color:#f0d090">nombre</strong> o cambia la <strong style="color:#f0d090">categoría</strong> directamente en cada fila. Al <strong style="color:#f0d090">agregar</strong> o <strong style="color:#f0d090">eliminar</strong> un modelo, recuerda pulsar <strong style="color:#f0d090">Guardar cambios</strong> para que se aplique de verdad.
   </p>
   ${groupedHTML}`;
 
@@ -2253,17 +2280,19 @@ function adminAddVideo(){
   if(paquete) newVid.paquete = paquete;
   if(added)   newVid.added   = added;
   VIDEOS.push(newVid);
-  saveVideosFirestore();
+  saveState('me_videos', VIDEOS); // respaldo local inmediato (no sube a Firestore todavía)
+  videosDirty=true;
   buildGallery();
   renderAdmVideos();
   document.getElementById('adm-new-paquete').value='';
   document.getElementById('adm-new-added').value='';
-  alert('✅ Video agregado: '+title);
+  alert('✅ Video agregado a la lista. Pulsa "💾 Guardar cambios" para publicarlo.');
 }
 function adminDelVideo(i){
   if(!confirm('¿Eliminar "'+VIDEOS[i].t+'"?')) return;
   VIDEOS.splice(i,1);
-  saveVideosFirestore();
+  saveState('me_videos', VIDEOS); // respaldo local inmediato (no sube a Firestore todavía)
+  videosDirty=true;
   buildGallery();
   renderAdmVideos();
 }
