@@ -654,7 +654,7 @@ footer a{color:var(--bl);text-decoration:none}
           <select name="paquete" class="full">
             <option value="">¿Qué te interesa?</option>
             <optgroup label="Tipos simples"><option>Imagen ($89)</option><option>Video ($149)</option><option>PDF con botones ($129)</option><option>Video con botones ($239)</option></optgroup>
-            <optgroup label="Paquetes Web"><option>Web Básica ($219)</option><option>Web Bronce ($359)</option><option>Web Avanzada ($429)</option><option>Web Plata ($499)</option><option>Web Oro ($659)</option><option>Web Oro Plus ($799)</option><option>Web Oro Premium ($999)</option></optgroup>
+            <optgroup label="Paquetes Web"><option>Web Básica ($219)</option><option>Web Bronce ($359)</option><option>Web Avanzada ($1299)</option><option>Web Plata ($499)</option><option>Web Oro ($659)</option><option>Web Oro Plus ($799)</option><option>Web Oro Premium ($999)</option></optgroup>
           </select>
           <textarea name="mensaje" placeholder="Cuéntanos los detalles de tu evento..." class="full"></textarea>
         </div>
@@ -850,6 +850,7 @@ footer a{color:var(--bl);text-decoration:none}
     <button class="adm-tab" onclick="switchAdmTab('sitio',this)">🖋️ Sitio y Contacto</button>
     <button class="adm-tab" onclick="switchAdmTab('tipos',this)">🎟️ Tipos</button>
     <button class="adm-tab" onclick="switchAdmTab('paquetes',this)">💎 Paquetes y Precios</button>
+    <button class="adm-tab" onclick="switchAdmTab('precios-modulares',this)">💰 Precios Modulares</button>
     <button class="adm-tab" onclick="switchAdmTab('videos',this)">🎬 Gestionar Videos</button>
     <button class="adm-tab" onclick="switchAdmTab('tareas',this)">✅ Tareas</button>
   </div>
@@ -859,6 +860,7 @@ footer a{color:var(--bl);text-decoration:none}
     <div class="adm-section" id="adm-sitio"></div>
     <div class="adm-section" id="adm-tipos"></div>
     <div class="adm-section" id="adm-paquetes"></div>
+    <div class="adm-section" id="adm-precios-modulares"></div>
     <div class="adm-section" id="adm-videos"></div>
     <div class="adm-section" id="adm-tareas"></div>
   </div>
@@ -896,12 +898,71 @@ const DEFAULT_TIPOS = [
 const DEFAULT_PKGS = [
   {name:"Web Básica",price:"$219",feat:false,badge:"",entrega:"2-3 días",confirmacion:"whatsapp",features:["Música de fondo","1 Botón de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Datos básicos del evento"]},
   {name:"Web Bronce",price:"$359",feat:false,badge:"",entrega:"3-4 días",confirmacion:"whatsapp",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Nombre de papás","Lluvia de sobres","Galería de fotos","Código de vestimenta"]},
-  {name:"Web Avanzada",price:"$429",feat:false,badge:"",entrega:"4-5 días",confirmacion:"panel",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","Videos integrados en la página","Galería de fotos ilimitada","Pases digitales divididos por categoría (niños, adultos, VIP)","Panel de control administrador","Confirmación de asistencia por invitado","Gestión independiente de pases por categoría"]},
+  {name:"Web Avanzada",price:"$1299",feat:false,badge:"",entrega:"4-5 días",confirmacion:"panel",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","Videos integrados en la página","Galería de fotos ilimitada","Pases digitales divididos por categoría (niños, adultos, VIP)","Panel de control administrador","Confirmación de asistencia por invitado","Gestión independiente de pases por categoría"]},
   {name:"Web Plata",price:"$499",feat:false,badge:"",entrega:"3-4 días",confirmacion:"whatsapp",features:["Todo Web Bronce","Pases digitales para 150 personas"]},
   {name:"Web Oro",price:"$659",feat:true,badge:"⭐ MÁS POPULAR",entrega:"5-7 días",confirmacion:"panel",features:["Frases de su elección","Música de fondo","2 Botones de ubicación","Confirmación de asistencia vía panel administrador","Pases digitales ilimitados","Cuenta regresiva","Lluvia de sobres / mesa de regalos","Galería de fotos dinámica","Opciones de hospedaje","Código de vestimenta"]},
   {name:"Web Oro Plus",price:"$799",feat:true,badge:"",promoUntil:"2026-08-31",entrega:"5-7 días",confirmacion:"panel",features:["Todo lo de Web Oro","QR de acceso al evento","QR para subir fotos el día del evento"]},
-  {name:"Web Oro Premium",price:"$999",feat:false,badge:"✨ NUEVO",promoUntil:"2026-08-31",entrega:"5-7 días",confirmacion:"panel",features:["Todo lo de Web Oro Plus","Música de reproducción automática","Invitación con animaciones","App entrada día del evento (QR dinámico)","Acomodo de mesas para invitados","Experiencia interactiva e inolvidable"]},
+  {name:"Web Oro Premium",price:"$999",feat:false,badge:"✨ NUEVO",promoUntil:"2026-09-15",entrega:"5-7 días",confirmacion:"panel",features:["Todo lo de Web Oro Plus","Música de reproducción automática","Invitación con animaciones","App entrada día del evento (QR dinámico)","Acomodo de mesas para invitados","Experiencia interactiva e inolvidable"]},
 ];
+
+// PRECIOS MODULARES - Solo para panel de administrador
+const MODULAR_PRICES = {
+  base: [
+    {id:"diseño-web", name:"Diseño Web Base", price:150},
+  ],
+  personalizacion: [
+    {id:"frase", name:"Frase Personalizada", price:30},
+    {id:"animaciones", name:"Invitación con Animaciones", price:100},
+    {id:"videos", name:"Videos Integrados", price:80},
+  ],
+  audio: [
+    {id:"musica", name:"Música de Fondo", price:25},
+    {id:"musica-auto", name:"Música con Auto-reproducción", price:50},
+  ],
+  ubicacion: [
+    {id:"ubicacion-1", name:"1 Botón de Ubicación", price:35},
+    {id:"ubicacion-2", name:"2 Botones de Ubicación", price:60},
+    {id:"ubicacion-3", name:"3+ Botones de Ubicación", price:85},
+    {id:"mapa", name:"Mapa Integrado", price:40},
+    {id:"hospedaje", name:"Opciones de Hospedaje", price:25},
+  ],
+  confirmacion: [
+    {id:"whatsapp", name:"Confirmación vía WhatsApp", price:30},
+    {id:"panel-simple", name:"Panel de Confirmación Simple", price:80},
+    {id:"panel-completo", name:"Panel Administrador Completo", price:180},
+    {id:"invitado-individual", name:"Confirmación por Invitado Individual", price:50},
+    {id:"acompañantes", name:"Gestión de Acompañantes", price:40},
+  ],
+  pases: [
+    {id:"pases-50", name:"Pases para 50 personas", price:50},
+    {id:"pases-150", name:"Pases para 150 personas", price:100},
+    {id:"pases-ilimitados", name:"Pases Digitales Ilimitados", price:150},
+    {id:"pases-categorias", name:"Pases con Categorías (Niño/Adulto/VIP)", price:120},
+    {id:"pases-gestion", name:"Gestión Independiente de Pases", price:80},
+    {id:"qr-evento", name:"QR Dinámico (Acceso Día del Evento)", price:150},
+  ],
+  galeria: [
+    {id:"galeria-basica", name:"Galería Básica de Fotos", price:50},
+    {id:"galeria-dinamica", name:"Galería Dinámica", price:60},
+    {id:"galeria-ilimitada", name:"Galería Ilimitada", price:70},
+    {id:"qr-fotos", name:"QR para Subir Fotos (Día del Evento)", price:50},
+  ],
+  informacion: [
+    {id:"datos-basicos", name:"Datos Básicos del Evento", price:15},
+    {id:"papas", name:"Nombre de Papás/Anfitriones", price:15},
+    {id:"vestimenta", name:"Código de Vestimenta", price:10},
+    {id:"sobres", name:"Lluvia de Sobres / Mesa de Regalos", price:25},
+    {id:"regresiva", name:"Cuenta Regresiva", price:20},
+  ],
+  avanzado: [
+    {id:"app-entrada", name:"App Entrada Día del Evento", price:150},
+    {id:"acomodo-mesas", name:"Acomodo de Mesas", price:100},
+    {id:"lista-privada", name:"Lista de Invitados Privada", price:60},
+    {id:"recordatorios", name:"Recordatorios Automáticos", price:45},
+    {id:"chat", name:"Chat o Comentarios Privados", price:50},
+    {id:"encuesta", name:"Encuesta o Preguntas Adicionales", price:40},
+  ],
+};
 
 const DEFAULT_FAQ = [
   {q:"¿Cuánto tiempo tarda la entrega?",a:"Depende del tipo de diseño: Imagen 24 hrs, PDF con botones 24-48 hrs, Video o Video con botones 1-2 días, Web Básica 2-3 días, Web Bronce y Web Plata 3-4 días, y los paquetes Oro (Oro, Oro Plus, Oro Premium) 5-7 días. Si necesitas algo urgente, dinos y hacemos lo posible por acelerarlo."},
@@ -1040,6 +1101,23 @@ function saveState(key, val){ try{ localStorage.setItem(key,JSON.stringify(val))
 let TIPOS = loadState('me_tipos', DEFAULT_TIPOS);
 let PKGS  = loadState('me_pkgs',  DEFAULT_PKGS);
 let VIDEOS = loadState('me_videos', DEFAULT_VIDEOS);
+
+// Cargar precios modulares desde localStorage (si el usuario los ha editado)
+const savedModularPrices = localStorage.getItem('modular_prices');
+if(savedModularPrices) {
+  try {
+    const loaded = JSON.parse(savedModularPrices);
+    Object.keys(loaded).forEach(cat => {
+      if(MODULAR_PRICES[cat]) {
+        loaded[cat].forEach(item => {
+          const existing = MODULAR_PRICES[cat].find(x => x.id === item.id);
+          if(existing) existing.price = item.price;
+        });
+      }
+    });
+  } catch(e) { console.warn('Error loading modular prices:', e); }
+}
+
 let videosDirty=false; // true cuando hay cambios (agregar/eliminar) sin guardar en Firestore
 
 // Guarda el array VIDEOS en Firestore (colección 'config', doc 'videos')
@@ -1954,6 +2032,7 @@ function switchAdmTab(id,btn){
   document.getElementById('adm-'+id).classList.add('active');
   if(id==='tareas') renderTareas();
   if(id==='videos') renderAdmVideos();
+  if(id==='precios-modulares') renderAdmPreciosModulares();
 }
 
 // Messages / Pedidos tab
@@ -2173,6 +2252,51 @@ function renderAdmPkgs(){
   </div>`).join('')+
   `<button class="adm-save-btn" onclick="saveSiteConfig();alert('✅ Paquetes guardados')">💾 Guardar todo</button>
    <button class="adm-top-btn" style="margin-left:.5rem" onclick="if(confirm('¿Restaurar paquetes originales?')){PKGS=JSON.parse(JSON.stringify(DEFAULT_PKGS));renderPaquetes();saveSiteConfig();renderAdmPkgs();}">↺ Restaurar</button>`;
+}
+
+// Precios modulares tab
+function renderAdmPreciosModulares(){
+  const el=document.getElementById('adm-precios-modulares');
+  let html=`<h3 style="color:rgba(255,255,255,.7);font-size:.95rem;margin-bottom:1.5rem">💰 Precios Modulares (À La Carte)</h3>
+  <p style="color:rgba(255,255,255,.5);font-size:.8rem;margin-bottom:1.5rem">Estos precios se usan para calcular el costo de invitaciones personalizadas. Solo tú ves esto.</p>`;
+  
+  Object.entries(MODULAR_PRICES).forEach(([categoria, items]) => {
+    const catName = {
+      base: '🏠 BASE OBLIGATORIA',
+      personalizacion: '🎨 PERSONALIZACIÓN Y DISEÑO',
+      audio: '🎵 AUDIO Y MULTIMEDIA',
+      ubicacion: '📍 UBICACIÓN Y MAPAS',
+      confirmacion: '✅ CONFIRMACIÓN DE ASISTENCIA',
+      pases: '🎫 PASES DIGITALES',
+      galeria: '📸 GALERÍA Y FOTOS',
+      informacion: '📋 INFORMACIÓN Y DETALLES',
+      avanzado: '🛠️ FUNCIONALIDADES AVANZADAS'
+    }[categoria];
+    
+    html += `<div style="margin-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);padding-top:1.2rem">
+      <h4 style="color:#f0d98a;margin-bottom:1rem;font-size:.9rem">${catName}</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">`;
+    
+    items.forEach(item => {
+      html += `<div style="background:rgba(255,255,255,.05);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+        <div style="font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:.5rem">${item.name}</div>
+        <div style="display:flex;align-items:center;gap:.5rem">
+          <span style="color:#f0d98a;font-weight:700;font-size:1.2rem">$</span>
+          <input type="number" value="${item.price}" style="flex:1;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.14);border-radius:6px;color:#fff;padding:.5rem;font-size:.9rem;font-family:monospace" 
+            onchange="MODULAR_PRICES['${categoria}'].find(x=>x.id==='${item.id}').price=parseInt(this.value);localStorage.setItem('modular_prices',JSON.stringify(MODULAR_PRICES));">
+        </div>
+      </div>`;
+    });
+    
+    html += `</div></div>`;
+  });
+  
+  html += `<div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)">
+    <button class="adm-save-btn" onclick="localStorage.setItem('modular_prices',JSON.stringify(MODULAR_PRICES));alert('✅ Precios modulares guardados')">💾 Guardar Precios</button>
+    <button class="adm-top-btn" style="margin-left:.5rem" onclick="if(confirm('¿Restaurar precios originales?')){location.reload();}">↺ Restaurar</button>
+  </div>`;
+  
+  el.innerHTML = html;
 }
 
 // Videos tab
