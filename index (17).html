@@ -653,8 +653,8 @@ footer a{color:var(--bl);text-decoration:none}
           <input type="email" name="email" placeholder="Correo electrónico" class="full">
           <select name="paquete" class="full">
             <option value="">¿Qué te interesa?</option>
-            <optgroup label="Tipos simples"><option>Imagen ($69)</option><option>Video ($149)</option><option>PDF con botones ($129)</option><option>Video con botones ($199)</option></optgroup>
-            <optgroup label="Paquetes Web"><option>Web Básica ($199)</option><option>Web Bronce ($359)</option><option>Web Plata ($499)</option><option>Web Oro ($655)</option><option>Web Oro Plus ($799)</option><option>Web Oro Premium ($999)</option></optgroup>
+            <optgroup label="Tipos simples"><option>Imagen ($89)</option><option>Video ($149)</option><option>PDF con botones ($129)</option><option>Video con botones ($239)</option></optgroup>
+            <optgroup label="Paquetes Web"><option>Web Básica ($219)</option><option>Web Bronce ($359)</option><option>Web Avanzada ($429)</option><option>Web Plata ($499)</option><option>Web Oro ($659)</option><option>Web Oro Plus ($799)</option><option>Web Oro Premium ($999)</option></optgroup>
           </select>
           <textarea name="mensaje" placeholder="Cuéntanos los detalles de tu evento..." class="full"></textarea>
         </div>
@@ -888,14 +888,15 @@ try{ db.enablePersistence({synchronizeTabs:true}).catch(()=>{}); }catch(e){}
 //  DATA – editable via admin
 // ═══════════════════════════════════════
 const DEFAULT_TIPOS = [
-  {icon:"🖼️",name:"Imagen",desc:"Diseño personalizado en formato imagen para WhatsApp o redes sociales.",price:"$69",entrega:"24 hrs"},
+  {icon:"🖼️",name:"Imagen",desc:"Diseño personalizado en formato imagen para WhatsApp o redes sociales.",price:"$89",entrega:"24 hrs"},
   {icon:"🎬",name:"Video",desc:"Invitación animada en video con música. Impresiona a tus invitados.",price:"$149",entrega:"1-2 días"},
   {icon:"📄",name:"PDF con botones",desc:"PDF de 1 página con botones interactivos: ubicación, confirmación y más.",price:"$129",entrega:"24-48 hrs"},
-  {icon:"▶️",name:"Video con botones",desc:"Video animado con botones interactivos de confirmación y ubicación.",price:"$199",entrega:"1-2 días"},
+  {icon:"▶️",name:"Video con botones",desc:"Video animado con botones interactivos de confirmación y ubicación.",price:"$239",entrega:"1-2 días"},
 ];
 const DEFAULT_PKGS = [
-  {name:"Web Básica",price:"$199",feat:false,badge:"",entrega:"2-3 días",confirmacion:"whatsapp",features:["Música de fondo","1 Botón de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Datos básicos del evento"]},
+  {name:"Web Básica",price:"$219",feat:false,badge:"",entrega:"2-3 días",confirmacion:"whatsapp",features:["Música de fondo","1 Botón de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Datos básicos del evento"]},
   {name:"Web Bronce",price:"$359",feat:false,badge:"",entrega:"3-4 días",confirmacion:"whatsapp",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","1 Botón de confirmación (vía WhatsApp)","Cuenta regresiva","Nombre de papás","Lluvia de sobres","Galería de fotos","Código de vestimenta"]},
+  {name:"Web Avanzada",price:"$429",feat:false,badge:"",entrega:"4-5 días",confirmacion:"panel",features:["Frase de su elección","Música de fondo","2 Botones de ubicación","Videos integrados en la página","Galería de fotos ilimitada","Pases digitales divididos por categoría (niños, adultos, VIP)","Panel de control administrador","Confirmación de asistencia por invitado","Gestión independiente de pases por categoría"]},
   {name:"Web Plata",price:"$499",feat:false,badge:"",entrega:"3-4 días",confirmacion:"whatsapp",features:["Todo Web Bronce","Pases digitales para 150 personas"]},
   {name:"Web Oro",price:"$659",feat:true,badge:"⭐ MÁS POPULAR",entrega:"5-7 días",confirmacion:"panel",features:["Frases de su elección","Música de fondo","2 Botones de ubicación","Confirmación de asistencia vía panel administrador","Pases digitales ilimitados","Cuenta regresiva","Lluvia de sobres / mesa de regalos","Galería de fotos dinámica","Opciones de hospedaje","Código de vestimenta"]},
   {name:"Web Oro Plus",price:"$799",feat:true,badge:"",promoUntil:"2026-08-31",entrega:"5-7 días",confirmacion:"panel",features:["Todo lo de Web Oro","QR de acceso al evento","QR para subir fotos el día del evento"]},
@@ -1687,12 +1688,51 @@ function updatePedido(id,field,value){
     .catch(err=>{ console.error(err); alert('No se pudo guardar el cambio, revisa tu conexión.'); });
 }
 // Elimina un pedido/mensaje (ej. ya se realizó / ya no aplica)
+// Lista de pedidos eliminados localmente (pendientes de sincronizar)
+let deletedPedidosLocal = loadState('me_deleted_pedidos', []);
+
 function deletePedido(id,nombre){
   if(!id){ alert('Este pedido es muy antiguo y no se puede eliminar en línea.'); return; }
   if(!confirm(`¿Eliminar el pedido de "${nombre||'este cliente'}"? Esta acción no se puede deshacer.`)) return;
+  
+  // Intentar eliminar en Firestore primero
   db.collection('mensajes').doc(id).delete()
-    .then(()=>{ msgsCache=msgsCache.filter(m=>m.id!==id); saveState('me_msgs',msgsCache); renderAdmMsgs(); })
-    .catch(err=>{ console.error(err); alert('No se pudo eliminar, revisa tu conexión.'); });
+    .then(()=>{ 
+      msgsCache=msgsCache.filter(m=>m.id!==id); 
+      saveState('me_msgs',msgsCache); 
+      deletedPedidosLocal=deletedPedidosLocal.filter(x=>x!==id);
+      saveState('me_deleted_pedidos',deletedPedidosLocal);
+      renderAdmMsgs(); 
+      alert('✅ Pedido eliminado exitosamente');
+    })
+    .catch(err=>{ 
+      console.error(err); 
+      // Si falla, guardar localmente para sincronizar después
+      if(!deletedPedidosLocal.includes(id)) deletedPedidosLocal.push(id);
+      saveState('me_deleted_pedidos',deletedPedidosLocal);
+      msgsCache=msgsCache.filter(m=>m.id!==id); 
+      saveState('me_msgs',msgsCache);
+      renderAdmMsgs();
+      alert('✅ Pedido marcado como eliminado (se sincronizará cuando se recupere la conexión)');
+    });
+}
+
+// Sincronizar elimaciones locales cuando se recupera la conexión
+function syncDeletedPedidos(){
+  if(!deletedPedidosLocal.length) return;
+  let synced=0;
+  deletedPedidosLocal.forEach(id=>{
+    db.collection('mensajes').doc(id).delete()
+      .then(()=>{ 
+        synced++;
+        if(synced===deletedPedidosLocal.length){
+          deletedPedidosLocal=[];
+          saveState('me_deleted_pedidos',[]);
+          console.log('✅ Eliminaciones sincronizadas');
+        }
+      })
+      .catch(err=>console.warn('Error sincronizando eliminación:',err));
+  });
 }
 // Copia el número de WhatsApp al portapapeles
 function copiarTelefono(tel,btn){
@@ -1758,6 +1798,7 @@ function adminLogin(){
 }
 function openAdmin(){
   document.getElementById('admin-overlay').classList.add('open');
+  syncDeletedPedidos(); // Sincronizar eliminaciones locales si hay conexión
   renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs();
   showPendingBanner();
 }
@@ -1931,6 +1972,9 @@ function setPedidoFiltro(f){ pedidoFiltro=f; renderAdmMsgs(); }
 function renderAdmMsgs(){
   const el=document.getElementById('adm-mensajes');
   let msgs=getMsgs().slice().reverse();
+  // Filtrar los pedidos eliminados localmente
+  msgs=msgs.filter(m=>!deletedPedidosLocal.includes(m.id));
+  
   if(!msgs.length){ el.innerHTML='<p style="color:rgba(255,255,255,.35);text-align:center;margin-top:2rem;font-size:.9rem">No hay mensajes aún.</p>'; return; }
 
   const isPedido=m=>!!(m.paquete||m.modelo);
