@@ -1583,10 +1583,18 @@ function buildGallery(){
 }
 
 let currentPkgFilter='';
+const PKG_ORDER=['Imagen','Video Invitación','Web Básica','Web Bronce','Web Plata','Web Oro','Web Oro Plus','Web Oro Premium'];
 function buildPkgFilters(){
   const wrap=document.getElementById('gal-pkg-filters');
   if(!wrap) return;
-  const pkgs=[...new Set(VIDEOS.map(v=>v.paquete).filter(Boolean))];
+  const pkgs=[...new Set(VIDEOS.map(v=>v.paquete).filter(Boolean))]
+    .sort((a,b)=>{
+      const ia=PKG_ORDER.indexOf(a), ib=PKG_ORDER.indexOf(b);
+      if(ia===-1&&ib===-1) return a.localeCompare(b);
+      if(ia===-1) return 1;
+      if(ib===-1) return -1;
+      return ia-ib;
+    });
   if(pkgs.length===0){ wrap.innerHTML=''; return; }
   wrap.innerHTML = `<button class="gal-pkg-filter-btn${currentPkgFilter===''?' active':''}" onclick="setPkgFilter('')">Todos los paquetes</button>`
     + pkgs.map(p=>`<button class="gal-pkg-filter-btn${currentPkgFilter===p?' active':''}" onclick="setPkgFilter('${p.replace(/'/g,"\\'")}')">💎 ${p}</button>`).join('');
