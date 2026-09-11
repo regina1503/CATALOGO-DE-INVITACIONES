@@ -142,6 +142,8 @@ section{padding:5rem 1.5rem}
 .tab-btn.active,.tab-btn:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 .gal-section{display:none}
 .gal-section.active{display:block}
+#gal-sections.pkg-filter-mode .gal-section{display:block}
+.gal-pkg-active-note{text-align:center;color:rgba(255,255,255,.55);font-size:.82rem;margin:-1rem 0 1.4rem;font-family:'Lato',sans-serif}
 .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem;max-width:1100px;margin:0 auto}
 @media(max-width:480px){.gal-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
 
@@ -1597,6 +1599,9 @@ function setPkgFilter(pkg){
   applyPkgFilter();
 }
 function applyPkgFilter(){
+  const secEl=document.getElementById('gal-sections');
+  const tabsEl=document.getElementById('gal-tabs');
+  let noteEl=document.getElementById('gal-pkg-active-note');
   document.querySelectorAll('.gal-item').forEach(item=>{
     if(!currentPkgFilter || item.dataset.pkg===currentPkgFilter){
       item.classList.remove('pkg-hide');
@@ -1604,6 +1609,24 @@ function applyPkgFilter(){
       item.classList.add('pkg-hide');
     }
   });
+  if(currentPkgFilter){
+    // Con un paquete seleccionado, mostramos todas las categorías juntas
+    // para que aparezcan TODOS los modelos guardados con ese paquete.
+    secEl.classList.add('pkg-filter-mode');
+    if(tabsEl) tabsEl.style.opacity='.45';
+    if(!noteEl){
+      noteEl=document.createElement('p');
+      noteEl.id='gal-pkg-active-note';
+      noteEl.className='gal-pkg-active-note';
+      secEl.parentNode.insertBefore(noteEl,secEl);
+    }
+    noteEl.innerHTML=`Mostrando todos los modelos guardados como <strong style="color:#d4af37">💎 ${currentPkgFilter}</strong>, de cualquier categoría.`;
+    noteEl.style.display='block';
+  } else {
+    secEl.classList.remove('pkg-filter-mode');
+    if(tabsEl) tabsEl.style.opacity='';
+    if(noteEl) noteEl.style.display='none';
+  }
 }
 
 function galTogglePlay(e,btn){
@@ -2379,10 +2402,22 @@ function filterAdmVideos(){
   document.querySelectorAll('#adm-videos .adm-vid-row').forEach(row=>{
     row.style.display = row.dataset.title.includes(q) ? 'flex' : 'none';
   });
-  // oculta grupos completos si ninguno de sus videos coincide
+  // oculta grupos completos si ninguno de sus videos coincide,
+  // y abre automáticamente los grupos que sí tienen resultados mientras buscas
   document.querySelectorAll('#adm-videos .adm-vid-group').forEach(grp=>{
+    const itemsWrap=grp.querySelector('div[style*="flex-direction:column"]');
     const anyVisible=[...grp.querySelectorAll('.adm-vid-row')].some(r=>r.style.display!=='none');
     grp.style.display = anyVisible ? '' : 'none';
+    if(itemsWrap){
+      const arrow=grp.querySelector('.grp-arrow');
+      if(q){
+        itemsWrap.style.display = anyVisible ? 'flex' : 'none';
+        if(arrow && anyVisible) arrow.textContent='▼';
+      } else {
+        itemsWrap.style.display='none';
+        if(arrow) arrow.textContent='▶';
+      }
+    }
   });
 }
 function renderAdmVideos(){
@@ -2396,17 +2431,18 @@ function renderAdmVideos(){
   VIDEOS.forEach((v,i)=>{ if(!grouped[v.c]) grouped[v.c]=[]; grouped[v.c].push({v,i}); });
 
   const groupedHTML=Object.entries(grouped).map(([cat,items])=>`
-    <div class="adm-vid-group" style="margin-bottom:1.5rem">
-      <h4 style="color:#f0d090;font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.4rem;cursor:pointer;user-select:none"
+    <div class="adm-vid-group" style="margin-bottom:1rem">
+      <h4 style="color:#f0d090;font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.4rem;cursor:pointer;user-select:none;background:rgba(255,255,255,.04);padding:.6rem .8rem;border-radius:8px"
         onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'flex':'none';this.querySelector('.grp-arrow').textContent=this.nextElementSibling.style.display==='none'?'▶':'▼'">
         ${CAT_ICONS[cat]||'🎉'} ${cat} <span style="color:rgba(255,255,255,.35);font-weight:400">(${items.length})</span>
-        <span class="grp-arrow" style="float:right;font-size:.7rem;opacity:.5">▼</span>
+        <span class="grp-arrow" style="float:right;font-size:.7rem;opacity:.5">▶</span>
       </h4>
-      <div style="display:flex;flex-direction:column;gap:.55rem">
+      <div style="display:none;flex-direction:column;gap:.55rem;margin-top:.6rem">
         ${items.map(({v,i})=>`
           <div class="adm-vid-row" data-title="${v.t.toLowerCase().replace(/"/g,'&quot;')}" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:flex-start;gap:.7rem;padding:.6rem .7rem;flex-wrap:wrap">
             <div class="adm-vid-thumb" title="${v.t}">
               <span class="adm-vid-icon">${CAT_ICONS[v.c]||'🎬'}</span>
+
             </div>
             <div style="flex:1;min-width:160px">
               <label style="${lbl}">Nombre del video</label>
