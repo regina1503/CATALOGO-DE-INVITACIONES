@@ -38,7 +38,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,246,240,
 .nav-links a:hover{color:var(--rose)}
 .nav-cta{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.42rem 1rem;border-radius:50px;text-decoration:none;font-size:.83rem;font-weight:700;transition:transform .2s,box-shadow .2s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(160,85,112,.35)}
-@media(max-width:640px){.nav-links{display:none}}
+@media(max-width:640px){
+  #nav-burger{display:flex!important}
+  .nav-links{
+    display:flex;
+    position:fixed;
+    top:64px;left:0;right:0;
+    flex-direction:column;
+    gap:0;
+    background:rgba(253,246,240,.99);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--bl);
+    box-shadow:0 8px 20px rgba(160,85,112,.12);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+    padding:0 1.5rem;
+  }
+  .nav-links.open{max-height:400px;padding:.6rem 1.5rem 1rem}
+  .nav-links li{width:100%;border-bottom:1px solid rgba(0,0,0,.06)}
+  .nav-links li:last-child{border-bottom:none}
+  .nav-links a{display:block;padding:.85rem 0;font-size:.95rem}
+}
 
 /* HERO */
 #hero{min-height:100vh;background:linear-gradient(160deg,#fce8ed 0%,#fdf6f0 50%,#f0e8f5 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 1.5rem 3rem;position:relative;overflow:hidden}
@@ -530,15 +551,18 @@ footer a{color:var(--bl);text-decoration:none}
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero"><span>ME</span> Momentos Encantados</a>
-  <ul class="nav-links">
-    <li><a href="#tipos">Tipos</a></li>
-    <li><a href="#proceso">¿Cómo funciona?</a>
-    <a href="#paquetes">Paquetes</a></li>
-    <li><a href="#galeria">Galería</a></li>
-    <li><a href="#resenas">Reseñas</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#tipos" onclick="closeMobileNav()">Tipos</a></li>
+    <li><a href="#proceso" onclick="closeMobileNav()">¿Cómo funciona?</a></li>
+    <li><a href="#paquetes" onclick="closeMobileNav()">Paquetes</a></li>
+    <li><a href="#galeria" onclick="closeMobileNav()">Galería</a></li>
+    <li><a href="#resenas" onclick="closeMobileNav()">Reseñas</a></li>
+    <li><a href="#contacto" onclick="closeMobileNav()">Contacto</a></li>
   </ul>
-  <a class="nav-cta" href="#contacto">Cotizar ahora</a>
+  <div style="display:flex;align-items:center;gap:.7rem">
+    <a class="nav-cta" href="#contacto">Cotizar ahora</a>
+    <button id="nav-burger" onclick="toggleMobileNav()" aria-label="Abrir menú" style="display:none;background:none;border:1.5px solid var(--bl);color:var(--rd);width:38px;height:38px;border-radius:9px;font-size:1.1rem;cursor:pointer;align-items:center;justify-content:center">☰</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -581,24 +605,6 @@ footer a{color:var(--bl);text-decoration:none}
 </section>
 
 <!-- PAQUETES -->
-<section id="paquetes">
-  <div class="section-header reveal">
-    <span class="section-label">Nuestros paquetes</span>
-    <h2 class="section-title">Invitaciones Web</h2>
-    <div class="section-div"></div>
-    <p style="margin-top:.8rem;color:var(--tm);font-size:.92rem">Páginas web personalizadas con funciones interactivas para tu evento</p>
-  </div>
-  <div class="trust-bar reveal" id="trust-bar"></div>
-  <div class="quiz-cta-wrap reveal">
-    <button class="quiz-cta-btn" onclick="openQuiz()">🤔 ¿No sabes cuál elegir? Descubre tu paquete ideal</button>
-  </div>
-  <div class="paquetes-grid" id="paquetes-grid"></div>
-  <div class="comp-toggle-wrap">
-    <button class="comp-toggle-btn" id="comp-toggle-btn" onclick="toggleComparador()">📊 Ver comparación completa de paquetes</button>
-  </div>
-  <div id="comp-table-wrap"></div>
-</section>
-
 <!-- GALERÍA -->
 <section id="galeria">
   <div class="section-header reveal">
@@ -646,6 +652,24 @@ footer a{color:var(--bl);text-decoration:none}
       </div>
     </div>
   </div>
+</section>
+
+<section id="paquetes">
+  <div class="section-header reveal">
+    <span class="section-label">Nuestros paquetes</span>
+    <h2 class="section-title">Invitaciones Web</h2>
+    <div class="section-div"></div>
+    <p style="margin-top:.8rem;color:var(--tm);font-size:.92rem">Páginas web personalizadas con funciones interactivas para tu evento</p>
+  </div>
+  <div class="trust-bar reveal" id="trust-bar"></div>
+  <div class="quiz-cta-wrap reveal">
+    <button class="quiz-cta-btn" onclick="openQuiz()">🤔 ¿No sabes cuál elegir? Descubre tu paquete ideal</button>
+  </div>
+  <div class="paquetes-grid" id="paquetes-grid"></div>
+  <div class="comp-toggle-wrap">
+    <button class="comp-toggle-btn" id="comp-toggle-btn" onclick="toggleComparador()">📊 Ver comparación completa de paquetes</button>
+  </div>
+  <div id="comp-table-wrap"></div>
 </section>
 
 
@@ -898,6 +922,12 @@ try{ db.enablePersistence({synchronizeTabs:true}).catch(()=>{}); }catch(e){}
 </script>
 
 <script>
+function toggleMobileNav(){
+  document.getElementById('nav-links').classList.toggle('open');
+}
+function closeMobileNav(){
+  document.getElementById('nav-links').classList.remove('open');
+}
 // ═══════════════════════════════════════
 //  DATA – editable via admin
 // ═══════════════════════════════════════
