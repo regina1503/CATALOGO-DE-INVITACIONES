@@ -132,6 +132,10 @@ section{padding:5rem 1.5rem}
 /* GALERÍA */
 #galeria{background:var(--w)}
 .gallery-tabs{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin-bottom:2rem}
+.gal-pkg-filters{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:1.4rem}
+.gal-pkg-filter-btn{background:var(--w);border:1.5px solid var(--bl);color:var(--tm);padding:.32rem .85rem;border-radius:50px;cursor:pointer;font-size:.74rem;font-weight:700;transition:all .2s;font-family:'Lato',sans-serif}
+.gal-pkg-filter-btn.active,.gal-pkg-filter-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.gal-item.pkg-hide{display:none!important}
 .tab-btn{background:var(--bll);border:1.5px solid var(--bl);color:var(--rd);padding:.45rem 1.1rem;border-radius:50px;cursor:pointer;font-size:.85rem;font-weight:700;transition:all .2s;font-family:'Lato',sans-serif}
 .tab-btn.active,.tab-btn:hover{background:var(--rose);border-color:var(--rose);color:#fff}
 .gal-section{display:none}
@@ -596,6 +600,7 @@ footer a{color:var(--bl);text-decoration:none}
     <div class="section-div"></div>
     <p style="margin-top:.8rem;color:var(--tm);font-size:.85rem">🎬 Toca para reproducir · ⏩ Avanza · ↩ Retrocede · Haz clic para ver completo</p>
   </div>
+  <div class="gal-pkg-filters" id="gal-pkg-filters"></div>
   <div class="gallery-tabs" id="gal-tabs"></div>
   <div id="gal-sections"></div>
 </section>
@@ -1504,6 +1509,7 @@ function buildGallery(){
       const item=document.createElement('div');
       item.className='gal-item '+revealCls();
       item.dataset.gi=gi;
+      item.dataset.pkg=vid.paquete||'';
       item.innerHTML=`
         <div class="gal-thumb-wrap">
           <div class="gal-thumb-bg"></div>
@@ -1561,6 +1567,34 @@ function buildGallery(){
 
   document.querySelectorAll('.gal-item').forEach(el=>lazyObs.observe(el));
   observeReveal();
+  buildPkgFilters();
+  applyPkgFilter(); // vuelve a aplicar el filtro de paquete activo (si había uno) tras reconstruir la galería
+}
+
+let currentPkgFilter='';
+function buildPkgFilters(){
+  const wrap=document.getElementById('gal-pkg-filters');
+  if(!wrap) return;
+  const pkgs=[...new Set(VIDEOS.map(v=>v.paquete).filter(Boolean))];
+  if(pkgs.length===0){ wrap.innerHTML=''; return; }
+  wrap.innerHTML = `<button class="gal-pkg-filter-btn${currentPkgFilter===''?' active':''}" onclick="setPkgFilter('')">Todos los paquetes</button>`
+    + pkgs.map(p=>`<button class="gal-pkg-filter-btn${currentPkgFilter===p?' active':''}" onclick="setPkgFilter('${p.replace(/'/g,"\\'")}')">💎 ${p}</button>`).join('');
+}
+function setPkgFilter(pkg){
+  currentPkgFilter=pkg;
+  document.querySelectorAll('.gal-pkg-filter-btn').forEach(b=>b.classList.remove('active'));
+  const btns=document.querySelectorAll('.gal-pkg-filter-btn');
+  btns.forEach(b=>{ if(b.textContent.trim()===(pkg?('💎 '+pkg):'Todos los paquetes')) b.classList.add('active'); });
+  applyPkgFilter();
+}
+function applyPkgFilter(){
+  document.querySelectorAll('.gal-item').forEach(item=>{
+    if(!currentPkgFilter || item.dataset.pkg===currentPkgFilter){
+      item.classList.remove('pkg-hide');
+    } else {
+      item.classList.add('pkg-hide');
+    }
+  });
 }
 
 function galTogglePlay(e,btn){
