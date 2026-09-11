@@ -2382,6 +2382,18 @@ function admThumbStop(div){
   vid.style.display = 'none';
   if(icon) icon.style.opacity = '1';
 }
+function bulkAssignPkg(cat,ci){
+  const sel=document.getElementById('bulk-pkg-'+ci);
+  const val=sel.value==='—' ? '' : sel.value;
+  const n=VIDEOS.filter(v=>v.c===cat).length;
+  if(!confirm(`¿Asignar "${sel.value}" a los ${n} videos de "${cat}"? Esto sobreescribe el paquete que tuvieran antes.`)) return;
+  VIDEOS.forEach(v=>{ if(v.c===cat) v.paquete=val; });
+  saveState('me_videos', VIDEOS);
+  videosDirty=true;
+  markAdmSavePending();
+  buildGallery();
+  renderAdmVideos();
+}
 function admFieldChange(i,field,value){
   if(field==='paquete') VIDEOS[i].paquete = (value==='—'||value==='')?'':value;
   else VIDEOS[i][field]=value;
@@ -2430,7 +2442,7 @@ function renderAdmVideos(){
   const grouped={};
   VIDEOS.forEach((v,i)=>{ if(!grouped[v.c]) grouped[v.c]=[]; grouped[v.c].push({v,i}); });
 
-  const groupedHTML=Object.entries(grouped).map(([cat,items])=>`
+  const groupedHTML=Object.entries(grouped).map(([cat,items],ci)=>`
     <div class="adm-vid-group" style="margin-bottom:1rem">
       <h4 style="color:#f0d090;font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.4rem;cursor:pointer;user-select:none;background:rgba(255,255,255,.04);padding:.6rem .8rem;border-radius:8px"
         onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'flex':'none';this.querySelector('.grp-arrow').textContent=this.nextElementSibling.style.display==='none'?'▶':'▼'">
@@ -2438,16 +2450,31 @@ function renderAdmVideos(){
         <span class="grp-arrow" style="float:right;font-size:.7rem;opacity:.5">▶</span>
       </h4>
       <div style="display:none;flex-direction:column;gap:.55rem;margin-top:.6rem">
+        <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;background:rgba(212,175,55,.08);border:1px dashed rgba(212,175,55,.35);border-radius:8px;padding:.5rem .7rem">
+          <span style="color:#d4af37;font-size:.74rem;font-weight:700">💎 Asignar paquete a los ${items.length} de "${cat}":</span>
+          <select id="bulk-pkg-${ci}" style="background:#1a0810;border:1px solid rgba(255,255,255,.2);border-radius:7px;color:#d0d090;font-family:Lato,sans-serif;font-size:.76rem;padding:.28rem .5rem;outline:none">
+            <option value="—">— Sin paquete —</option>
+            <option value="Imagen">🖼️ Imagen</option>
+            <option value="Video Invitación">🎬 Video Invitación</option>
+            <option value="Web Básica">💠 Web Básica</option>
+            <option value="Web Bronce">🥉 Web Bronce</option>
+            <option value="Web Plata">🥈 Web Plata</option>
+            <option value="Web Oro">🥇 Web Oro</option>
+            <option value="Web Oro Plus">💜 Web Oro Plus</option>
+            <option value="Web Oro Premium">✨ Web Oro Premium</option>
+          </select>
+          <button onclick="bulkAssignPkg('${cat.replace(/'/g,"\\'")}',${ci})" style="background:rgba(212,175,55,.25);border:1px solid rgba(212,175,55,.5);color:#f0d090;border-radius:7px;padding:.28rem .7rem;cursor:pointer;font-size:.74rem;font-family:Lato,sans-serif">Aplicar a todos</button>
+        </div>
         ${items.map(({v,i})=>`
           <div class="adm-vid-row" data-title="${v.t.toLowerCase().replace(/"/g,'&quot;')}" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:flex-start;gap:.7rem;padding:.6rem .7rem;flex-wrap:wrap">
             <div class="adm-vid-thumb" title="${v.t}">
               <span class="adm-vid-icon">${CAT_ICONS[v.c]||'🎬'}</span>
-
             </div>
             <div style="flex:1;min-width:160px">
               <label style="${lbl}">Nombre del video</label>
               <input
                 value="${v.t.replace(/"/g,'&quot;')}"
+
                 style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:7px;color:#fff;font-family:Lato,sans-serif;font-size:.82rem;padding:.3rem .6rem;outline:none;width:100%"
                 placeholder="Nombre del video"
                 onchange="admFieldChange(${i},'t',this.value)">
