@@ -1640,7 +1640,7 @@ function buildGallery(){
     secEl.appendChild(sec);
   });
 
-  // lazy load: load and autoplay video src when visible
+  // lazy load: load and autoplay video src when visible (solo 5s de vista previa)
   const lazyObs=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -1652,7 +1652,17 @@ function buildGallery(){
           vid.src=VIDEOS[gi].s;
           vid.muted=true;
           vid.loop=true;
+          vid.dataset.autoLimit='1'; // marca: esta reproducción es la vista previa automática
           vid.load();
+          vid.addEventListener('timeupdate',function onPreviewTick(){
+            if(vid.dataset.autoLimit==='1' && vid.currentTime>=5){
+              vid.pause();
+              vid.dataset.autoLimit='0'; // ya se mostró la vista previa; si la retoman, ya no se corta
+              item.classList.remove('gal-playing');
+              const pb=item.querySelector('.gal-play-btn');
+              if(pb) pb.textContent='▶';
+            }
+          });
           vid.addEventListener('canplay',()=>{
             item.classList.remove('gal-loading');
             vid.play().catch(()=>{});
