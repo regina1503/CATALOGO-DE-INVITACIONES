@@ -39,9 +39,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,246,240,
 .nav-cta{background:linear-gradient(135deg,var(--rose),var(--rd));color:#fff;padding:.42rem 1rem;border-radius:50px;text-decoration:none;font-size:.83rem;font-weight:700;transition:transform .2s,box-shadow .2s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(160,85,112,.35)}
 @media(max-width:640px){
-  nav{padding:0 1rem}
-  .nav-logo{font-size:.95rem;gap:.3rem}
-  .nav-logo span{font-size:1.5rem}
   #nav-burger{display:flex!important}
   .nav-links{
     display:flex;
@@ -74,6 +71,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,246,240,
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);color:var(--td);line-height:1.15;animation:fadeUp .9s .1s ease both}
 .hero-title em{font-style:italic;color:var(--rose)}
 .hero-badge{display:inline-block;background:linear-gradient(135deg,#f9d0da,#e8c0f0);color:var(--rd);font-size:.78rem;padding:.32rem .9rem;border-radius:50px;font-weight:700;letter-spacing:.08em;margin:.8rem 0 1.2rem;animation:fadeUp 1s .25s ease both}
+.hero-urgency{display:inline-flex;align-items:center;gap:.4rem;background:#fff3e0;border:1.5px solid #f0c060;color:#a06010;font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;margin-bottom:1rem}
+.hero-promo{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#e85d5d,#c93c3c);color:#fff;font-size:.8rem;font-weight:700;padding:.4rem 1rem;border-radius:50px;margin-bottom:1rem;margin-left:.5rem}
+.trust-badge-cta{display:block;text-align:center;color:var(--tm);font-size:.78rem;margin-top:.6rem}
+.phone-mockup-wrap{display:flex;justify-content:center;padding:1rem 0 2rem}
+.phone-mockup{width:230px;height:470px;background:#111;border-radius:36px;padding:10px;box-shadow:0 20px 50px rgba(160,85,112,.28);position:relative}
+.phone-mockup video{width:100%;height:100%;object-fit:cover;border-radius:26px;background:#000}
+.phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:18px;background:#111;border-radius:0 0 14px 14px;z-index:2}
 .hero-sub{max-width:520px;margin:0 auto 1.5rem;color:var(--tm);font-size:1rem;line-height:1.7;animation:fadeUp 1s .3s ease both}
 .hero-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .4s ease both}
 .hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;animation:fadeUp 1s .5s ease both}
@@ -170,6 +174,9 @@ section{padding:5rem 1.5rem}
 #gal-sections.pkg-filter-mode .gal-section{display:contents}
 #gal-sections.pkg-filter-mode .gal-grid{display:contents}
 @media(max-width:480px){#gal-sections.pkg-filter-mode{grid-template-columns:repeat(2,1fr);gap:.7rem}}
+.gal-item-extra{display:none}
+.gal-loadmore-btn{display:block;margin:1.4rem auto 0;background:rgba(160,85,112,.1);border:1.5px solid var(--rose);color:var(--rd);padding:.55rem 1.4rem;border-radius:50px;cursor:pointer;font-size:.85rem;font-weight:700;font-family:'Lato',sans-serif;transition:all .2s}
+.gal-loadmore-btn:hover{background:var(--rose);color:#fff}
 .gal-pkg-active-note{text-align:center;color:rgba(255,255,255,.55);font-size:.82rem;margin:-1rem 0 1.4rem;font-family:'Lato',sans-serif}
 .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem;max-width:1100px;margin:0 auto}
 @media(max-width:480px){.gal-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
@@ -335,6 +342,8 @@ footer a{color:var(--bl);text-decoration:none}
 
 /* AI FAB */
 #ai-fab{position:fixed;bottom:2rem;right:2rem;z-index:1000;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--rd));box-shadow:0 6px 24px rgba(160,85,112,.45);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;animation:pulseBtn 3s ease-in-out infinite}
+#wa-fab{position:fixed;bottom:2rem;left:2rem;z-index:1000;width:58px;height:58px;border-radius:50%;background:#25D366;box-shadow:0 6px 24px rgba(37,211,102,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;animation:pulseBtn 3s ease-in-out infinite .5s}
+@media(max-width:640px){#wa-fab{width:50px;height:50px;bottom:1.2rem;left:1.2rem}#ai-fab{width:52px;height:52px;bottom:1.2rem;right:1.2rem}}
 @keyframes pulseBtn{0%,100%{box-shadow:0 6px 24px rgba(160,85,112,.45)}50%{box-shadow:0 6px 36px rgba(160,85,112,.7)}}
 #ai-fab:hover{transform:scale(1.1)}
 .ai-tooltip{position:fixed;bottom:6.2rem;right:2rem;z-index:999;background:var(--w);border:1.5px solid var(--bl);border-radius:11px;padding:.5rem .85rem;font-size:.78rem;color:var(--rd);font-weight:700;box-shadow:var(--sh);white-space:nowrap;pointer-events:none}
@@ -576,6 +585,7 @@ footer a{color:var(--bl);text-decoration:none}
     <h1 class="hero-title" id="hero-title">Invitaciones digitales<br><em>para cada momento especial</em></h1>
     <div class="hero-badge" id="hero-badge">✦ Diseños únicos · Personalizados · 100% digitales ✦</div>
     <p class="hero-sub" id="hero-sub">Diseños únicos, prácticos y personalizados para tu evento soñado. Disponibles 24/7 para tus invitados.</p>
+    <div id="hero-urgency-wrap"></div>
     <div class="hero-btns">
       <a class="btn-p" href="#paquetes">Ver paquetes</a>
       <a class="btn-s" href="#galeria">Ver ejemplos</a>
@@ -657,6 +667,22 @@ footer a{color:var(--bl);text-decoration:none}
   </div>
 </section>
 
+<!-- ASÍ SE VE EN EL CELULAR -->
+<section id="asi-se-ve" style="padding-top:0">
+  <div class="section-header reveal">
+    <span class="section-label">Vista real</span>
+    <h2 class="section-title">Así lo ven tus invitados</h2>
+    <div class="section-div"></div>
+    <p style="margin-top:.8rem;color:var(--tm);font-size:.9rem">Directo desde el celular, sin apps ni descargas</p>
+  </div>
+  <div class="phone-mockup-wrap reveal">
+    <div class="phone-mockup">
+      <div class="phone-notch"></div>
+      <video id="phone-mockup-video" playsinline muted loop autoplay></video>
+    </div>
+  </div>
+</section>
+
 <section id="paquetes">
   <div class="section-header reveal">
     <span class="section-label">Nuestros paquetes</span>
@@ -672,6 +698,7 @@ footer a{color:var(--bl);text-decoration:none}
   <div class="comp-toggle-wrap">
     <button class="comp-toggle-btn" id="comp-toggle-btn" onclick="toggleComparador()">📊 Ver comparación completa de paquetes</button>
   </div>
+  <p class="trust-badge-cta">🔒 Pagas solo cuando apruebes tu diseño</p>
   <div id="comp-table-wrap"></div>
 </section>
 
@@ -696,8 +723,10 @@ footer a{color:var(--bl);text-decoration:none}
             <optgroup label="Paquetes Web"><option>Web Básica ($219)</option><option>Web Bronce ($359)</option><option>Web Avanzada ($1299)</option><option>Web Plata ($499)</option><option>Web Oro ($659)</option><option>Web Oro Plus ($799)</option><option>Web Oro Premium ($999)</option></optgroup>
           </select>
           <textarea name="mensaje" placeholder="Cuéntanos los detalles de tu evento..." class="full"></textarea>
+          <input type="text" name="codigo_descuento" placeholder="Código de descuento (opcional)" class="full">
         </div>
         <button type="submit" class="contact-submit">✦ Enviar mensaje</button>
+        <p class="trust-badge-cta">🔒 Pagas solo cuando apruebes tu diseño · Sin costo por cotizar</p>
       </form>
       <p class="contact-or">— o escríbenos directo —</p>
       <a class="wa-btn" id="wa-main-btn" href="https://wa.me/524426084804?text=Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n" target="_blank">
@@ -757,6 +786,11 @@ footer a{color:var(--bl);text-decoration:none}
   <p style="margin-top:.4rem">📱 <a href="https://wa.me/524426084804" id="footer-wa">442-608-4804</a> &nbsp;|&nbsp; 📷 <a href="#" id="footer-ig">@momentosencantados</a></p>
   <p style="margin-top:1rem;font-size:.75rem;opacity:.4">© 2025 Momentos Encantados · Todos los derechos reservados</p>
 </footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a id="wa-fab" href="https://wa.me/524426084804?text=Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n" target="_blank" aria-label="Chatear por WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+</a>
 
 <!-- AI FAB -->
 <div id="ai-tooltip-el" class="ai-tooltip">✨ ¡Pregúntame lo que sea!</div>
@@ -1231,7 +1265,10 @@ const DEFAULT_SITE = {
   statTipos:"6+",
   statDisp:"24/7",
   whatsapp:"4426084804",
-  instagram:"momentosencantados"
+  instagram:"momentosencantados",
+  cupoSemanal:"",
+  promoCode:"",
+  promoDesc:""
 };
 let SITE = loadState('me_site', DEFAULT_SITE);
 
@@ -1241,12 +1278,20 @@ function applySite(){
   if(g('hero-title')) g('hero-title').innerHTML = `${SITE.titleLine1}<br><em>${SITE.titleLine2}</em>`;
   if(g('hero-badge')) g('hero-badge').textContent = SITE.badge;
   if(g('hero-sub')) g('hero-sub').textContent = SITE.sub;
+  const uw=g('hero-urgency-wrap');
+  if(uw){
+    let html='';
+    if(SITE.cupoSemanal) html+=`<span class="hero-urgency">⏳ Entregas disponibles esta semana: ${SITE.cupoSemanal}</span>`;
+    if(SITE.promoCode) html+=`<span class="hero-promo">🎁 Código ${SITE.promoCode}${SITE.promoDesc?': '+SITE.promoDesc:''}</span>`;
+    uw.innerHTML=html;
+  }
   if(g('stat-inv')) g('stat-inv').textContent = SITE.statInv;
   if(g('stat-tipos')) g('stat-tipos').textContent = SITE.statTipos;
   if(g('stat-disp')) g('stat-disp').textContent = SITE.statDisp;
   renderTrustBar();
   const waMsg='Hola%20Momentos%20Encantados%2C%20me%20interesa%20una%20invitaci%C3%B3n';
   if(g('wa-main-btn')) g('wa-main-btn').href = `https://wa.me/52${SITE.whatsapp}?text=${waMsg}`;
+  if(g('wa-fab')) g('wa-fab').href = `https://wa.me/52${SITE.whatsapp}?text=${waMsg}`;
   if(g('footer-wa')){
     const d=SITE.whatsapp||'';
     g('footer-wa').href = `https://wa.me/52${d}`;
@@ -1551,10 +1596,11 @@ function buildGallery(){
     const grid=document.createElement('div');
     grid.className='gal-grid';
     const catVids=VIDEOS.filter(v=>v.c===cat);
-    catVids.forEach((vid)=>{
+    const INIT_SHOW=12;
+    catVids.forEach((vid,idx)=>{
       const gi=VIDEOS.indexOf(vid);
       const item=document.createElement('div');
-      item.className='gal-item '+revealCls();
+      item.className='gal-item '+revealCls()+(idx>=INIT_SHOW?' gal-item-extra':'');
       item.dataset.gi=gi;
       item.dataset.pkg=vid.paquete||'';
       item.innerHTML=`
@@ -1581,6 +1627,16 @@ function buildGallery(){
       grid.appendChild(item);
     });
     sec.appendChild(grid);
+    if(catVids.length>INIT_SHOW){
+      const moreBtn=document.createElement('button');
+      moreBtn.className='gal-loadmore-btn';
+      moreBtn.textContent=`Ver los ${catVids.length-INIT_SHOW} restantes ▾`;
+      moreBtn.onclick=()=>{
+        sec.querySelectorAll('.gal-item-extra').forEach(el=>el.classList.remove('gal-item-extra'));
+        moreBtn.remove();
+      };
+      sec.appendChild(moreBtn);
+    }
     secEl.appendChild(sec);
   });
 
@@ -1610,12 +1666,22 @@ function buildGallery(){
         lazyObs.unobserve(item);
       }
     });
-  },{rootMargin:'150px'});
+  },{rootMargin:'80px'});
 
   document.querySelectorAll('.gal-item').forEach(el=>lazyObs.observe(el));
   observeReveal();
   buildPkgFilters();
   applyPkgFilter(); // vuelve a aplicar el filtro de paquete activo (si había uno) tras reconstruir la galería
+  setPhoneMockup();
+}
+function setPhoneMockup(){
+  const el=document.getElementById('phone-mockup-video');
+  if(!el || !VIDEOS.length) return;
+  const pick = VIDEOS.find(v=>v.featured) || VIDEOS[0];
+  if(el.dataset.loadedSrc===pick.s) return;
+  el.src=pick.s;
+  el.dataset.loadedSrc=pick.s;
+  el.play().catch(()=>{});
 }
 
 let currentPkgFilter='';
@@ -1654,6 +1720,10 @@ function applyPkgFilter(){
     }
   });
   if(currentPkgFilter){
+    // Revela también los videos que estaban ocultos tras "Ver más",
+    // para que el filtro de paquete muestre TODOS los que coincidan.
+    document.querySelectorAll('.gal-item-extra').forEach(el=>el.classList.remove('gal-item-extra'));
+    document.querySelectorAll('.gal-loadmore-btn').forEach(b=>b.remove());
     // Con un paquete seleccionado, mostramos todas las categorías juntas
     // para que aparezcan TODOS los modelos guardados con ese paquete.
     secEl.classList.add('pkg-filter-mode');
@@ -1859,12 +1929,42 @@ function saveMsg(data){
   });
 }
 function getMsgs(){ return msgsCache; }
+let msgsFirstLoad=true;
+function playNewOrderSound(){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    [0,.15].forEach((t,i)=>{
+      const o=ctx.createOscillator(), g=ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value=i===0?880:1100;
+      g.gain.setValueAtTime(.001,ctx.currentTime+t);
+      g.gain.exponentialRampToValueAtTime(.25,ctx.currentTime+t+.02);
+      g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+t+.28);
+      o.start(ctx.currentTime+t); o.stop(ctx.currentTime+t+.3);
+    });
+  }catch(e){}
+}
+function notifyNewOrder(m){
+  playNewOrderSound();
+  if(window.Notification && Notification.permission==='granted'){
+    new Notification('🎁 Nuevo pedido — Momentos Encantados',{body:`${m.nombre||'Alguien'} preguntó por ${m.paquete||m.modelo||'una invitación'}`});
+  }
+}
+function askNotifyPermission(){
+  if(window.Notification && Notification.permission==='default') Notification.requestPermission();
+}
 function listenMsgs(){
   db.collection('mensajes').orderBy('createdAt','asc').onSnapshot(snap=>{
+    if(!msgsFirstLoad){
+      snap.docChanges().forEach(ch=>{
+        if(ch.type==='added') notifyNewOrder(ch.doc.data());
+      });
+    }
     const remote=[];
     snap.forEach(doc=>remote.push(Object.assign({id:doc.id},doc.data())));
     msgsCache=remote.length?remote:msgsCache;
     saveState('me_msgs',msgsCache);
+    msgsFirstLoad=false;
     // si el panel admin está abierto, refresca en vivo
     if(document.getElementById('admin-overlay')?.classList.contains('open')){ renderAdmMsgs(); renderAdmStats(); showPendingBanner(); }
   },err=>console.warn('Firestore mensajes offline, usando copia local',err));
@@ -1989,6 +2089,7 @@ function openAdmin(){
   syncDeletedPedidos(); // Sincronizar eliminaciones locales si hay conexión
   renderAdmMsgs(); renderAdmStats(); renderAdmSitio(); renderAdmTipos(); renderAdmPkgs();
   showPendingBanner();
+  askNotifyPermission();
 }
 function showPendingBanner(){
   const banner=document.getElementById('adm-pending-banner');
@@ -2167,6 +2268,8 @@ function renderAdmMsgs(){
   if(!msgs.length){ el.innerHTML='<p style="color:rgba(255,255,255,.35);text-align:center;margin-top:2rem;font-size:.9rem">No hay mensajes aún.</p>'; return; }
 
   const isPedido=m=>!!(m.paquete||m.modelo);
+  const phoneCounts={};
+  msgs.forEach(m=>{ if(m.telefono){ phoneCounts[m.telefono]=(phoneCounts[m.telefono]||0)+1; } });
   const totalPedidos=msgs.filter(isPedido).length;
   const pendientes=msgs.filter(m=>isPedido(m)&&(m.estado||'Pendiente')!=='Entregado').length;
   const sinPagar=msgs.filter(m=>isPedido(m)&&(m.pago||'No pagado')==='No pagado').length;
@@ -2202,7 +2305,7 @@ function renderAdmMsgs(){
     const pago=m.pago||'No pagado';
     const atn=estadoAtencion(m);
     return `<div class="msg-card${pedido?' is-pedido':''}">
-      <h4>${pedido?'🎁':'📩'} ${m.nombre||m.tipo||'Mensaje'} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp||''}</span></h4>
+      <h4>${pedido?'🎁':'📩'} ${m.nombre||m.tipo||'Mensaje'} ${(m.telefono&&phoneCounts[m.telefono]>1)?'<span style="background:rgba(212,175,55,.25);color:#f0d090;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:50px;margin-left:.4rem">🔁 Cliente recurrente ('+phoneCounts[m.telefono]+')</span>':''} &nbsp;<span style="opacity:.5;font-weight:400;font-size:.78rem">${m.timestamp||''}</span></h4>
       <div class="msg-meta">${Object.entries(m).filter(([k])=>!['timestamp','id','createdAt','estado','pago','notas','atencion'].includes(k)).map(([k,v])=>`<span><b>${k.replace(/_/g,' ')}:</b> ${v}</span>`).join('')}</div>
       <div class="ped-actions">
         <select class="atencion-select ${atencionClass(atn)}" onchange="updateAtencion('${m.id||''}',this.value)">
@@ -2319,6 +2422,12 @@ function renderAdmSitio(){
     ${row('Disponibilidad','statDisp','24/7')}
   </div>
   <div class="adm-pkg-card">
+    <h4>⏳ Urgencia y promoción (opcional — déjalo vacío para ocultarlo)</h4>
+    ${row('Cupo de entregas esta semana','cupoSemanal','Ej. 3')}
+    ${row('Código de descuento activo','promoCode','Ej. BIENVENIDA10')}
+    ${row('Descripción del código','promoDesc','Ej. 10% de descuento')}
+  </div>
+  <div class="adm-pkg-card">
     <h4>Contacto</h4>
     ${row('WhatsApp (10 dígitos, sin espacios)','whatsapp','4426084804')}
     ${row('Instagram (sin @)','instagram','momentosencantados')}
@@ -2426,6 +2535,45 @@ function admThumbStop(div){
   vid.style.display = 'none';
   if(icon) icon.style.opacity = '1';
 }
+function updateBulkBar(){
+  const checked=[...document.querySelectorAll('.adm-vid-check:checked')];
+  const bar=document.getElementById('adm-bulk-bar');
+  const count=document.getElementById('adm-bulk-count');
+  if(checked.length===0){ bar.style.display='none'; return; }
+  bar.style.display='flex';
+  count.textContent=`${checked.length} video(s) seleccionados`;
+}
+function clearBulkSelection(){
+  document.querySelectorAll('.adm-vid-check:checked').forEach(c=>c.checked=false);
+  updateBulkBar();
+}
+function getSelectedIndexes(){
+  return [...document.querySelectorAll('.adm-vid-check:checked')].map(c=>parseInt(c.dataset.i));
+}
+function bulkChangePkgSelected(){
+  const idxs=getSelectedIndexes();
+  if(!idxs.length) return;
+  const val=document.getElementById('adm-bulk-pkg-sel').value;
+  const pkgVal = val==='—' ? '' : val;
+  if(!confirm(`¿Asignar "${val}" a los ${idxs.length} videos seleccionados?`)) return;
+  idxs.forEach(i=>{ if(VIDEOS[i]) VIDEOS[i].paquete=pkgVal; });
+  saveState('me_videos', VIDEOS);
+  videosDirty=true;
+  markAdmSavePending();
+  buildGallery();
+  renderAdmVideos();
+}
+function bulkDeleteSelected(){
+  const idxs=getSelectedIndexes().sort((a,b)=>b-a); // de mayor a menor para no desfasar índices al eliminar
+  if(!idxs.length) return;
+  if(!confirm(`¿Eliminar los ${idxs.length} videos seleccionados? Esta acción no se puede deshacer una vez que guardes.`)) return;
+  idxs.forEach(i=>{ VIDEOS.splice(i,1); });
+  saveState('me_videos', VIDEOS);
+  videosDirty=true;
+  markAdmSavePending();
+  buildGallery();
+  renderAdmVideos();
+}
 function bulkAssignPkg(cat,ci){
   const sel=document.getElementById('bulk-pkg-'+ci);
   const val=sel.value==='—' ? '' : sel.value;
@@ -2511,6 +2659,7 @@ function renderAdmVideos(){
         </div>
         ${items.map(({v,i})=>`
           <div class="adm-vid-row" data-title="${v.t.toLowerCase().replace(/"/g,'&quot;')}" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:flex-start;gap:.7rem;padding:.6rem .7rem;flex-wrap:wrap">
+            <input type="checkbox" class="adm-vid-check" data-i="${i}" onchange="updateBulkBar()" style="margin-top:.5rem;width:16px;height:16px;cursor:pointer;flex-shrink:0">
             <div class="adm-vid-thumb" title="${v.t}">
               <span class="adm-vid-icon">${CAT_ICONS[v.c]||'🎬'}</span>
             </div>
@@ -2540,6 +2689,9 @@ function renderAdmVideos(){
               <input type="date" value="${v.added||''}"
                 style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:7px;color:rgba(255,255,255,.7);font-family:Lato,sans-serif;font-size:.75rem;padding:.28rem .5rem;outline:none;width:100%;cursor:pointer"
                 onchange="admFieldChange(${i},'added',this.value)">
+              <label style="display:flex;align-items:center;gap:.4rem;margin-top:.5rem;color:#f0d090;font-size:.74rem;cursor:pointer">
+                <input type="checkbox" ${v.featured?'checked':''} onchange="admFieldChange(${i},'featured',this.checked)"> ⭐ Destacar en "Así se ve en el celular"
+              </label>
             </div>
             <button
               onclick="adminDelVideo(${i})"
@@ -2585,6 +2737,23 @@ function renderAdmVideos(){
   <div style="display:flex;align-items:center;gap:.7rem;margin:1.2rem 0 1rem;flex-wrap:wrap;position:sticky;top:0;background:#2a0e18;padding:.6rem 0;z-index:2">
     <button id="adm-videos-save-btn" class="adm-save-btn${videosDirty?' adm-save-pending':''}" style="${videosDirty?'background:#e0a020;box-shadow:0 0 0 2px rgba(224,160,32,.4)':''}" onclick="saveVideosNow()">💾 Guardar cambios</button>
     <span id="adm-videos-save-flag" style="${videosDirty?'color:#f0d090':'color:rgba(255,255,255,.35)'};font-size:.78rem">${videosDirty?'⚠️ Tienes cambios sin guardar — pulsa "Guardar cambios"':'✓ Todo guardado'}</span>
+  </div>
+  <div id="adm-bulk-bar" style="display:none;align-items:center;gap:.6rem;flex-wrap:wrap;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:.6rem .8rem;margin-bottom:1rem">
+    <span id="adm-bulk-count" style="color:#f0d090;font-size:.8rem;font-weight:700"></span>
+    <select id="adm-bulk-pkg-sel" style="background:#1a0810;border:1px solid rgba(255,255,255,.2);border-radius:7px;color:#d0d090;font-family:Lato,sans-serif;font-size:.76rem;padding:.28rem .5rem;outline:none">
+      <option value="—">— Sin paquete —</option>
+      <option value="Imagen">🖼️ Imagen</option>
+      <option value="Video Invitación">🎬 Video Invitación</option>
+      <option value="Web Básica">💠 Web Básica</option>
+      <option value="Web Bronce">🥉 Web Bronce</option>
+      <option value="Web Plata">🥈 Web Plata</option>
+      <option value="Web Oro">🥇 Web Oro</option>
+      <option value="Web Oro Plus">💜 Web Oro Plus</option>
+      <option value="Web Oro Premium">✨ Web Oro Premium</option>
+    </select>
+    <button onclick="bulkChangePkgSelected()" style="background:rgba(212,175,55,.25);border:1px solid rgba(212,175,55,.5);color:#f0d090;border-radius:7px;padding:.3rem .7rem;cursor:pointer;font-size:.74rem;font-family:Lato,sans-serif">Aplicar paquete a selección</button>
+    <button onclick="bulkDeleteSelected()" style="background:rgba(220,60,60,.25);border:1px solid rgba(220,60,60,.4);color:#ff9a9a;border-radius:7px;padding:.3rem .7rem;cursor:pointer;font-size:.74rem;font-family:Lato,sans-serif">🗑️ Eliminar selección</button>
+    <button onclick="clearBulkSelection()" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:.74rem;text-decoration:underline">Cancelar selección</button>
   </div>
   <p style="color:rgba(255,255,255,.4);font-size:.78rem;margin-bottom:.8rem">
     📹 ${VIDEOS.length} videos en total. Puedes cambiar libremente nombres, categorías, paquetes o fechas — nada se publica hasta que pulses <strong style="color:#f0d090">💾 Guardar cambios</strong>.
